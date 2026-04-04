@@ -1,0 +1,32 @@
+tui-radio-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+.study-permit-shell {
+  padding: 20px;
+  color: #1f2937;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 100px 100px 100px 120px;
+}
+.radio-card {
+  padding: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.radio-card:hover {
+  border-color: #3b82f6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  tui-radio-list {
+    grid-template-columns: 1fr;
+  }
+}

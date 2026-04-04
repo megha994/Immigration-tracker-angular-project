@@ -1,0 +1,147 @@
+.dashboard-shell {
+  padding: 20px;
+  color: #1f2937;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 100px 100px 100px 120px;
+}
+
+.dashboard-header {
+  margin-bottom: 20px;
+}
+
+.dashboard-header h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.mat-progress-bar {
+  border-radius: 8px;
+  height: 16px;
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.progress-card {
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 110px;
+}
+
+.progress-card.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #c62828;
+}
+
+.progress-card-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.card-icon {
+  font-size: 32px;
+  color: #e53935;
+}
+
+.progress-card h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  margin: 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b5563;
+}
+
+.status-icon {
+  color: #22c55e;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.deadline-card {
+  margin-top: 20px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background-color: #fef3c7;
+  color: #92400e;
+  min-height: 90px;
+  cursor: default;
+}
+
+.deadline-card.success {
+  background-color: #dcfce7;
+  border-color: #d1fae5;
+  color: #166534;
+}
+
+.deadline-card.warning {
+  background-color: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.deadline-card.danger {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.deadline-main h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.deadline-main p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.deadline-icon {
+  font-size: 40px;
+  color: inherit;
+}
+
+@media (max-width: 900px) {
+  .progress-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-shell {
+    padding: 12px;
+  }
+
+  .dashboard-header h2 {
+    font-size: 20px;
+  }
+
+  .deadline-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .deadline-icon {
+    align-self: flex-end;
+  }
+}

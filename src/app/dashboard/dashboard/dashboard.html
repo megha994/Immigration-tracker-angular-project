@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<section class="dashboard-shell">
+  <header class="dashboard-header">
+    <h2>Your Progress</h2>
+    <progress tuiProgressBar [value]="progressValue" [max]="100"></progress>
+  </header>
+
+  <div class="progress-grid">
+    <div
+      tuiCardMedium
+      class="progress-card"
+      *ngFor="let card of cards"
+      [ngClass]="{ clickable: card.clickable }"
+      (click)="onCardClick(card)">
+      <div class="progress-card-main">
+        <tui-icon [icon]="card.icon" class="card-icon"></tui-icon>
+        <div>
+          <h3>{{ card.title }}</h3>
+          <p class="card-subtitle">
+            <tui-icon icon="@tui.check" class="status-icon"></tui-icon>
+            Completed
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div tuiCardMedium class="deadline-card" [ngClass]="deadlineColor">
+    <div class="deadline-main">
+      <h3>Deadline</h3>
+      <p>{{ deadlineText }}</p>
+    </div>
+    <tui-icon icon="@tui.clock" class="deadline-icon"></tui-icon>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<div class="study-permit-card">
+@if (step==2 && type=="study") {
+<h1 class="header">To be eligibility to come to Canada as a student, you must:</h1>
+}<p-stepper [value]="1">
+
+    <p-step-item *ngFor="let eli of eligibility" [value]="eli.step">
+        <p-step>
+
+            <h1 class="header">{{eli.stepTitle}}</h1>
+
+        </p-step>
+        <p-step-panel>
+            <ng-template pTemplate="content" let-activateCallback="activateCallback">
+
+                <div class="flex flex-column h-12rem">
+                    <div [innerHTML]="eli.contentHtml" class="doc-content">
+
+                    </div>
+                </div>
+            </ng-template>
+        </p-step-panel>
+    </p-step-item>
+</p-stepper>
+
+</div>

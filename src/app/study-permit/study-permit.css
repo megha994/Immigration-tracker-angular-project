@@ -1,32 +1,139 @@
-tui-radio-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  width: 100%;
-  max-width: 500px;
-}
+
 .study-permit-shell {
-  padding: 20px;
-  color: #1f2937;
-  background-color: #ffffff;
-  min-height: 100vh;
   padding: 100px 100px 100px 120px;
+  color: #1f2937;
+  background: linear-gradient(180deg, #fff 0%, #fff7f7 100%);
+  min-height: 100vh;
 }
-.radio-card {
-  padding: 14px;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
+
+.study-permit-shell h2 {
+  margin: 0 0 18px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #b91c1c;
+}
+
+.study-permit-card {
+  width: 100%;
+  max-width: 920px;
+  background: #ffffff;
+  border: 1px solid #f3d6d6;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(185, 28, 28, 0.08);
+}
+
+.study-permit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #e5bcbc;
+  border-radius: 12px;
+  background: #fffaf9;
+  color: #1f2937;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s ease;
+  min-width: 180px;
 }
 
-.radio-card:hover {
-  border-color: #3b82f6;
+.radio-option:hover {
+  border-color: #e53935;
+  background: #fff3f2;
+  transform: translateY(-1px);
 }
 
-/* Mobile */
+.radio-option p-radiobutton {
+  transform: scale(1.15);
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box {
+  border: 2px solid #e53935;
+  background: #fff;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+  border-color: #c62828;
+  background: #e53935;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  background-color: #fff;
+}
+
+:host ::ng-deep .styled-select .p-select {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #e5bcbc;
+  border-radius: 12px;
+  background: #fffaf9;
+  color: #1f2937;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  box-shadow: none;
+}
+
+:host ::ng-deep .styled-select .p-select:hover,
+:host ::ng-deep .styled-select .p-select.p-focus {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.12);
+}
+
+:host ::ng-deep .styled-select .p-select-label {
+  color: #1f2937;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+}
+
+:host ::ng-deep .styled-select .p-select-dropdown {
+  color: #e53935;
+}
+
+.submit-btn {
+  width: fit-content;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+}
+
 @media (max-width: 768px) {
-  tui-radio-list {
-    grid-template-columns: 1fr;
+  .study-permit-shell {
+    padding: 24px 16px 40px;
   }
+
+  .study-permit-card {
+    padding: 18px;
+  }
+
+  .radio-option {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+ p {
+  font-family: 'Oswald', sans-serif;
+  width: fit-content;
+  font-size: large;
+  letter-spacing: 1px;
 }

@@ -8,7 +8,7 @@
         <span class="hamburger-line"></span>
       </button>
     </div>
-    
+
     <ul class="navbar-menu" [class.open]="isNavOpen">
       <!-- Dashboard -->
       <li class="navbar-item">
@@ -27,7 +27,7 @@
         </button>
         <ul class="navbar-submenu" *ngIf="expandedCategory === 'applicationCategories'">
           <li class="navbar-subitem">
-            <a routerLink="/study-permit" class="navbar-sublink">Study Permit</a>
+            <a [routerLink]="['/study-permit', 'study']" class="navbar-sublink">Study Permit</a>
           </li>
           <li class="navbar-subitem">
             <a href="#" class="navbar-sublink">Work Permit</a>

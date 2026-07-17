@@ -1,0 +1,26 @@
+<div class="study-permit-card">
+    @if (step==2 && type=="study") {
+    <h1 class="header">To apply for a study permit, you must have the following documents (except for some exceptions):
+    </h1>
+    }<p-stepper [value]="1">
+
+        <p-step-item *ngFor="let doc of documents" [value]="doc.step">
+            <p-step>
+
+                <h1>{{doc.stepTitle}}</h1>
+
+            </p-step>
+            <p-step-panel>
+                <ng-template pTemplate="content" let-activateCallback="activateCallback">
+
+                    <div class="flex flex-column h-12rem">
+                        <div [innerHTML]="doc.contentHtml" class="doc-content">
+
+                        </div>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+        </p-step-item>
+
+    </p-stepper>
+</div>

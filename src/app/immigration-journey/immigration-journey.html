@@ -1,0 +1,18 @@
+<div class="journey-container">
+ 
+  @for (step of steps; track step.title; let last = $last) {
+    <div class="journey-item">
+      <div (click)="goToStep(step)" class="step-card">
+        <i [class]="step.icon" [style.color]="step.color" style="font-size: 2rem"></i>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+
+      @if (!last) {
+        <div class="connector">
+          <i class="pi pi-arrow-right"></i>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -4,6 +4,8 @@
   background-color: #ffffff;
   min-height: 100vh;
   padding: 100px 100px 100px 120px;
+  font-family:Oswald, sans-serif;
+  font-weight:500;
 }
 
 .dashboard-header {
@@ -106,7 +108,11 @@
 .deadline-main h3 {
   margin: 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400px;
+  flex: 1;
+  margin: 0;
+  font-family:Oswald, sans-serif;
+  letter-spacing: 10px;
 }
 
 .deadline-main p {

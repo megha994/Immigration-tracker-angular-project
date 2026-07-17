@@ -2,34 +2,33 @@
 <section class="dashboard-shell">
   <header class="dashboard-header">
     <h2>Your Progress</h2>
-    <progress tuiProgressBar [value]="progressValue" [max]="100"></progress>
+    <p-progressBar [value]="progressValue" [showValue]="false"></p-progressBar>
   </header>
 
   <div class="progress-grid">
-    <div
-      tuiCardMedium
+    <p-card
       class="progress-card"
       *ngFor="let card of cards"
       [ngClass]="{ clickable: card.clickable }"
       (click)="onCardClick(card)">
       <div class="progress-card-main">
-        <tui-icon [icon]="card.icon" class="card-icon"></tui-icon>
+        <i [class]="card.icon" class="card-icon"></i>
         <div>
           <h3>{{ card.title }}</h3>
           <p class="card-subtitle">
-            <tui-icon icon="@tui.check" class="status-icon"></tui-icon>
+            <i class="pi pi-check status-icon"></i>
             Completed
           </p>
         </div>
       </div>
-    </div>
+    </p-card>
   </div>
 
-  <div tuiCardMedium class="deadline-card" [ngClass]="deadlineColor">
+  <p-card class="deadline-card" [ngClass]="deadlineColor">
     <div class="deadline-main">
       <h3>Deadline</h3>
       <p>{{ deadlineText }}</p>
     </div>
-    <tui-icon icon="@tui.clock" class="deadline-icon"></tui-icon>
-  </div>
+    <i class="pi pi-clock deadline-icon"></i>
+  </p-card>
 </section>

@@ -3,9 +3,10 @@
   background-color: #FFFFFF;
   border-right: 1px solid #E5E7EB;
   height: 100vh;
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
+  z-index: 999;
   width: 250px;
   overflow-y: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -55,8 +56,9 @@
 
 .navbar-title {
   margin: 0;
+  font-family: Oswald, sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.5px;
 }
 
@@ -111,7 +113,8 @@
 }
 
 .navbar-menu.open {
-  max-height: 1000px; /* Adjust based on content */
+  max-height: 1000px;
+  /* Adjust based on content */
 }
 
 /* Navbar Item - Main Links */
@@ -128,8 +131,13 @@
   padding: 12px 16px;
   color: #1F2937;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+  flex: 1;
+  margin: 0;
+  font-family: Oswald, sans-serif;
+  font-size: large;
+  letter-spacing: 2px;
+
+  font-weight: 600;
   cursor: pointer;
   border: none;
   background: none;
@@ -201,6 +209,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -218,8 +227,11 @@
   padding: 10px 16px 10px 32px;
   color: #1F2937;
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 400;
+  flex: 1;
+  margin: 0;
+  font-family: Oswald, sans-serif;
+  font-size: medium;
+  letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
   border-left: 2px solid transparent;
@@ -252,7 +264,7 @@
   .navbar-link,
   .category-toggle {
     padding: 10px 12px;
-    font-size: 13px;
+    font-size: medium;
     gap: 10px;
   }
 
@@ -295,7 +307,7 @@
   }
 
   .navbar-title {
-    font-size: 14px;
+    font-size: large;
   }
 
   .navbar-menu {
@@ -317,7 +329,7 @@
   }
 
   .navbar-icon {
-    font-size: 14px;
+    font-size: large;
     width: 18px;
   }
 

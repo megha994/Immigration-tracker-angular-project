@@ -80,11 +80,3 @@ export class StudyPermit implements OnInit {
     this.countrySelected = event.value;
   }
 }
-
-// selectedOption = new FormControl('express');
-
-// radioOptions = [
-//   'Outside Canada',
-//   'Within Canada',
-//   'At Port of Entry'
-// ];

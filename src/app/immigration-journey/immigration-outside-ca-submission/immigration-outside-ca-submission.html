@@ -1,0 +1,120 @@
+<div class="study-permit-card">
+  @if (step==3 && type=="study") {
+  <h1 class="header">How to apply?
+  </h1>
+  }<p-stepper [value]="1">
+
+    <p-step-item *ngFor="let sub of submission" [value]="sub.step">
+      <p-step>
+
+        <h1>{{sub.stepTitle}}</h1>
+
+      </p-step>
+      <p-step-panel>
+        <ng-template pTemplate="content" let-activateCallback="activateCallback">
+
+          <div class="flex flex-column h-12rem">
+            <div [innerHTML]="sub.contentHtml" class="sub-content">
+
+            </div>
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-item>
+
+  </p-stepper>
+  <h1>
+    Get specific instructions on how to apply: <br />
+
+  </h1>
+
+  <p>Answer a few questions to get the next steps for your situation.<br /></p>
+
+  <!-- ------------------------------------------------------------------------------------------- -->
+
+
+  <section class="study-permit-shell">
+    <h2>How do you want to apply? (required)<br /></h2>
+
+    <form [formGroup]="studyPermitForm" (ngSubmit)="onSubmit()" class="study-permit-form">
+      <div class="radio-group" role="radiogroup" aria-label="Application location options">
+        @for (category of categories; track category.key) {
+        <label class="radio-option" [for]="category.key">
+          <p-radiobutton formControlName="selectedCategory" name="selectedCategory" [inputId]="category.key"
+            [value]="category" [invalid]="isInvalid('selectedCategory')" />
+          <span>{{ category.name }}</span>
+        </label>
+        }
+      </div>
+      @if (online) {
+      <div>
+        <h2>Apply online from outside Canada</h2>
+        <p>Select a country/territory (required)*</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p-select formControlName="country" [options]="countries" [invalid]="isInvalid('country')" optionLabel="name"
+          placeholder="Select a country" styleClass="styled-select" class="w-full md:w-56"
+          (onChange)="onSelectCategory($event)" />
+      </div>
+      @if (isInvalid('country')) {
+      <div class="flex flex-col gap-1">
+        <p-message severity="error" size="small" variant="simple">country is required.</p-message>
+      </div> }
+
+      @if (isInvalid('selectedCategory')) {
+      <p-message severity="error" size="small" variant="simple">
+        Please select one application location.
+      </p-message>
+      }
+
+      @if (countrySelected && online) {
+
+      <p-stepper [value]="1">
+
+        <p-step-item *ngFor="let sub of onlineSubmission" [value]="sub.step">
+          <p-step>
+
+            <h1>{{sub.stepTitle}}</h1>
+
+          </p-step>
+          <p-step-panel>
+            <ng-template pTemplate="content" let-activateCallback="activateCallback">
+
+              <div class="flex flex-column h-12rem">
+                <div [innerHTML]="sub.contentHtml" class="sub-content">
+
+                </div>
+
+              </div>
+
+            </ng-template>
+          </p-step-panel>
+        </p-step-item>
+
+      </p-stepper>
+
+      }
+      }
+
+      @if (online && countrySelected) {
+      <div *ngFor="let sub of submissionButton">
+        <button pButton severity="primary" type="submit" class="submit-btn">
+          <span [innerHTML]="sub.contentHtml" pButtonLabel></span>
+        </button>
+      </div>
+      }
+
+         @if (paper) {
+      <div *ngFor="let sub of paperSubmission">
+        <div [innerHTML]="sub.content">
+
+        </div>
+        <button pButton severity="primary" type="submit" class="submit-btn">
+          <span [innerHTML]="sub.contentHtml" pButtonLabel></span>
+        </button>
+      </div>
+      }
+    </form>
+
+  </section>
+</div>

@@ -82,6 +82,12 @@ export class ImmigrationJourney implements OnInit {
         queryParamsHandling: 'merge' // optional: merge with existing query params
       });
     }
+    else if (st == 3) {
+      this.router.navigate(['/immigration-outside-ca-submission'], {
+        queryParams: { st: st, type: this.type },
+        queryParamsHandling: 'merge' // optional: merge with existing query params
+      });
+    }
     // else if(st==2){
     //   this.router.navigate(['/immigration-outside-ca-documents'], {
     //     queryParams: { st: st, type: this.type },

@@ -37,6 +37,13 @@ export const routes: Routes = [
           import('./immigration-journey/immigration-outside-ca-documents/immigration-outside-ca-documents').then((m) => m.ImmigrationOutsideCaDocuments,
 
           ),
+      },
+      {
+        path: 'immigration-outside-ca-submission',
+        loadComponent: () =>
+          import('./immigration-journey/immigration-outside-ca-submission/immigration-outside-ca-submission').then((m) => m.ImmigrationOutsideCaSubmission,
+
+          ),
       }
     ],
   },

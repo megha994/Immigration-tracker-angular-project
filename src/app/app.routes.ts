@@ -20,32 +20,36 @@ export const routes: Routes = [
       {
         path: 'immigration-journey',
         loadComponent: () =>
-          import('./immigration-journey/immigration-journey').then((m) => m.ImmigrationJourney,
-          ),
-
+          import('./immigration-journey/immigration-journey').then((m) => m.ImmigrationJourney),
       },
       {
         path: 'immigration-outside-ca-eligibility',
         loadComponent: () =>
-          import('./immigration-journey/immigration-outside-ca-eligibility/immigration-outside-ca-eligibility').then((m) => m.ImmigrationOutsideCaEligibility,
-
+          import('./immigration-journey/immigration-outside-ca-eligibility/immigration-outside-ca-eligibility').then(
+            (m) => m.ImmigrationOutsideCaEligibility,
           ),
       },
       {
         path: 'immigration-outside-ca-documents',
         loadComponent: () =>
-          import('./immigration-journey/immigration-outside-ca-documents/immigration-outside-ca-documents').then((m) => m.ImmigrationOutsideCaDocuments,
-
+          import('./immigration-journey/immigration-outside-ca-documents/immigration-outside-ca-documents').then(
+            (m) => m.ImmigrationOutsideCaDocuments,
           ),
       },
       {
         path: 'immigration-outside-ca-submission',
         loadComponent: () =>
-          import('./immigration-journey/immigration-outside-ca-submission/immigration-outside-ca-submission').then((m) => m.ImmigrationOutsideCaSubmission,
-
+          import('./immigration-journey/immigration-outside-ca-submission/immigration-outside-ca-submission').then(
+            (m) => m.ImmigrationOutsideCaSubmission,
           ),
-      }
+      },
+      {
+        path: 'immigration-outside-ca-biometrics',
+        loadComponent: () =>
+          import('./immigration-journey/immigration-outside-ca-biometrics/immigration-outside-ca-biometrics').then(
+            (m) => m.ImmigrationOutsideCaBiometrics,
+          ),
+      },
     ],
   },
 ];
-

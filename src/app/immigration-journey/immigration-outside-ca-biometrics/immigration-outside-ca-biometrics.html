@@ -1,0 +1,24 @@
+<div class="study-permit-card">
+  @if (step == 4 && type == 'study') {
+    <h1 class="header">BIOMETRICS</h1>
+  }
+  <div class="header" *ngFor="let b of biometric" [innerHTML]="b.contextHtml"></div>
+  
+  <h2>FEES:</h2>
+  <div class="fees" *ngFor="let b of bioFees" [innerHTML]="b.contextHtml"></div>
+  <h2>SECTIONS:</h2>
+  <p-stepper [value]="1" class="header">
+    <p-step-item *ngFor="let bio of biometrics" [value]="bio.step">
+      <p-step>
+        <h1>{{ bio.stepTitle }}</h1>
+      </p-step>
+      <p-step-panel>
+        <ng-template pTemplate="content" let-activateCallback="activateCallback">
+          <div class="flex flex-column h-12rem">
+            <div [innerHTML]="bio.contentHtml" class="bio-content"></div>
+          </div>
+        </ng-template>
+      </p-step-panel>
+    </p-step-item>
+  </p-stepper>
+</div>

@@ -8,7 +8,6 @@
   padding: 14px 24px;
   background: white;
 
-
   color: #5e1515;
   border-bottom: 2px solid #ffb3b3;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
@@ -17,6 +16,7 @@
 .header-left,
 .header-right {
   display: flex;
+  cursor: pointer;
   align-items: center;
 }
 

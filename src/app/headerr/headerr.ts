@@ -13,4 +13,7 @@ export class Headerr {
     // console.log('Login button     clicked');
     this.router.navigate(['/login-in']);
   }
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }

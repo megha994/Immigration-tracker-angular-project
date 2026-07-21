@@ -1,11 +1,9 @@
-
 export const STUDY_OUTSIDE_ELIGIBLE = [
   {
-
     step: 1,
-    stepTitle: "Enroll at a DLI (Designated Learning Institute)",
-    stepTag: "danger",
-    stepTagTitle: "Required",
+    stepTitle: 'Enroll at a DLI (Designated Learning Institute)',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
     contentHtml: ` <p>
 
                             You must enroll at a DLI. A DLI is a school in Canada that a student must be accepted at
@@ -24,13 +22,13 @@ export const STUDY_OUTSIDE_ELIGIBLE = [
                             <a href="https://www.canada.ca/en/services/immigration-citizenship/helpcentre/glossary.html#school"
                                 target="_blank">Secondary school Learning institutions list (DLI)</a>
 
-                        </p>`
+                        </p>`,
   },
   {
     step: 2,
-    stepTitle: "Show Financial Proof",
-    stepTag: "warn",
-    stepTagTitle: "Needed in most cases",
+    stepTitle: 'Show Financial Proof',
+    stepTag: 'warn',
+    stepTagTitle: 'Needed in most cases',
     contentHtml: `   <p> You must prove that you have
 
 
@@ -45,26 +43,28 @@ export const STUDY_OUTSIDE_ELIGIBLE = [
                             </li>
                             <li> return transportation for yourself and any family members who come with you to Canada
                             </li>
-                        </ul>`},
+                        </ul>`,
+  },
 
   {
     step: 3,
-    stepTitle: "Get a Police Clearence Certificate (PCC)",
-    stepTag: "danger",
-    stepTagTitle: "Required",
+    stepTitle: 'Get a Police Clearence Certificate (PCC)',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
     contentHtml: `  <p>
 
                             You must obey the law, have no criminal record and get a
                             <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how.html"
                                 target="_blank">police certificate </a>
                             (if required)
-                        </p>`},
+                        </p>`,
+  },
 
   {
     step: 4,
-    stepTitle: "Get a Medical Exam",
-    stepTag: "danger",
-    stepTagTitle: "Required",
+    stepTitle: 'Get a Medical Exam',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
     contentHtml: `<p>  <p>
 
                             You can come to Canada if are in good health and get a
@@ -75,12 +75,13 @@ export const STUDY_OUTSIDE_ELIGIBLE = [
 
                             (if required) and
                         </p>
-</p>`
-  }, {
+</p>`,
+  },
+  {
     step: 5,
-    stepTitle: "Prove that you leave Canada after studies",
-    stepTag: "info",
-    stepTagTitle: "Recommended",
+    stepTitle: 'Prove that you leave Canada after studies',
+    stepTag: 'info',
+    stepTagTitle: 'Recommended',
     contentHtml: `<p>  You must prove to an officer that you will leave Canada when your study permit expires
     </p>
     
@@ -88,17 +89,16 @@ export const STUDY_OUTSIDE_ELIGIBLE = [
         href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/eligibility/study-without-permit.html"
         target="_blank">here. </a></p>
     
-    `
+    `,
   },
-
-]
+];
 
 export const STUDY_OUTSIDE_DOC = [
   {
     step: 1,
-    stepTitle: "Letter of Acceptance",
-    stepTag: "danger",
-    stepTagTitle: "Required",
+    stepTitle: 'Letter of Acceptance',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
     contentHtml: `<p>
 
                             You must upload your Letter of Acceptance.<br />  <br />
@@ -120,13 +120,13 @@ export const STUDY_OUTSIDE_DOC = [
                             or work
                             permit application that’s been approved in writing before you come to Canada, you don’t need
                             a letter of acceptance.
-                        </p>`
+                        </p>`,
   },
   {
     step: 2,
-    stepTitle: "Provincial or Territorial Attestation Letter",
-    stepTag: "warn",
-    stepTagTitle: "Needed in most cases",
+    stepTitle: 'Provincial or Territorial Attestation Letter',
+    stepTag: 'warn',
+    stepTagTitle: 'Needed in most cases',
     contentHtml: ` <p> Get a
 
                             <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/provincial-attestation-letter.html"
@@ -141,13 +141,14 @@ export const STUDY_OUTSIDE_DOC = [
                             , you need a Quebec Acceptance Certificate (Certificat d’acceptation du Québec [CAQ]).
 
 
-                        </p>`},
+                        </p>`,
+  },
 
   {
     step: 3,
-    stepTitle: "Show Proof of Identity",
-    stepTag: "danger",
-    stepTagTitle: "Required",
+    stepTitle: 'Show Proof of Identity',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
     contentHtml: ` <p>
 
                             To show proof of identity, you (and each family member who comes with you) must have
@@ -179,26 +180,29 @@ export const STUDY_OUTSIDE_DOC = [
                                 target="_blank">official proof of status in the U.S.)
                             </a> and a valid passport from their country of
                             nationality (or an equivalent document).
-                        </p>`},
+                        </p>`,
+  },
 
   {
     step: 4,
-    stepTitle: "Show proof of funds",
-    stepTag: "danger",
-    stepTagTitle: "Required",
-    contentHtml: `<p>To support yourself and any family members coming with you, you must show proof of  <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html' target="_blank">funds.</a></p>`
-  }, {
+    stepTitle: 'Show proof of funds',
+    stepTag: 'danger',
+    stepTagTitle: 'Required',
+    contentHtml: `<p>To support yourself and any family members coming with you, you must show proof of  <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html' target="_blank">funds.</a></p>`,
+  },
+  {
     step: 5,
-    stepTitle: "Write a letter of explanation",
-    stepTag: "info",
-    stepTagTitle: "Recommended",
+    stepTitle: 'Write a letter of explanation',
+    stepTag: 'info',
+    stepTagTitle: 'Recommended',
     contentHtml: `<p>You must explain why you want to study in Canada, and that you understand your responsibilities as an international student in Canada.
-    </p>`
-  }, {
+    </p>`,
+  },
+  {
     step: 6,
-    stepTitle: "Get a medical Exam",
-    stepTag: "warn",
-    stepTagTitle: "Check if Needed",
+    stepTitle: 'Get a medical Exam',
+    stepTag: 'warn',
+    stepTagTitle: 'Check if Needed',
     contentHtml: `<p>
      You may need a medical exam if any of these situations apply to you:</p>
 <ul><li>
@@ -208,32 +212,30 @@ You recently spent time in certain countries.</li>
 <li>You plan to work in certain jobs where public health must be protected.</li>
 </ul><p>
 <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams/requirements-temporary-residents.html#jobs-med' target="_blank">Check if you need a medical exam.</a>
- </p>`
-  }, {
+ </p>`,
+  },
+  {
     step: 7,
-    stepTitle: "Get a police certificate",
-    stepTag: "warn",
-    stepTagTitle: "Check if Needed",
-    contentHtml: `<p>In some cases, we may ask you for a <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates.html' target="_blank">police certificate.</a> If you think you might need one, you should apply for one as <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how.html' target="_blank">early as possible.</a></p>`
+    stepTitle: 'Get a police certificate',
+    stepTag: 'warn',
+    stepTagTitle: 'Check if Needed',
+    contentHtml: `<p>In some cases, we may ask you for a <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates.html' target="_blank">police certificate.</a> If you think you might need one, you should apply for one as <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how.html' target="_blank">early as possible.</a></p>`,
   },
 
   {
-
     step: 8,
-    stepTitle: "Proof of care (for minor children in Canada) ",
-    stepTag: "warn",
-    stepTagTitle: "Check if Needed",
+    stepTitle: 'Proof of care (for minor children in Canada) ',
+    stepTag: 'warn',
+    stepTagTitle: 'Check if Needed',
     contentHtml: `<p>Children under the age of 17 who are not coming to Canada with a parent or legal guardian must have an appointed custodian.
-<a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/minor-children.html#caring' target="_blank">Find out what you need to submit for children under the age of 17.</a></p>`
-  }
-  ,
+<a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/minor-children.html#caring' target="_blank">Find out what you need to submit for children under the age of 17.</a></p>`,
+  },
 
   {
-
     step: 9,
-    stepTitle: "Other Documents",
-    stepTag: "warn",
-    stepTagTitle: "Check if Needed",
+    stepTitle: 'Other Documents',
+    stepTag: 'warn',
+    stepTagTitle: 'Check if Needed',
     contentHtml: `<p>Check for other documents you might need based on what country you’re applying from . There may be other documents to submit that are specific to your local visa office. To get your local visa office instructions:
 </p><ul>
 <li>
@@ -258,8 +260,78 @@ Include a letter of explanation with your application stating: “I am a Venezue
 </p> <br/>
 <p>Check if you can apply without a permit <a
         href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/eligibility/study-without-permit.html"
-        target="_blank">here. </a></p>`
+        target="_blank">here. </a></p>`,
+  },
+];
 
-  }
+export const STUDY_OUTSIDE_BIO = [
+  {
+    contextHtml: `<p>
+Biometrics are your fingerprints and photo. We collect your biometrics so we can confirm your identity. This information is also used to help assess your application.
+<br/>
+Unless you’re exempt, you need to give your fingerprints and a photo when you apply for any of the following:
+<br/><ul><li>
+temporary residence (except US nationals)</li><li>
+permanent residence</li><li>
+to extend your stay in Canada, unless you’re from a visa-exempt country</li><li>
+refugee or asylum status</li></ul><br/><b>EXCEPTIONS:</b><ul> <li>
 
+Canadian citizens, citizenship applicants (including passport applicants), or existing permanent residents</li><li>those coming to visit Canada only and applying for an eTA</li><li>children under the age of 14</li><li>applicants over the age of 79 (there is no upper age exemption for asylum claimants)</li><li>heads of state and heads of government</li><li>applicants who qualify for or hold a diplomatic or official visa</li><li>US visa holders transiting through Canada</li><li>applicants applying for a visitor visa, a study permit or a work permit who have already provided biometrics for a permanent resident application that’s still being processed</li></ul></p><br/>`,
+  },
+];
+
+export const STUDY_OUTSIDE_BIOMETRICS = [
+  {
+    step: 1,
+    stepTitle: 'Who needs it?',
+    contentHtml: `<p>
+<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/who-needs-to-give.html" target="_blank">Who needs to give their biometrics</a><br/><br/>
+                           Answer a few questions to find out if you need to give biometrics
+                        </p>`,
+  },
+  {
+    step: 2,
+    stepTitle: 'When to give?',
+    contentHtml: `<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/when-to-give.html" target="_blank">When to give your biometrics</a><br/><br/>
+How often you need to give biometrics as a temporary resident applicant, including extensions, and as a permanent resident applicant
+                        </p>`,
+  },
+  {
+    step: 3,
+    stepTitle: 'How to give it?',
+    contentHtml: `<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/how-to-give.html" target="_blank">How to give your biometrics</a><br/><br/>
+What to expect when you go to your biometrics appointment
+                        </p>`,
+  },
+  {
+    step: 4,
+    stepTitle: 'When to give?',
+    contentHtml: `<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/where-to-give.html" target="_blank">Where to give your biometrics</a><br/><br/>
+Find a collection point near you
+                        </p>`,
+  },
+  {
+    step: 5,
+    stepTitle: 'After you give',
+    contentHtml: `<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/after-you-give.html" target="_blank">What happens after you give your biometrics</a><br/><br/>
+What we do with your fingerprints and photo and how they may be used
+                        </p>`,
+  },
+];
+
+export const bioSTUDY_OUTSIDE_BIO_FEES = [
+  {
+    contextHtml: `<p> Individual applicant:<b> CAN$85</b><br/>
+
+Families applying at the same time: maximum total fee of <b> CAN$170</b><br/><br/>
+
+<b> Who is eligible for the family rate?</b><ul><li>
+your spouse or common‑law partner</li><li>
+your dependent children or their dependent children<br/>
+Check if your child is a dependant.</li></ul>
+
+<b>Groups of 3 or more </b> performing artists and their staff who apply for work permits at the same time: maximum total fee of <b>CAN$255</b>
+<br/><br/><b>NOTE: </b>
+There is <b>no fee</b> to give biometrics for a transit visa.</p>`,
+  },
 ];

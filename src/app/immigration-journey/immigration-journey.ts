@@ -32,7 +32,7 @@ export class ImmigrationJourney implements OnInit {
       description: 'Verify eligibility requirements',
       completed: true,
       icon: 'pi pi-check-circle',
-      color: '#22c55e',
+      color: '#61dfc6',
     },
     {
       id: '2',
@@ -40,7 +40,7 @@ export class ImmigrationJourney implements OnInit {
       description: 'Gather required documents',
       completed: true,
       icon: 'pi pi-file',
-      color: '#3b82f6',
+      color: '#eb6a29',
     },
     {
       id: '3',
@@ -55,17 +55,25 @@ export class ImmigrationJourney implements OnInit {
       title: 'Biometrics',
       description: 'Schedule biometrics',
       completed: false,
-      icon: 'pi pi-file',
+      icon: 'pi pi-user',
       color: '#3b82f6',
     },
     {
       id: '5',
+      title: 'Processing Time',
+      description: 'Find processing Time',
+      completed: false,
+      icon: 'pi pi-clock deadline-icon',
+      color: '#e7d128',
+    },
+    {
+      id: '6',
       title: 'Decision',
       description: 'Receive final decision',
       completed: false,
-      icon: 'pi pi-file',
-      color: '#3b82f6',
-    },
+      icon: 'pi pi-question-circle',
+      color: '#f26a55',
+    }
   ];
 
   goToStep(step: Step) {
@@ -80,23 +88,30 @@ export class ImmigrationJourney implements OnInit {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
-    } else if (st == 4) {
-      this.router.navigate(['/immigration-outside-ca-biometrics'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
     }
-    else if (st == 3) {
+     else if (st == 3) {
       this.router.navigate(['/immigration-outside-ca-submission'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge' // optional: merge with existing query params
       });
     }
-    // else if(st==2){
-    //   this.router.navigate(['/immigration-outside-ca-documents'], {
-    //     queryParams: { st: st, type: this.type },
-    //     queryParamsHandling: 'merge' // optional: merge with existing query params
-    //   });
-    // }
+    else if (st == 4) {
+      this.router.navigate(['/immigration-outside-ca-biometrics'], {
+        queryParams: { st: st, type: this.type },
+        queryParamsHandling: 'merge', // optional: merge with existing query params
+      });
+    }
+     else if (st == 5) {
+      this.router.navigate(['/immigration-outside-ca-processing-time'], {
+        queryParams: { st: st, type: this.type },
+        queryParamsHandling: 'merge', // optional: merge with existing query params
+      });
+    }
+     else if (st == 6) {
+      this.router.navigate(['/immigration-outside-ca-decision'], {
+        queryParams: { st: st, type: this.type },
+        queryParamsHandling: 'merge', // optional: merge with existing query params
+      });
+    }
   }
 }

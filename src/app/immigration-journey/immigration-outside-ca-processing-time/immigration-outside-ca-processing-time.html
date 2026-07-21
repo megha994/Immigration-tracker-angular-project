@@ -1,0 +1,38 @@
+<section class="study-permit-shell">
+    <div class="study-permit-card">
+        @if (step==5 && type=="study") {
+        <h1 class="header">Study permit outside Canada</h1>
+
+        <h2 class="header">Processing time <i class="deadline-icon pi pi-clock deadline-icon"></i></h2>
+        }<p-stepper [value]="1">
+            <p-step-item *ngFor="let eli of processingTime; let i = index" [value]="eli.step">
+                <p-step>
+                    <h1 class="header" [ngClass]="{ 'first-step-title': i === 0 }">
+                        {{ eli.stepTitle }}
+                    </h1>
+                </p-step>
+
+                <p-step-panel>
+                    <ng-template pTemplate="content" let-activateCallback="activateCallback">
+                        <div class="flex flex-column h-12rem">
+                            <div class="doc-content">
+                                <div [innerHTML]="eli.contentHtml"></div>
+
+                                <div *ngIf="eli.step == '3'" class="button-row">
+                                    <button pButton severity="primary" class="submit-btn">
+                                        <span [innerHTML]="eli.status" pButtonLabel></span>
+                                    </button>
+
+                                    <button pButton severity="secondary" class="submit-btn">
+                                        <span [innerHTML]="eli.questions" pButtonLabel></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-step-panel>
+            </p-step-item>
+        </p-stepper>
+    </div>
+
+</section>

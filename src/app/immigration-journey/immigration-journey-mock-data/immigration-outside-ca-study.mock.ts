@@ -305,7 +305,7 @@ What to expect when you go to your biometrics appointment
   },
   {
     step: 4,
-    stepTitle: 'When to give?',
+    stepTitle: 'Where to give?',
     contentHtml: `<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/where-to-give.html" target="_blank">Where to give your biometrics</a><br/><br/>
 Find a collection point near you
                         </p>`,
@@ -505,7 +505,7 @@ In most cases, you should pay a biometrics fee when you submit your application.
 
 
 
-                      
+
   }, {
     step: 5,
     stepTitle: "Step 5: Create your online account or sign in",
@@ -521,14 +521,14 @@ In most cases, you should pay a biometrics fee when you submit your application.
 
 ]
 
-export const submissionButton=[{
-  contentHtml:`<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html"
+export const submissionButton = [{
+  contentHtml: `<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html"
                                 target="_blank">Continue to IRCC Secure Site</a>`
 }]
 
 export const STUDY_OUTSIDE_APPLY_ON_PAPER = [{
 
-content:`<h2>Apply on paper from outside Canada</h2><p>
+  content: `<h2>Apply on paper from outside Canada</h2><p>
 <br/><b>Who’s eligible to apply on paper</b><br/> You’re eligible to apply on paper only if you
 </p>
 <ul>
@@ -536,6 +536,160 @@ content:`<h2>Apply on paper from outside Canada</h2><p>
 <li>hold an identity document or a travel document for non-national residents, refugees or stateless persons</li>
 </ul>
 `,
-contentHtml:`<a href="https://ircc.canada.ca/english/information/applications/student.asp#apply-paper"
+  contentHtml: `<a href="https://ircc.canada.ca/english/information/applications/student.asp#apply-paper"
                                 target="_blank">Apply on Paper</a>`
 }]
+
+export const STUDY_OUTSIDE_PROCESSINGTIME = [
+  {
+    step: 1,
+    stepTitle: '5 Weeks!',
+    contentHtml: `<p>
+To help you predict how long it may take to process your application, we’re showing processing times for study permits based on where you’re applying from</p>`
+  },
+  {
+    step: 2,
+    stepTitle: 'How we calculated this processing time',
+    contentHtml: `<p>
+    
+    This processing time tells you how long it took us to process most <a href="https://ircc.canada.ca/english/helpcentre/answer.asp?qnum=072&top=3" target="_blank">complete applications</a> in the past.
+   <br/>It does not include<br/></p>
+   <ul>
+   <li>
+   the time it takes to send an application between a visa application centre and our office
+   </li>
+   <li>the time you need to give your biometrics</li>
+   </ul>
+   <p><b>Your processing time</b> starts the day we receive your complete application and ends when we make a decision. It may vary depending on how many applications we get or if your application is complex. <br/> Your application may be delayed or returned if it’s not complete.</p>
+    `
+  },
+  {
+    step: 3,
+    stepTitle: 'Already applied?',
+    contentHtml: `
+    <ul><li>Don’t send a new application
+    <ul>
+    <li>The longer you’ve been waiting, the closer you are to the front of the line.</li>
+    </ul>
+    </li><li>We’ll contact you if we need more information.<ul><li>You don’t need to do anything else.</li></ul></li></ul>
+    
+    `,
+    status: `<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-status.html"
+                                target="_blank">Check your application status</a>`,
+    questions: `<a href="https://ircc.canada.ca/english/helpcentre/results-by-topic.asp?st=3.2"
+                                target="_blank">Common questions about processing times</a>`
+  }
+]
+
+
+export const STUDY_OUTSIDE_DECISION = [
+  {
+    step: 1,
+    stepTitle: 'Your fingerprints and photo (biometrics)',
+    contentHtml: `<p>
+Book your biometrics collection appointment as soon as you can to avoid processing delays. Find out how to give biometrics. Once you give your biometrics, we move to the next  step</p>`
+  },
+  {
+    step: 2,
+    stepTitle: 'We process your study permit application',
+    contentHtml: `<p>We’ll check your application to make sure you have all the necessary documents. If it’s incomplete, we may return your application without processing it or request the missing documents.<br/></p>
+
+   <ul>
+   <li>
+   go to an interview with our officials in your country or
+   </li>
+   <li>send us more information</li>
+   </ul>
+   <p>You may also need to get a</p>
+    <ul>
+   <li>
+   go to an interview with our officials in your country or
+   </li>
+   <li>send us more information</li>
+   </ul><p>You may also need to get a</p>
+   <ul><li>
+   <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams.html"
+                                target="_blank">medical exam</a> </li>
+   <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams.html"
+                                target="_blank">police certificate</a> (if required)</li></ul><br/>
+                                <p><br/><b>If you want to defer your enrolment while we process your application:</b>
+                                <br/>If you want to defer your enrolment (which means you want to start studying later than planned) at the designated learning institution (DLI) that has already issued your letter of acceptance (LOA), you need to
+                
+                                </p>
+                                <ul><li>get your deferral <b>approved</b> by the DLI</li>
+                                <li>get an <b>updated</b><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
+                                target="_blank"> LOA</a> </li>
+                                </ul>
+                                <p>You must then submit your updated LOA to us through your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html"
+                                target="_blank">online account</a> or our <a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/contact-ircc/web-form.html"
+                                target="_blank">web form.</a></p><br/>
+                               <h1>Missing documents</h1><p>If you weren’t able to submit all the required documents with your application, you can submit the missing documents through your <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html"
+                                target="_blank">online </a> account or our  <a href="https://www.ircc.canada.ca/english/contacts/web-form.asp"
+                                target="_blank">web form. </a> <br/>
+                                We won’t process your study permit until you’ve submitted a complete application. Waiting to submit documents will cause delays in processing.<br/><br/>
+                                
+                                </p><h1>Updating your application</h1><p>If you move or change your address, telephone number or any other contact information after you apply, you must <a href="http://ircc.canada.ca/english/helpcentre/answer.asp?qnum=052&top=3"
+                                target="_blank">update your application.</a></p>
+    `
+  },
+  {
+    step: 3,
+    stepTitle: 'If we approve your application',
+    contentHtml: `
+<p>You’ll get your study permit</p>
+<ul>
+<li>
+at the port of entry when you arrive in Canada or
+</li>
+<li>mailed to you, if you’re already in Canada</li>
+</ul>
+<h2>If you applied for your study permit from outside Canada</h2>
+<p>
+We’ll send you a port of entry letter of introduction that says you’re allowed to study in Canada. This letter is <b>not</b> your study permit.</p>
+
+<p>You need to bring this letter with you and show it to a border services officer when you arrive in Canada. We’ll also send you an electronic travel authorization (eTA) or a visitor visa (temporary resident visa) to enter Canada, if you need one.</p>
+<p>If you’re from a country where you need an <b>eTA</b>, the letter of introduction will include information about your eTA. Your eTA will be linked to your passport and is valid for 5 years or until your passport expires, whichever comes first. It’s important that you travel with the passport you used when you applied for your study permit.</p>
+
+<p>If you’re from a country where you need a visitor visa, the visa will be in your passport. It’ll show if you can enter Canada once or multiple times. You must enter Canada before your visa expires.</p>
+
+
+<p>If you’re a lawful permanent resident of the United States, travel with a valid green card (or equivalent official proof of status in the US) and a valid passport from your country of nationality (or an equivalent document).
+</p>
+
+
+<h2>If you applied for your study permit from within Canada</h2>
+<p>
+If you were eligible to apply from within Canada, you filled out a form called “Application to change conditions, extend my stay or remain in Canada as a student” (IMM 5709).
+<p/><p>
+In this case, we’ll mail the study permit to the Canadian address you gave us. <p/>
+<p>If your mailing address changes before we send you our decision, you must give us your new address.<p/>
+<br/>
+<h2>Studying while you wait for your study permit to arrive</h2><p>
+We’ll send you a letter of approval in your online account to let you know your study permit has been approved. You can start studying as soon as you get this letter. You don’t have to wait until you get your study permit in the mail to start studying.<p/><br/>
+`
+  }, {
+    step: 4,
+    stepTitle: 'If we refuse your application',
+    contentHtml: `
+<p>We’ll send you a letter explaining why.</p>
+<p>We may refuse your application if you don’t</p>
+<ul>
+<li>have a valid letter of acceptance</li>
+<li>show proof that you have enough money to support yourself while studying in Canada</li>
+<li>pass your medical exam, if you needed to get one</li>
+<li>convince the visa officer that your main purpose in Canada is to study or</li>
+<li>convince the visa officer that you’ll leave Canada at the end of your study period</li>
+</ul>
+<p>
+If you have questions about why you were refused, contact the visa office that sent you the refusal letter.
+
+</p>`,
+    arrival: `<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare-arrival.html"
+                                target="_blank">Prepare for your arrival</a>`,
+    study: `<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/while-you-study.html"
+                                target="_blank">While you study</a>`,
+    conditions: `<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/while-you-study/study-permit-conditions.html"
+                                target="_blank">Study permit conditions</a>`
+
+  }
+]

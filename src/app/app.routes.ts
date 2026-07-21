@@ -50,6 +50,20 @@ export const routes: Routes = [
             (m) => m.ImmigrationOutsideCaBiometrics,
           ),
       },
+      {
+        path: 'immigration-outside-ca-processing-time',
+        loadComponent: () =>
+          import('./immigration-journey/immigration-outside-ca-processing-time/immigration-outside-ca-processing-time').then(
+            (m) => m.ImmigrationOutsideCaProcessingTime,
+          ),
+      },
+      {
+        path: 'immigration-outside-ca-decision',
+        loadComponent: () =>
+          import('./immigration-journey/immigration-outside-ca-decision/immigration-outside-ca-decision').then(
+            (m) => m.ImmigrationOutsideCaDecision,
+          ),
+      },
     ],
   },
 ];

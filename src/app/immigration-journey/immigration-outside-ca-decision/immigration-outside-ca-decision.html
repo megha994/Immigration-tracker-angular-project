@@ -1,0 +1,43 @@
+<div class="study-permit-card">
+    @if (step==6 && type=="study") {
+    <h2 class="header2">Study permit</h2>
+    <h1 class="header">After you apply</h1>
+    }<p-stepper [value]="1">
+
+        <p-step-item *ngFor="let eli of decision" [value]="eli.step">
+            <p-step>
+
+                <h1 class="header">{{eli.stepTitle}}</h1>
+
+            </p-step>
+            <p-step-panel>
+                <ng-template pTemplate="content" let-activateCallback="activateCallback">
+
+                    <div class="flex flex-column h-12rem">
+                        <div [innerHTML]="eli.contentHtml" class="doc-content">
+
+                        </div>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+        </p-step-item>
+    </p-stepper>
+<div class="button-row" *ngFor="let eli of decision">
+    <div *ngIf="eli.step==4">
+        <button pButton severity="info" class="submit-btn">
+            <span [innerHTML]="eli.study" pButtonLabel></span>
+            <i class="deadline-icon pi pi-arrow-right"></i>
+        </button>
+
+        <button pButton severity="success" class="submit-btn">
+            <span [innerHTML]="eli.arrival" pButtonLabel></span>
+            <i class="deadline-icon pi pi-arrow-right"></i>
+        </button>
+
+        <button pButton severity="warn" class="submit-btn">
+            <span [innerHTML]="eli.conditions" pButtonLabel></span>
+            <i class="deadline-icon pi pi-arrow-right"></i>
+        </button>
+    </div>
+</div>
+</div>

@@ -4,31 +4,24 @@
 
   <p-toast />
   <div class="study-permit-card">
-    <form [formGroup]="studyPermitForm" (ngSubmit)="onSubmit()" class="study-permit-form">
+    <form [formGroup]="studyPermitForm" class="study-permit-form">
       <div class="radio-group" role="radiogroup" aria-label="Application location options">
         @for (category of categories; track category.key) {
         <label class="radio-option" [for]="category.key">
           <p-radiobutton formControlName="selectedCategory" name="selectedCategory" [inputId]="category.key"
-            [value]="category" [invalid]="isInvalid('selectedCategory')" />
+            [value]="category" />
           <span>{{ category.name }}</span>
         </label>
         }
       </div>
       @if (outside) {
       <div class="flex flex-col gap-1">
-        <p-select formControlName="country" [options]="countries" [invalid]="isInvalid('country')" optionLabel="name"
-          placeholder="Select a country" styleClass="styled-select" class="w-full md:w-56"
-          (onChange)="onSelectCategory($event)" />
+        <p-select formControlName="country" [options]="countries" optionLabel="name" placeholder="Select a country"
+          styleClass="styled-select" class="w-full md:w-56" (onChange)="onSelectCategory($event)" />
 
-        @if (isInvalid('country')) {
-        <p-message severity="error" size="small" variant="simple">country is required.</p-message>
-        }
+
       </div>
-      @if (isInvalid('selectedCategory')) {
-      <p-message severity="error" size="small" variant="simple">
-        Please select one application location.
-      </p-message>
-      }
+
 
       @if (countrySelected) {
 
@@ -36,18 +29,17 @@
       <p>The study permit is a document we issue that allows foreign nationals to study at designated learning
         institutions (DLIs) in Canada. Most foreign nationals need a study permit to study in Canada. Make sure you have
         all the documents you need before you apply. You should apply before you travel to Canada.</p>
-        <p>Find out how you can apply for a study permit below:</p>
+      <p>Find out how you can apply for a study permit below:</p>
 
       <app-immigration-journey [type]="type"></app-immigration-journey>
-      <p><b>EXCEPTIONS:</b><br/>
-      
+      <p><b>EXCEPTIONS:</b><br />
+
       <p>Most foreign nationals need a study permit to study in Canada. There are some
-       <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/eligibility/study-without-permit.html' target="_blank">exceptions</a>.</p>  
+        <a href='https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/eligibility/study-without-permit.html'
+          target="_blank">exceptions</a>.
+      </p>
       }
       }
-      <button pButton severity="secondary" type="submit" class="submit-btn">
-        <span pButtonLabel>Submit</span>
-      </button>
     </form>
   </div>
 </section>

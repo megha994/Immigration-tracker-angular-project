@@ -30,7 +30,6 @@ export class StudyPermit implements OnInit {
   private readonly messageService = inject(MessageService);
   private readonly fb = inject(FormBuilder);
   type: string = "";
-  formSubmitted = false;
   outside = false;
   countrySelected: any = false;
   studyPermitForm!: FormGroup;
@@ -54,27 +53,7 @@ export class StudyPermit implements OnInit {
       this.outside = value.name === 'Outside Canada' ? true : false;
     });
   }
-  isInvalid(controlName: string) {
-    const control = this.studyPermitForm.get(controlName);
-    return control?.invalid && this.formSubmitted;
-  }
 
-  onSubmit() {
-    this.formSubmitted = true;
-
-    if (this.studyPermitForm.valid) {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Form is submitted',
-        life: 3000,
-      });
-
-      this.studyPermitForm.reset();
-
-      this.formSubmitted = false;
-    }
-  }
 
   onSelectCategory(event: any) {
     this.countrySelected = event.value;

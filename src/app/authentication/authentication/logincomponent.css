@@ -1,16 +1,15 @@
-.signup-grid {
+.login-grid {
   min-height: 100vh;
   display: grid;
   place-items: center;
   background: #f5f7fa;
   padding: 20px;
-  
 }
 
 /* Card styling */
-.signup-card {
- width: 100%;
-  max-width: 480px;
+.login-card {
+  width: 100%;
+  max-width: 380px;
   padding: 2rem;
   border-radius: 12px;
   background: #ffffff;
@@ -20,32 +19,23 @@
   text-align: center;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 1px;
-  place-items: center;  
-}
-
-.labelClass{
-font-size: x-small;
-color: #3cb1e3;
-padding:5px;
-text-align: center;
 }
 
 /* Title */
-.signup-card h2 {
+.login-card h2 {
   margin: 0;
   font-weight: 600;
   color: #333;
 }
 
 /* Form uses grid rows */
-.signup-form {
+.login-form {
   display: grid;
   row-gap: 1.5rem;
 }
 
 /* Each row */
-.p-float-label {
-  width: 100%;
+.form-row {
   display: grid;
 }
 
@@ -56,23 +46,30 @@ text-align: center;
   text-align: left;
 }
 
-/* Success message */
-.success-message {
-  color: #28a745;
-  font-size: 0.9rem;
-  text-align: left;
+/* Button */
+.login-button {
+  width: 100%;
 }
 
-/* Button */
-.signup-button {
-  width: 100%;
-  margin-top: 10px;
+.p-float-label label {
+  position: static !important;
+  display: block;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #6c757d;
+  color: #3cb1e3;
+  padding: 5px;
+  text-align: center;
+
 }
+
+
 
 /* Links row */
 .links {
   display: grid;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
   margin-top: 10px;
 }
 
@@ -80,6 +77,7 @@ text-align: center;
   font-size: 0.9rem;
   color: #007bff;
   text-decoration: none;
+  text-align: center;
 }
 
 .link:hover {
@@ -88,22 +86,12 @@ text-align: center;
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
-  .signup-card {
+  .login-card {
     padding: 1.5rem;
   }
 
-  .link {
-    font-size: 1rem;
-  }
-}
-
-/* Extra small screens */
-@media (max-width: 360px) {
-  .signup-card {
-    padding: 1rem;
-  }
-
-  .signup-card h2 {
-    font-size: 1.4rem;
+  .links {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
   }
 }

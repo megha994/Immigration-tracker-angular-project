@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './layoutcomponent/layoutcomponent';
 import { DashboardComponent } from './dashboard/dashboard/dashboard';
 import { StudyPermit } from './study-permit/study-permit';
-import { Logincomponent } from './logincomponent/logincomponent';
+import { LoginComponent } from './authentication/authentication/logincomponent';
 import { SignupComponent } from './signup/signup';
+import { AuthGuard } from './../app/authentication/authentication/guards/auth-guard-guard';
 import { ImmigrationJourney } from './immigration-journey/immigration-journey';
 import { ImmigrationOutsideCaEligibility } from './immigration-journey/immigration-outside-ca-eligibility/immigration-outside-ca-eligibility';
 
@@ -12,11 +13,11 @@ export const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'study-permit/:type', component: StudyPermit },
-      { path: 'login-in', component: Logincomponent },
+      { path: 'login-in', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'login-in', pathMatch: 'full' },
       {
         path: 'immigration-journey',
         loadComponent: () =>

@@ -1,4 +1,6 @@
 <div class="signup-grid">
+<p-toast></p-toast>
+
   <div class="signup-card">
     <h2>Sign Up</h2>
 
@@ -46,21 +48,9 @@
       </div>
 
       <div class="form-row">
-        <div *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched"
+        <div *ngIf="signupForm.errors?.['mismatch'] && confirmPassword?.touched"
              class="error-message">
           Passwords do not match.
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div *ngIf="errorMessage" class="error-message">
-          {{ errorMessage }}
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div *ngIf="successMessage" class="success-message">
-          {{ successMessage }}
         </div>
       </div>
 

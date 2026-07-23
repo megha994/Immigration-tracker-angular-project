@@ -19,12 +19,14 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { Headerr } from './headerr/headerr';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
+
+import { ToastModule } from 'primeng/toast';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
 // Firebase configuration (replace with your actual config)
 const firebaseConfig = {
- apiKey: "AIzaSyAWixxBydXaF4NOnlSKpEYAXp302e-38zM",
+  apiKey: "AIzaSyAWixxBydXaF4NOnlSKpEYAXp302e-38zM",
   authDomain: "immigration-tracker-a8eea.firebaseapp.com",
   projectId: "immigration-tracker-a8eea",
   storageBucket: "immigration-tracker-a8eea.firebasestorage.app",
@@ -54,6 +56,7 @@ const firebaseConfig = {
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forRoot(routes),
+    ToastModule
   ],
 
   bootstrap: [App],
@@ -66,6 +69,7 @@ const firebaseConfig = {
     }),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth())
+
   ],
 })
-export class AppModule {}
+export class AppModule { }

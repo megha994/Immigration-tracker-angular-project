@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import {
   AbstractControl,
   FormControl,
@@ -30,19 +32,21 @@ import { LoginService } from '../services/login.service';
     ButtonModule,
     InputTextModule,
     PasswordModule,
-    FloatLabelModule
+    FloatLabelModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './signup.html',
   styleUrl: './signup.css'
 })
 export class SignupComponent {
 
-  errorMessage = '';
-  successMessage = '';
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private messageService: MessageService
+  ) { }
 
-  constructor(private loginService: LoginService, private router: Router) {}
-
-  // Custom validator: password === confirmPassword
   passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
@@ -60,42 +64,46 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.signupForm.invalid) {
-      this.errorMessage = 'Please fill in all fields correctly.';
-      this.successMessage = '';
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all fields correctly.'
+      });
       return;
     }
 
     const { email, password } = this.signupForm.value;
 
     this.loginService.signup(email!, password!).subscribe({
-      
       next: () => {
-        debugger;
-        this.errorMessage = '';
-        this.successMessage = 'Account created successfully! You can now log in.';
-        setTimeout(() => this.router.navigate(['/login-in']), 2000);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Account created successfully! You can now log in.'
+        });
+
+        setTimeout(() => this.router.navigate(['/login-in']), 1500);
       },
       error: (error) => {
         if (error.code === 'email-exists') {
-          this.errorMessage = 'An account with this email already exists.';
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'An account with this email already exists!'
+          });
         } else {
-          this.errorMessage = 'Signup failed. Please try again.';
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Signup failed. Please try again.'
+          });
         }
-        this.successMessage = '';
       }
     });
   }
 
-  // Getters for template validation
-  get email() {
-    return this.signupForm.get('email');
-  }
-
-  get password() {
-    return this.signupForm.get('password');
-  }
-
-  get confirmPassword() {
-    return this.signupForm.get('confirmPassword');
-  }
+  get email() { return this.signupForm.get('email'); }
+  get password() { return this.signupForm.get('password'); }
+  get confirmPassword() { return this.signupForm.get('confirmPassword'); }
 }

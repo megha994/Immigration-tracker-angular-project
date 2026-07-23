@@ -4,12 +4,12 @@
   place-items: center;
   background: #f5f7fa;
   padding: 20px;
-  
+
 }
 
 /* Card styling */
 .signup-card {
- width: 100%;
+  width: 100%;
   max-width: 480px;
   padding: 2rem;
   border-radius: 12px;
@@ -20,14 +20,14 @@
   text-align: center;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 1px;
-  place-items: center;  
+  place-items: center;
 }
 
-.labelClass{
-font-size: x-small;
-color: #3cb1e3;
-padding:5px;
-text-align: center;
+.labelClass {
+  font-size: x-small;
+  color: #3cb1e3;
+  padding: 5px;
+  text-align: center;
 }
 
 /* Title */
@@ -105,5 +105,75 @@ text-align: center;
 
   .signup-card h2 {
     font-size: 1.4rem;
+  }
+}
+
+
+/* Position the toast inside your signup card area */
+:host ::ng-deep .p-toast {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+/* Toast panel container */
+:host ::ng-deep .p-toast .p-toast-message {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.25s ease-out;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+}
+
+/* Success toast */
+:host ::ng-deep .p-toast .p-toast-message-success {
+  background: #e8f7e8;
+  border-left: 6px solid #28a745;
+  color: #1b5e20;
+}
+
+/* Error toast */
+:host ::ng-deep .p-toast .p-toast-message-error {
+  background: #fdecea;
+  border-left: 6px solid #d32f2f;
+  color: #b71c1c;
+}
+
+/* Toast title */
+:host ::ng-deep .p-toast .p-toast-summary {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+/* Toast description */
+:host ::ng-deep .p-toast .p-toast-detail {
+  font-size: 14px;
+}
+
+/* Close button */
+:host ::ng-deep .p-toast .p-toast-icon-close {
+  color: #444;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+:host ::ng-deep .p-toast .p-toast-icon-close:hover {
+  opacity: 1;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

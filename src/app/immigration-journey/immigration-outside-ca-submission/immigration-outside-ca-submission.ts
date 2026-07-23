@@ -16,7 +16,7 @@ import { SelectModule } from 'primeng/select';
 import { STUDY_OUTSIDE_APPLY_ONLINE, STUDY_OUTSIDE_APPLY_ON_PAPER, submissionButton } from './../immigration-journey-mock-data/immigration-outside-ca-study.mock'
 
 @Component({
-  selector: 'app-immigration-online-ca-submission',
+  selector: 'app-immigration-outside-ca-submission',
   imports: [StepperModule, ButtonModule, CommonModule, TagModule, SelectModule,
     MessageModule,
     RadioButtonModule,

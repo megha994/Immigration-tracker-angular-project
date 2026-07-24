@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
+import { AuthService } from './../authentication/services/auth-service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
+  constructor(private authService: AuthService) { }
+
   signup(email: string, password: string): Observable<any> {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    const userExists = users.some((u: any) => u.email === email);
-    if (userExists) {
+    if (users.some((u: any) => u.email === email)) {
       return throwError(() => ({ code: 'email-exists' }));
     }
 
@@ -19,6 +21,7 @@ export class LoginService {
   }
 
   login(email: string, password: string): Observable<any> {
+    debugger
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     const user = users.find((u: any) => u.email === email && u.password === password);
@@ -27,18 +30,11 @@ export class LoginService {
       return throwError(() => ({ code: 'invalid-credentials' }));
     }
 
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('currentUser', email);
+    const token = this.authService.generateToken(email);
+    this.authService.saveToken(token);
 
-    return of({ message: 'Login successful' });
+    return of({ message: 'Login successful', token });
   }
 
-  logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('currentUser');
-  }
-
-  isAuthenticated(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
-  }
 }
+

@@ -1,0 +1,192 @@
+/* ===========================
+   CONTAINER
+   =========================== */
+.journey-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+/* ===========================
+   PAGE SHELL
+   =========================== */
+.study-permit-shell {
+  padding: 80px 60px;
+  color: #1f2937;
+  background: linear-gradient(180deg, #fff 0%, #fff7f7 100%);
+  min-height: 100vh;
+}
+
+.study-permit-shell h2 {
+  margin: 0 0 18px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #b91c1c;
+}
+
+/* ===========================
+   CARD WRAPPER
+   =========================== */
+.study-permit-card {
+  width: 100%;
+  max-width: 920px;
+  background: #ffffff;
+  border: 1px solid #f3d6d6;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(185, 28, 28, 0.08);
+}
+
+/* ===========================
+   JOURNEY ITEM
+   =========================== */
+.journey-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+/* ===========================
+   STEP CARD
+   =========================== */
+.step-card {
+  cursor: pointer;
+  width: 220px;
+  min-height: 180px;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--surface-card);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+  font-family: 'Oswald', sans-serif;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+}
+
+.step-card i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.step-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.step-card p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ===========================
+   CONNECTOR
+   =========================== */
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.75rem;
+}
+
+.connector i {
+  font-size: 1.5rem;
+}
+
+/* ===========================
+   TABLET
+   =========================== */
+@media (max-width: 1024px) {
+  .step-card {
+    width: 200px;
+  }
+
+  .connector {
+    margin: 0 0.5rem;
+  }
+
+  .study-permit-shell {
+    padding: 60px 40px;
+  }
+}
+
+/* ===========================
+   MOBILE
+   =========================== */
+@media (max-width: 768px) {
+  .journey-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .journey-item {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .step-card {
+    width: min(100%, 350px);
+    min-height: auto;
+    padding: 1rem;
+  }
+
+  .connector {
+    margin: 0.75rem 0;
+    transform: rotate(90deg);
+  }
+
+  .study-permit-shell {
+    padding: 40px 20px;
+  }
+
+  .study-permit-card {
+    padding: 18px;
+  }
+
+  .step-card i {
+    font-size: 1.7rem;
+  }
+
+  .step-card h3 {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================
+   VERY SMALL PHONES
+   =========================== */
+@media (max-width: 480px) {
+  .step-card {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .step-card i {
+    font-size: 1.5rem;
+  }
+
+  .connector {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
+  }
+
+  .study-permit-shell {
+    padding: 24px 12px;
+  }
+
+  .study-permit-card {
+    padding: 14px;
+  }
+}

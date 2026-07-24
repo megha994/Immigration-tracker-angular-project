@@ -1,0 +1,21 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<section class="study-permit-shell">
+    <h2>You can update your progress for any of the following:</h2>
+
+    <div class="study-permit-card">
+
+
+        <div class="journey-container">
+
+            @for (step of steps; track step.title; let last = $last) {
+            <div class="journey-item">
+                <div (click)="goToStep(step)" class="step-card">
+                    <i [class]="step.icon" [style.color]="step.color" style="font-size: 2rem"></i>
+                    <h3>{{ step.title }}</h3>
+                    <p>{{ step.description }}</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

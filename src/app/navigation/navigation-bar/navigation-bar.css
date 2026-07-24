@@ -1,26 +1,25 @@
-/* Navbar Container */
+/* ===========================
+   NAVBAR CONTAINER
+   =========================== */
 .navbar {
-  background-color: #FFFFFF;
-  border-right: 1px solid #E5E7EB;
+  background-color: #fff;
+  border-right: 1px solid #e5e7eb;
   height: 100vh;
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: 999;
   width: 250px;
+  position: sticky;
+  top: 0;
+  left: 0;
   overflow-y: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: width 0.3s ease;
+  z-index: 999;
 }
 
 .navbar.collapsed {
   width: 60px;
 }
 
-.navbar.collapsed .navbar-title {
-  display: none;
-}
-
+.navbar.collapsed .navbar-title,
 .navbar.collapsed .navbar-text,
 .navbar.collapsed .toggle-icon {
   display: none;
@@ -42,16 +41,17 @@
   padding: 0;
 }
 
-/* Navbar Header */
+/* ===========================
+   NAVBAR HEADER
+   =========================== */
 .navbar-header {
   padding: 20px 16px;
-  background-color: #E53935;
-  color: #FFFFFF;
-  text-align: center;
-  border-bottom: 1px solid #E5E7EB;
+  background-color: #e53935;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .navbar-title {
@@ -62,29 +62,30 @@
   letter-spacing: 0.5px;
 }
 
-/* Hamburger Menu Toggle */
+/* ===========================
+   HAMBURGER TOGGLE
+   =========================== */
 .navbar-toggle {
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 3px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255,255,255,0.1);
 }
 
 .hamburger-line {
   width: 20px;
   height: 2px;
-  background-color: #FFFFFF;
+  background-color: #fff;
   transition: all 0.3s ease;
-  transform-origin: center;
 }
 
 .navbar-toggle.active .hamburger-line:nth-child(1) {
@@ -99,14 +100,15 @@
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Navbar Menu */
+/* ===========================
+   NAVBAR MENU
+   =========================== */
 .navbar-menu {
   list-style: none;
   margin: 0;
   padding: 8px 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -114,60 +116,59 @@
 
 .navbar-menu.open {
   max-height: 1000px;
-  /* Adjust based on content */
 }
 
-/* Navbar Item - Main Links */
+/* ===========================
+   NAVBAR ITEMS
+   =========================== */
 .navbar-item {
   margin: 0;
   padding: 0;
 }
 
+/* Buttons styled like links */
 .navbar-link,
 .category-toggle {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  color: #1F2937;
-  text-decoration: none;
-  flex: 1;
-  margin: 0;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1f2937;
   font-family: Oswald, sans-serif;
   font-size: large;
-  letter-spacing: 2px;
-
   font-weight: 600;
-  cursor: pointer;
-  border: none;
-  background: none;
-  width: 100%;
+  letter-spacing: 2px;
   text-align: left;
   transition: all 0.3s ease;
 }
 
 .navbar-link:hover,
 .category-toggle:hover {
-  background-color: #FEF2F2;
-  color: #E53935;
+  background-color: #fef2f2;
+  color: #e53935;
   padding-left: 20px;
 }
 
 .navbar-link:active,
 .category-toggle:active {
-  background-color: #E53935;
-  color: #FFFFFF;
+  background-color: #e53935;
+  color: #fff;
 }
 
-/* Navbar Icon */
+/* ===========================
+   ICONS & TEXT
+   =========================== */
 .navbar-icon {
   font-size: 18px;
+  width: 24px;
   display: inline-flex;
   align-items: center;
-  width: 24px;
 }
 
-/* Navbar Text */
 .navbar-text {
   flex: 1;
   white-space: nowrap;
@@ -175,32 +176,27 @@
   text-overflow: ellipsis;
 }
 
-/* Category Toggle Icon */
 .toggle-icon {
-  display: inline-flex;
-  align-items: center;
   font-size: 12px;
   transition: transform 0.3s ease;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .toggle-icon.expanded {
   transform: rotate(180deg);
 }
 
-.category-toggle:hover .toggle-icon {
-  color: #E53935;
-}
-
-/* Submenu */
+/* ===========================
+   SUBMENU
+   =========================== */
 .navbar-submenu {
   list-style: none;
   margin: 0;
   padding: 4px 0;
   display: flex;
   flex-direction: column;
-  background-color: #FEF2F2;
-  border-left: 3px solid #E53935;
+  background-color: #fef2f2;
+  border-left: 3px solid #e53935;
   animation: slideDown 0.3s ease;
 }
 
@@ -209,52 +205,51 @@
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Submenu Item */
 .navbar-subitem {
   margin: 0;
   padding: 0;
 }
 
 .navbar-sublink {
-  display: block;
   padding: 10px 16px 10px 32px;
-  color: #1F2937;
-  text-decoration: none;
-  flex: 1;
-  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1f2937;
   font-family: Oswald, sans-serif;
   font-size: medium;
   letter-spacing: 2px;
-  cursor: pointer;
+  width: 100%;
+  text-align: left;
   transition: all 0.3s ease;
   border-left: 2px solid transparent;
 }
 
 .navbar-sublink:hover {
-  background-color: #FFFFFF;
-  color: #E53935;
+  background-color: #fff;
+  color: #e53935;
   padding-left: 36px;
-  border-left-color: #E53935;
+  border-left-color: #e53935;
 }
 
 .navbar-sublink:active {
-  background-color: #E53935;
-  color: #FFFFFF;
-  border-left-color: #C62828;
+  background-color: #e53935;
+  color: #fff;
+  border-left-color: #c62828;
 }
 
-/* Responsive Design */
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
 @media (max-width: 768px) {
   .navbar {
     width: 280px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .navbar-title {
@@ -265,21 +260,11 @@
   .category-toggle {
     padding: 10px 12px;
     font-size: medium;
-    gap: 10px;
-  }
-
-  .navbar-header {
-    padding: 16px 12px;
   }
 
   .navbar-sublink {
     padding: 8px 12px 8px 28px;
     font-size: 12px;
-  }
-
-  .navbar-icon {
-    font-size: 16px;
-    width: 20px;
   }
 }
 
@@ -288,8 +273,7 @@
     width: 100%;
     height: 56px;
     position: static;
-    border-right: none;
-    border-bottom: 1px solid #E5E7EB;
+    border-bottom: 1px solid #e5e7eb;
     overflow-x: auto;
     overflow-y: hidden;
   }
@@ -302,18 +286,12 @@
   .navbar-header {
     padding: 8px 12px;
     min-width: 120px;
-    border-right: 1px solid #E5E7EB;
-    border-bottom: none;
-  }
-
-  .navbar-title {
-    font-size: large;
+    border-right: 1px solid #e5e7eb;
   }
 
   .navbar-menu {
     flex-direction: row;
     padding: 0;
-    gap: 0;
   }
 
   .navbar-item {
@@ -324,19 +302,10 @@
   .category-toggle {
     padding: 8px 12px;
     font-size: 12px;
-    gap: 8px;
     height: 56px;
   }
 
-  .navbar-icon {
-    font-size: large;
-    width: 18px;
-  }
-
-  .navbar-text {
-    display: none;
-  }
-
+  .navbar-text,
   .toggle-icon {
     display: none;
   }
@@ -344,54 +313,4 @@
   .navbar-submenu {
     display: none !important;
   }
-}
-
-/* Desktop specific styling */
-@media (min-width: 769px) {
-  .navbar {
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .navbar-header {
-    min-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .navbar-menu {
-    flex: 1;
-  }
-}
-
-/* Scrollbar Styling */
-.navbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.navbar::-webkit-scrollbar-track {
-  background: #FFFFFF;
-}
-
-.navbar::-webkit-scrollbar-thumb {
-  background: #E5E7EB;
-  border-radius: 3px;
-}
-
-.navbar::-webkit-scrollbar-thumb:hover {
-  background: #D1D5DB;
-}
-
-/* Active state indicator */
-.navbar-link.active,
-.navbar-sublink.active {
-  background-color: #E53935;
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-.navbar-link.active {
-  border-left: 3px solid #C62828;
-  padding-left: 13px;
 }

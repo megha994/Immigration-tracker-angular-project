@@ -15,7 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
 
-import { LoginService } from '../../services/login.service';
+import { LoginService } from "./../authentication/login-service"
 
 @Component({
   selector: 'app-login',
@@ -56,31 +56,26 @@ export class LoginComponent {
 
     this.loginService.login(email!, password!).subscribe({
       next: () => {
-         this.messageService.add({
+        this.messageService.add({
           severity: 'success',
           summary: 'Success',
           detail: 'Log In successful!'
         });
 
-         setTimeout(() => this.router.navigate(['/dashboard']), 1500);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        debugger
-        if (error.code === 'auth/invalid-credential') {
-          this.errorMessage = 'Invalid email or password.';
-           this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail:   this.errorMessage
-          });
-        } else {
-          this.errorMessage = 'Login failed. Please try again.';
-           this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail:   this.errorMessage
-          });
-        }
+        const msg = error.code === 'invalid-credentials'
+          ? 'Invalid email or password.'
+          : 'Login failed. Please try again.';
+
+        this.errorMessage = msg;
+
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: msg
+        });
       }
     });
   }

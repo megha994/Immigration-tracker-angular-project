@@ -1,19 +1,35 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../authentication/authentication/services/auth-service';
 
 @Component({
   selector: 'app-headerr',
-  standalone: false,
   templateUrl: './headerr.html',
+  standalone: false,
   styleUrls: ['./headerr.css'],
 })
 export class Headerr {
-  constructor(private router: Router) {}
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
+
+  // Dynamically checks if user is logged in
+  get isLoggedIn(): boolean {
+    return this.authService.isTokenValid();
+  }
+
   onLogin(): void {
-    // console.log('Login button     clicked');
     this.router.navigate(['/login-in']);
   }
-  goToDashboard() {
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login-in']);
+  }
+
+  goToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
 }

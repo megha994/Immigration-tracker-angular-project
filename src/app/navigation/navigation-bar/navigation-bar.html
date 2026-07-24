@@ -1,7 +1,10 @@
 <nav class="navbar" [class.collapsed]="!isNavOpen">
   <div class="navbar-container">
+
+    <!-- Header -->
     <div class="navbar-header">
       <h1 class="navbar-title">Immigration Tracker</h1>
+
       <button class="navbar-toggle" (click)="toggleNav()" [class.active]="isNavOpen">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -9,73 +12,87 @@
       </button>
     </div>
 
+    <!-- Menu -->
     <ul class="navbar-menu" [class.open]="isNavOpen">
+
       <!-- Dashboard -->
       <li class="navbar-item">
-        <a href="#" class="navbar-link dashboard-link">
+        <button class="navbar-link dashboard-link" routerLink="/dashboard">
           <span class="navbar-icon">📊</span>
-          <span routerLink="/dashboard" class="navbar-text">Dashboard</span>
-        </a>
+          <span class="navbar-text">Dashboard</span>
+        </button>
       </li>
 
-      <!-- Application Categories -->
+      <!-- New Application -->
       <li class="navbar-item">
         <button class="navbar-link category-toggle" (click)="toggleCategory('applicationCategories')">
           <span class="navbar-icon">📋</span>
-          <span class="navbar-text">New Application</span>
+          <span class="navbar-text">IRCC Applications</span>
           <span class="toggle-icon" [class.expanded]="expandedCategory === 'applicationCategories'">▼</span>
         </button>
+
         <ul class="navbar-submenu" *ngIf="expandedCategory === 'applicationCategories'">
           <li class="navbar-subitem">
-            <a [routerLink]="['/study-permit', 'study']" class="navbar-sublink">Study Permit</a>
+            <button class="navbar-sublink" [routerLink]="['/study-permit', 'study']">
+              Study Permit
+            </button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Work Permit</a>
+            <button class="navbar-sublink">Work Permit</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Study Permit Extension</a>
+            <button class="navbar-sublink">Study Permit Extension</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Work Permit Extension</a>
+            <button class="navbar-sublink">Work Permit Extension</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Permanent Residence</a>
+            <button class="navbar-sublink">Permanent Residence</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Spousal Work Permit</a>
+            <button class="navbar-sublink">Spousal Work Permit</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Visitor Visa</a>
+            <button class="navbar-sublink">Visitor Visa</button>
           </li>
+
           <li class="navbar-subitem">
-            <a href="#" class="navbar-sublink">Super Visa</a>
+            <button class="navbar-sublink">Super Visa</button>
           </li>
         </ul>
       </li>
 
-      <!-- My Progress -->
-      <li class="navbar-item">
-        <a href="#" class="navbar-link progress-link">
-          <span class="navbar-icon">📈</span>
-          <span class="navbar-text">My Progress</span>
-        </a>
+   
+ <li class="navbar-item">
+        <button class="navbar-link dashboard-link" routerLink="/my-applications">
+          <span class="navbar-icon">📊</span>
+          <span class="navbar-text">New Application</span>
+        </button>
       </li>
+
 
       <!-- My Account -->
       <li class="navbar-item">
-        <a href="#" class="navbar-link account-link">
+        <button class="navbar-link account-link">
           <span class="navbar-icon">👤</span>
           <span class="navbar-text">My Account</span>
-        </a>
+        </button>
       </li>
 
       <!-- About -->
       <li class="navbar-item">
-        <a href="#" class="navbar-link about-link">
+        <button class="navbar-link about-link">
           <span class="navbar-icon">ℹ️</span>
           <span class="navbar-text">About</span>
-        </a>
+        </button>
       </li>
+
     </ul>
   </div>
 </nav>

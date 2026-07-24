@@ -19,7 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
 
-import { LoginService } from '../services/login.service';
+import { LoginService } from "./../authentication/authentication/login-service";
 
 @Component({
   selector: 'app-signup',

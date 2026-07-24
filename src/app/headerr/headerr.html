@@ -1,6 +1,7 @@
 <header class="app-header">
   <div class="header-left">
-    <img class="brand-logo" (click)="goToDashboard()" src="/images/ca-flag.jpg" alt="maple leaf" width="250" height="50" />
+    <img class="brand-logo" (click)="goToDashboard()" src="/images/ca-flag.jpg" alt="maple leaf" width="250"
+      height="50" />
   </div>
 
   <div class="header-title">
@@ -10,7 +11,14 @@
   <div class="header-right">
     <img class="user-avatar" src="/images/user.png" alt="user avatar" />
 
-    
-    <button class="login-button" type="button" (click)="onLogin()">Login</button>
+    <!-- Show Login when NOT logged in -->
+    <button class="login-button" type="button" *ngIf="!isLoggedIn" (click)="onLogin()">
+      Login
+    </button>
+
+    <!-- Show Logout when logged in -->
+    <button class="login-button" type="button" *ngIf="isLoggedIn" (click)="onLogout()">
+      Logout
+    </button>
   </div>
 </header>

@@ -1,7 +1,9 @@
+
+
 import { Component, Input, OnInit } from '@angular/core';
 // import { Card } from 'primeng/card';
 import { Router, ActivatedRoute } from '@angular/router';
-interface Step {
+interface ProcessStep {
   id?: string;
   title: string;
   description?: string;
@@ -10,29 +12,80 @@ interface Step {
   color?: string;
 }
 @Component({
-  selector: 'app-immigration-journey',
+  selector: 'app-application',
   // imports: [Card],
-  templateUrl: './immigration-journey.html',
-  styleUrl: './immigration-journey.css',
+  templateUrl: './application.html',
+  styleUrl: './application.css',
 })
-export class ImmigrationJourney implements OnInit {
+export class Application implements OnInit {
   @Input() type!: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.type = this.route.snapshot.paramMap.get('type')!;
   }
-  steps: Step[] = [
+  processsteps: ProcessStep[] = [
+    {
+      id: '0',
+      title: 'Apply for LOA',
+      description: 'Apply for LOA at a DLI',
+      completed: true,
+      icon: 'pi pi-university',
+      color: '#8E24AA'
+    },
+    {
+      id: '1',
+      title: 'Fill Application',
+      description: 'Fill out the IRCC Application',
+      completed: true,
+      icon: 'pi pi-pencil',
+      color: '#3949AB'
+    },
+    {
+      id: '2',
+      title: 'Documents To be Submitted',
+      description: 'Gather and upload these required documents',
+      completed: true,
+      icon: 'pi pi-folder-open',
+      color: '#00897B'
+    },
+    {
+      id: '3',
+      title: 'Medical',
+      description: 'Apply for Medicals',
+      completed: false,
+      icon: 'pi pi-heart-fill',
+      color: '#E53935'
+    },
+    {
+      id: '4',
+      title: 'Biometrics',
+      description: 'Schedule for biometrics',
+      completed: false,
+      icon: 'pi pi-fingerprint',
+      color: '#1E88E5'
+    },
+    {
+      id: '5',
+      title: 'Police Clearance',
+      description: 'Get a Police Clearance',
+      completed: false,
+      icon: 'pi pi-shield',
+      color: '#6D4C41'
+    }
+  ];
+
+  progressSteps: ProcessStep[] = [
     {
       id: '1',
       title: 'Eligibility Check',
       description: 'Verify eligibility requirements',
       completed: true,
       icon: 'pi pi-check-circle',
-      color: '#61dfc6',
+      color: '#95ead9',
     },
     {
       id: '2',
@@ -40,7 +93,7 @@ export class ImmigrationJourney implements OnInit {
       description: 'Gather required documents',
       completed: true,
       icon: 'pi pi-file',
-      color: '#eb6a29',
+      color: '#a862cb',
     },
     {
       id: '3',
@@ -72,11 +125,11 @@ export class ImmigrationJourney implements OnInit {
       description: 'Receive final decision',
       completed: false,
       icon: 'pi pi-question-circle',
-      color: '#f26a55',
+      color: '#eccae4',
     }
   ];
 
-  goToStep(step: Step) {
+  goToStep(step: ProcessStep) {
     const st = Number(step.id);
     if (st == 1) {
       this.router.navigate(['/immigration-outside-ca-eligibility'], {
@@ -89,7 +142,7 @@ export class ImmigrationJourney implements OnInit {
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 3) {
+    else if (st == 3) {
       this.router.navigate(['/immigration-outside-ca-submission'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge' // optional: merge with existing query params
@@ -101,13 +154,13 @@ export class ImmigrationJourney implements OnInit {
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 5) {
+    else if (st == 5) {
       this.router.navigate(['/immigration-outside-ca-processing-time'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 6) {
+    else if (st == 6) {
       this.router.navigate(['/immigration-outside-ca-decision'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params

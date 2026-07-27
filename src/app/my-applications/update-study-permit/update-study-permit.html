@@ -1,0 +1,107 @@
+<form [formGroup]="form" class="study-permit-form">
+
+    <!-- ==========================
+         STEPS
+    =========================== -->
+
+    <div class="journey-container" formArrayName="steps">
+
+        @for (step of steps; track step.id; let i = $index) {
+
+        <div class="journey-item">
+
+            <div
+                class="step-card"
+                [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
+
+                <!-- Header -->
+
+                <div class="step-header">
+
+                    <div class="icon-title">
+
+                        <i
+                            [class]="step.icon"
+                            [style.color]="step.color">
+                        </i>
+
+                        <span
+                            class="status-chip"
+                            [class.completed]="step.completed"
+                            [class.pending]="!step.completed">
+
+                            {{ step.completed ? 'Completed' : 'Not Started' }}
+
+                        </span>
+
+                    </div>
+
+                    <p-checkbox
+                        [binary]="true"
+                        [formControl]="stepsArray.at(i)">
+                    </p-checkbox>
+
+                </div>
+
+                <!-- Title -->
+
+                <h3>
+                    {{ step.title }}
+                </h3>
+
+                <!-- Description -->
+
+                <p
+                    [innerHTML]="step.description">
+                </p>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+    <!-- ==========================
+         PROGRESS SECTION
+    =========================== -->
+
+    <div class="progress-section">
+
+        <div class="progress-header">
+
+            <div>
+
+                <h3>Study Permit Progress</h3>
+
+                <small>
+
+                    {{ completedSteps }}
+
+                    of
+
+                    {{ steps.length }}
+
+                    completed
+
+                </small>
+
+            </div>
+
+            <div class="progress-percentage">
+
+                {{ progressPercentage }}%
+
+            </div>
+
+        </div>
+
+        <p-progressBar
+            [value]="progressPercentage"
+            [showValue]="true">
+        </p-progressBar>
+
+    </div>
+
+</form>

@@ -1,0 +1,359 @@
+/* ==========================================================
+   FORM
+========================================================== */
+
+.study-permit-form {
+  width: 100%;
+}
+
+/* ==========================================================
+   JOURNEY GRID
+========================================================== */
+
+.journey-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+  font-family: 'Oswald', sans-serif;
+  font-size: large;
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.step-card {
+  font-family: 'Oswald', sans-serif;
+  font-size: large;
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 320px;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================
+   COMPLETED CARD
+========================================================== */
+
+.completed-card {
+  border: 2px solid #22c55e;
+
+  background: #f0fdf4;
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.step-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+/* ==========================================================
+   ICON + STATUS
+========================================================== */
+
+.icon-title {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.icon-title i {
+  font-size: 2.4rem;
+}
+
+/* ==========================================================
+   STATUS CHIP
+========================================================== */
+
+.status-chip {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: fit-content;
+
+  padding: 0.35rem 0.8rem;
+
+  border-radius: 999px;
+
+  font-size: 0.78rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.3px;
+}
+
+.status-chip.completed {
+  background: #dcfce7;
+
+  color: #166534;
+}
+
+.status-chip.pending {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.step-card h3 {
+  margin: 0 0 16px;
+
+  font-size: 1.25rem;
+
+  line-height: 1.4;
+
+  font-family: 'Oswald', sans-serif;
+}
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.step-card p {
+  margin: 0;
+
+  font-size: 0.95rem;
+
+  line-height: 1.7;
+
+  color: #4b5563;
+}
+
+.step-card a {
+  color: #2563eb;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.step-card a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   PROGRESS SECTION
+========================================================== */
+
+.progress-section {
+  margin-top: 48px;
+
+  padding: 28px;
+
+  border-radius: 18px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.disabled-card {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+
+  filter: grayscale(0.4);
+}
+.progress-header {
+  display: flex;
+  font-family: 'Oswald', sans-serif;
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.progress-header h3 {
+  margin: 0;
+
+  font-size: 1.4rem;
+
+  font-family: 'Oswald', sans-serif;
+}
+
+.progress-header small {
+  color: #6b7280;
+
+  font-size: 0.9rem;
+}
+
+.progress-percentage {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+  color: #f96969;
+}
+
+/* ==========================================================
+   PRIME PROGRESS BAR
+========================================================== */
+
+:host ::ng-deep .p-progressbar {
+  height: 18px;
+  font-family: 'Oswald', sans-serif;
+  font-size: large;
+  border-radius: 999px;
+}
+
+:host ::ng-deep .p-progressbar-value {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+:host ::ng-deep .p-progressbar-label {
+  font-size: 0.85rem;
+
+  font-weight: 700;
+}
+
+/* ==========================================================
+   PRIME CHECKBOX
+========================================================== */
+
+:host ::ng-deep .p-checkbox {
+  transform: scale(1.45);
+}
+
+:host ::ng-deep .p-checkbox-box {
+  width: 1.6rem;
+
+  height: 1.6rem;
+}
+
+:host ::ng-deep .p-checkbox-checked .p-checkbox-box {
+  background: #22c55e;
+
+  border-color: #22c55e;
+}
+
+/* ==========================================================
+   TABLETS
+========================================================== */
+
+@media (max-width: 992px) {
+  .journey-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step-card {
+    min-height: 300px;
+  }
+
+  .progress-header {
+    flex-direction: column;
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+  .journey-container {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    min-height: auto;
+
+    padding: 20px;
+  }
+
+  .progress-section {
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+    padding: 20px;
+
+    margin-top: 32px;
+  }
+
+  .progress-header {
+    flex-direction: column;
+    font-family: 'Oswald', sans-serif;
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .progress-percentage {
+    font-size: 1.8rem;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  :host ::ng-deep .p-checkbox {
+    transform: scale(1.2);
+  }
+}
+
+/* ==========================================================
+   SMALL PHONES
+========================================================== */
+
+@media (max-width: 480px) {
+  .step-card {
+    padding: 18px;
+  }
+
+  .step-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .step-card p {
+    font-size: 0.9rem;
+  }
+
+  .progress-header h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem;
+  }
+
+  .progress-percentage {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+  }
+}

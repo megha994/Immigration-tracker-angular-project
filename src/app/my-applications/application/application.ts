@@ -27,7 +27,7 @@ export class Application implements OnInit {
   ngOnInit() {
     this.type = this.route.snapshot.paramMap.get('type')!;
   }
-  processsteps: ProcessStep[] = [
+  processSteps: ProcessStep[] = [
     {
       id: '0',
       title: 'Apply for LOA',
@@ -131,40 +131,9 @@ export class Application implements OnInit {
 
   goToStep(step: ProcessStep) {
     const st = Number(step.id);
-    if (st == 1) {
-      this.router.navigate(['/immigration-outside-ca-eligibility'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    } else if (st == 2) {
-      this.router.navigate(['/immigration-outside-ca-documents'], {
+      this.router.navigate(['/update-study-permit'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-    else if (st == 3) {
-      this.router.navigate(['/immigration-outside-ca-submission'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge' // optional: merge with existing query params
-      });
-    }
-    else if (st == 4) {
-      this.router.navigate(['/immigration-outside-ca-biometrics'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    }
-    else if (st == 5) {
-      this.router.navigate(['/immigration-outside-ca-processing-time'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    }
-    else if (st == 6) {
-      this.router.navigate(['/immigration-outside-ca-decision'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    }
-  }
 }

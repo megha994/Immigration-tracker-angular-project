@@ -1,58 +1,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <div class="page-wrapper">
-
-    <!-- ===========================
+  <!-- ===========================
          MAIN SECTION (LEFT)
     ============================ -->
-    <section class="study-permit-shell main-section">
-        <h1>Update your Application's Progress</h1>
-        <h2>You can update the progress of any of the following:</h2>
+  <section class="study-permit-shell main-section">
+    <h1>Update your Application's Progress</h1>
+    <h2>You can update the progress of any of the following:</h2>
 
-        <div class="study-permit-card">
-            <div class="journey-container">
-
-                @for (step of processsteps; track step.title) {
-                    <div class="journey-item">
-                        <div (click)="goToStep(step)" class="step-card">
-                            <i [class]="step.icon" [style.color]="step.color"></i>
-                            <h3>{{ step.title }}</h3>
-                            <p>{{ step.description }}</p>
-                        </div>
-
-                     
-                    </div>
-                }
+    <div class="study-permit-card">
+      <div class="journey-container">
+        @for (step of processSteps; track step.title) {
+          <div class="journey-item">
+            <div (click)="goToStep(step)" class="step-card">
+              <i [class]="step.icon" [style.color]="step.color"></i>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
             </div>
-        </div>
-    </section>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
 
-    <!-- ===========================
+  <!-- ===========================
          SIDEBAR SECTION (RIGHT)
     ============================ -->
-    <section class="study-permit-shell sidebar-section">
-        <h1>Quick Guide</h1>
+  <section class="study-permit-shell sidebar-section">
+    <h1>Quick Guide</h1>
 
-        <div class="study-permit-card">
-            <div class="journey-container">
-
-                @for (step of progressSteps; track step.title; let last = $last) {
-                    <div class="journey-item">
-                        <div (click)="goToStep(step)" class="step-card vertical">
-                            <i [class]="step.icon" [style.color]="step.color"></i>
-                            <h3>{{ step.title }}</h3>
-                            <p>{{ step.description }}</p>
-                        </div>
-
-                      
-                            <div class="connector">
-                                <i class="pi pi-arrow-right"></i>
-                            </div>
-                      
-                    </div>
-                }
+    <div class="study-permit-card">
+      <div class="journey-container">
+        @for (step of progressSteps; track step.title; let last = $last) {
+          <div class="journey-item">
+            <div (click)="goToStep(step)" class="step-card vertical">
+              <i [class]="step.icon" [style.color]="step.color"></i>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
             </div>
-        </div>
-    </section>
 
+            <div class="connector">
+              <i class="pi pi-arrow-right"></i>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
 </div>

@@ -24,7 +24,7 @@ export class MyApplications implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.type = this.route.snapshot.paramMap.get('type')!;
+     this.type = this.route.snapshot.queryParams['type']!;
   }
   steps: Step[] = [
     {

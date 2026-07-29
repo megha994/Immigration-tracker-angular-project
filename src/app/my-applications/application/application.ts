@@ -3,6 +3,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 // import { Card } from 'primeng/card';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Dialog } from 'primeng/dialog';
 interface ProcessStep {
   id?: string;
   title: string;
@@ -13,44 +14,58 @@ interface ProcessStep {
 }
 @Component({
   selector: 'app-application',
-  // imports: [Card],
+  imports: [Dialog],
   templateUrl: './application.html',
   styleUrl: './application.css',
 })
 export class Application implements OnInit {
+  showMessage: boolean = false;
   @Input() type!: string;
+  msg: string = "";
   constructor(
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.type = this.route.snapshot.paramMap.get('type')!;
+    this.route.queryParams.subscribe(params => {
+      const pagecompleted = params['pagecompleted'];
+      const stepNo = params['stepNo'];
+      this.msg = params['msg'];
+      if (pagecompleted) {
+        // You can show a message, trigger animation, etc.
+        this.showMessage = true;
+        this.processSteps[stepNo].completed = true;
+      }
+    });
+    this.type = this.route.snapshot.queryParams['type']!;
+
   }
   processSteps: ProcessStep[] = [
     {
       id: '0',
       title: 'Apply for LOA',
       description: 'Apply for LOA at a DLI',
-      completed: true,
-      icon: 'pi pi-university',
-      color: '#8E24AA'
+      completed: false,
+      icon: 'pi pi-file',
+      color: '#b580c4'
     },
+
     {
       id: '1',
-      title: 'Fill Application',
-      description: 'Fill out the IRCC Application',
-      completed: true,
-      icon: 'pi pi-pencil',
-      color: '#3949AB'
+      title: 'Documents To be Submitted',
+      description: 'Gather these required documents',
+      completed: false,
+      icon: 'pi pi-folder-open',
+      color: '#7ae1d6'
     },
     {
       id: '2',
-      title: 'Documents To be Submitted',
-      description: 'Gather and upload these required documents',
-      completed: true,
-      icon: 'pi pi-folder-open',
-      color: '#00897B'
+      title: 'Fill Application',
+      description: 'Fill out the IRCC Application and upload the documents',
+      completed: false,
+      icon: 'pi pi-pencil',
+      color: '#8996e5'
     },
     {
       id: '3',
@@ -65,7 +80,7 @@ export class Application implements OnInit {
       title: 'Biometrics',
       description: 'Schedule for biometrics',
       completed: false,
-      icon: 'pi pi-fingerprint',
+      icon: 'pi pi-user',
       color: '#1E88E5'
     },
     {
@@ -74,7 +89,7 @@ export class Application implements OnInit {
       description: 'Get a Police Clearance',
       completed: false,
       icon: 'pi pi-shield',
-      color: '#6D4C41'
+      color: '#c26546'
     }
   ];
 
@@ -131,9 +146,9 @@ export class Application implements OnInit {
 
   goToStep(step: ProcessStep) {
     const st = Number(step.id);
-      this.router.navigate(['/update-study-permit'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    }
+    this.router.navigate(['/update-study-permit'], {
+      queryParams: { st: st, type: this.type },
+      queryParamsHandling: 'merge', // optional: merge with existing query params
+    });
+  }
 }

@@ -54,12 +54,79 @@
   box-shadow: 0 18px 40px rgba(185, 28, 28, 0.08);
 }
 
+.step-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+
+.icon-title {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.icon-title i {
+  font-size: 2.4rem;
+}
+
+
+.status-chip {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: fit-content;
+
+  padding: 0.35rem 0.8rem;
+
+  border-radius: 999px;
+
+  font-size: 0.78rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.3px;
+}
+
+.status-chip.completed {
+  background: #dcfce7;
+
+  color: #166534;
+}
+
+.status-chip.pending {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+
+:host ::ng-deep .study-permit-card .completed-card {
+  /* border: 2px solid #46fcc5;
+  color: rgb(243, 252, 252);
+  background-color: #6ad7b8; */
+  border: 2px solid #1d9f4f;
+  color: rgb(26, 47, 47);
+  background: #daf1e9;
+}
+
 /* ===========================
    JOURNEY CONTAINER
    =========================== */
 .journey-container {
   display: flex;
-  flex-direction: column; /* ⭐ Cards stacked vertically */
+  flex-direction: column;
+  /* ⭐ Cards stacked vertically */
   gap: 1.5rem;
   width: 100%;
 }
@@ -82,14 +149,15 @@
   padding: 1.25rem;
   border-radius: 12px;
   background: var(--surface-card);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease;
   font-family: 'Oswald', sans-serif;
 }
-.vertical{
-    background-color:#f96969;
-    color:white;
+
+.vertical {
+  background-color: #f96969;
+  color: white;
 }
 
 .step-card:hover {
@@ -162,5 +230,49 @@
 
   .step-card i {
     font-size: 1.6rem;
+  }
+}
+
+:host ::ng-deep .p-dialog {
+  background: rgb(217, 240, 217);
+  color: rgb(30, 51, 33);
+  padding: 25px;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 12px;
+  font-size: 1.6rem;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.6s ease-out;
+  font-weight: bold;
+}
+
+
+/* Existing animation */
+@keyframes pulseFade {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* New entrance animation */
+@keyframes popIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

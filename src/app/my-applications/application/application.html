@@ -1,4 +1,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<p-dialog [(visible)]="showMessage" [modal]="true" [closable]="true" [dismissableMask]="true" [showHeader]="false"
+  contentStyleClass="congrats-dialog" [style]="{ 'width': '620px', 'text-align': 'center' }">
+  <div class="congrats-text">
+    🎉  {{msg}}!
+  </div>
+</p-dialog>
 
 <div class="page-wrapper">
   <!-- ===========================
@@ -11,13 +17,22 @@
     <div class="study-permit-card">
       <div class="journey-container">
         @for (step of processSteps; track step.title) {
-          <div class="journey-item">
-            <div (click)="goToStep(step)" class="step-card">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.description }}</p>
-            </div>
+        <div class="journey-item">
+          <div (click)="goToStep(step)" class="step-card" [class.completed-card]="step.completed">
+
+                        <i [class]="step.icon" [style.color]="step.color">
+                        </i>
+
+                        <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
+
+                            {{ step.completed ? 'Completed' : 'Not Started' }}
+
+                        </span>
+
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
           </div>
+        </div>
         }
       </div>
     </div>
@@ -32,17 +47,17 @@
     <div class="study-permit-card">
       <div class="journey-container">
         @for (step of progressSteps; track step.title; let last = $last) {
-          <div class="journey-item">
-            <div (click)="goToStep(step)" class="step-card vertical">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.description }}</p>
-            </div>
-
-            <div class="connector">
-              <i class="pi pi-arrow-right"></i>
-            </div>
+        <div class="journey-item">
+          <div (click)="goToStep(step)" class="step-card vertical">
+            <i [class]="step.icon" [style.color]="step.color"></i>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
           </div>
+
+          <div class="connector">
+            <i class="pi pi-arrow-right"></i>
+          </div>
+        </div>
         }
       </div>
     </div>

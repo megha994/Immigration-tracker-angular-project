@@ -44,6 +44,12 @@ export const routes: Routes = [
             .then(m => m.Application)
       },
 
+      {
+        path: 'update-study-permit',
+        loadComponent: () =>
+          import('./my-applications/update-study-permit/update-study-permit')
+            .then(m => m.UpdateStudyPermit)
+      },
       // Immigration Journey Routes
       {
         path: 'immigration-journey',

@@ -1,10 +1,18 @@
-
-
 import { Component, Input, OnInit } from '@angular/core';
-// import { Card } from 'primeng/card';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Dialog } from 'primeng/dialog';
+import { ApplicationProgressService } from './../services/application-progress.service';
+
 interface ProcessStep {
+  id: string;
+  title: string;
+  description?: string;
+  completed: boolean;
+  icon?: string;
+  color?: string;
+}
+
+interface Step {
   id?: string;
   title: string;
   description?: string;
@@ -12,35 +20,53 @@ interface ProcessStep {
   icon?: string;
   color?: string;
 }
+
 @Component({
   selector: 'app-application',
+  standalone: true,
   imports: [Dialog],
   templateUrl: './application.html',
   styleUrl: './application.css',
 })
 export class Application implements OnInit {
-  showMessage: boolean = false;
+
+  showMessage = false;
+  msg = '';
   @Input() type!: string;
-  msg: string = "";
+
+  // backend progress map: { "0": true, "1": false, ... }
+  completedSteps: Record<string, boolean> = {};
+
   constructor(
+    private progressService: ApplicationProgressService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    // Load progress from backend
+    this.progressService.getProgress().subscribe(progress => {
+      this.completedSteps = progress;
+    });
+
+    // Handle completion message
     this.route.queryParams.subscribe(params => {
       const pagecompleted = params['pagecompleted'];
       const stepNo = params['stepNo'];
       this.msg = params['msg'];
+
       if (pagecompleted) {
-        // You can show a message, trigger animation, etc.
         this.showMessage = true;
+
+        // Mark UI state
         this.processSteps[stepNo].completed = true;
+
+        // Persist to backend
+        this.progressService.updateStep(stepNo.toString(), true).subscribe();
       }
     });
-    this.type = this.route.snapshot.queryParams['type']!;
-
   }
+
   processSteps: ProcessStep[] = [
     {
       id: '0',
@@ -50,7 +76,6 @@ export class Application implements OnInit {
       icon: 'pi pi-file',
       color: '#b580c4'
     },
-
     {
       id: '1',
       title: 'Documents To be Submitted',
@@ -144,11 +169,34 @@ export class Application implements OnInit {
     }
   ];
 
-  goToStep(step: ProcessStep) {
+  goToProcessStep(step: ProcessStep) {
     const st = Number(step.id);
+
     this.router.navigate(['/update-study-permit'], {
-      queryParams: { st: st, type: this.type },
-      queryParamsHandling: 'merge', // optional: merge with existing query params
+      queryParams: { st, type: this.type },
+      queryParamsHandling: 'merge'
     });
+  }
+
+  goToStep(step: Step) {
+    const st = Number(step.id);
+
+    const routes: Record<number, string> = {
+      1: '/immigration-outside-ca-eligibility',
+      2: '/immigration-outside-ca-documents',
+      3: '/immigration-outside-ca-submission',
+      4: '/immigration-outside-ca-biometrics',
+      5: '/immigration-outside-ca-processing-time',
+      6: '/immigration-outside-ca-decision'
+    };
+
+    const route = routes[st];
+
+    if (route) {
+      this.router.navigate([route], {
+        queryParams: { st, type: this.type },
+        queryParamsHandling: 'merge'
+      });
+    }
   }
 }

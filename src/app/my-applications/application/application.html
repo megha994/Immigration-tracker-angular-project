@@ -1,65 +1,96 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<p-dialog [(visible)]="showMessage" [modal]="true" [closable]="true" [dismissableMask]="true" [showHeader]="false"
-  contentStyleClass="congrats-dialog" [style]="{ 'width': '620px', 'text-align': 'center' }">
+<p-dialog [(visible)]="showMessage"
+          [modal]="true"
+          [closable]="true"
+          [dismissableMask]="true"
+          [showHeader]="false"
+          contentStyleClass="congrats-dialog"
+          [style]="{ 'width': '620px', 'text-align': 'center' }">
+
   <div class="congrats-text">
-    🎉  {{msg}}!
+    🎉 {{ msg }}!
   </div>
 </p-dialog>
 
 <div class="page-wrapper">
+
   <!-- ===========================
-         MAIN SECTION (LEFT)
-    ============================ -->
+       MAIN SECTION (LEFT)
+  ============================ -->
   <section class="study-permit-shell main-section">
     <h1>Update your Application's Progress</h1>
     <h2>You can update the progress of any of the following:</h2>
 
     <div class="study-permit-card">
       <div class="journey-container">
-        @for (step of processSteps; track step.title) {
+
+        @for (step of processSteps; track step.id) {
+
         <div class="journey-item">
-          <div (click)="goToStep(step)" class="step-card" [class.completed-card]="step.completed">
 
-                        <i [class]="step.icon" [style.color]="step.color">
-                        </i>
+          <div class="step-card"
+               (click)="goToProcessStep(step)"
+               [class.completed-card]="completedSteps[step.id]">
 
-                        <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
+            <!-- Icon -->
+            <i [class]="step.icon" [style.color]="step.color"></i>
 
-                            {{ step.completed ? 'Completed' : 'Not Started' }}
+            <!-- Status -->
+            <span class="status-chip"
+                  [class.completed]="completedSteps[step.id]"
+                  [class.pending]="!completedSteps[step.id]">
+              {{ completedSteps[step.id] ? 'Completed' : 'Not Started' }}
+            </span>
 
-                        </span>
-
+            <!-- Title -->
             <h3>{{ step.title }}</h3>
+
+            <!-- Description -->
             <p>{{ step.description }}</p>
+
           </div>
+
         </div>
+
         }
+
       </div>
     </div>
   </section>
 
+
   <!-- ===========================
-         SIDEBAR SECTION (RIGHT)
-    ============================ -->
+       SIDEBAR SECTION (RIGHT)
+  ============================ -->
   <section class="study-permit-shell sidebar-section">
     <h1>Quick Guide</h1>
 
     <div class="study-permit-card">
       <div class="journey-container">
-        @for (step of progressSteps; track step.title; let last = $last) {
+
+        @for (step of progressSteps; track step.id) {
+
         <div class="journey-item">
-          <div (click)="goToStep(step)" class="step-card vertical">
+
+          <div class="step-card vertical"
+               (click)="goToStep(step)">
+
             <i [class]="step.icon" [style.color]="step.color"></i>
+
             <h3>{{ step.title }}</h3>
             <p>{{ step.description }}</p>
+
           </div>
 
           <div class="connector">
             <i class="pi pi-arrow-right"></i>
           </div>
+
         </div>
+
         }
+
       </div>
     </div>
   </section>
+
 </div>

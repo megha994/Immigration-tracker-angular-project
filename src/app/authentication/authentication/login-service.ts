@@ -21,7 +21,6 @@ export class LoginService {
   }
 
   login(email: string, password: string): Observable<any> {
-    debugger
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     const user = users.find((u: any) => u.email === email && u.password === password);

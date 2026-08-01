@@ -1,5 +1,5 @@
 <div class="signup-grid">
-<p-toast></p-toast>
+  <p-toast></p-toast>
 
   <div class="signup-card">
     <h2>Sign Up</h2>
@@ -8,66 +8,46 @@
 
       <div class="form-row">
         <span class="p-float-label">
-          <input
-            id="email"
-            pInputText
-            formControlName="email"
-            placeholder="Enter your email"
-            class="p-inputtext-lg"
-          />
+          <input id="email" pInputText formControlName="email" placeholder="Enter your email" class="p-inputtext-lg" />
           <label class="labelClass" for="email">Email</label>
         </span>
       </div>
 
       <div class="form-row">
         <span class="p-float-label">
-          <p-password
-            inputId="password"
-            formControlName="password"
-            placeholder="Enter your password"
-            [toggleMask]="true"
-            [feedback]="true"
-            inputStyleClass="p-inputtext-lg"
-          ></p-password>
+          <p-password inputId="password" formControlName="password" placeholder="Enter your password"
+            [toggleMask]="true" [feedback]="true" inputStyleClass="p-inputtext-lg"></p-password>
           <label class="labelClass" for="password">Password</label>
         </span>
       </div>
 
       <div class="form-row">
         <span class="p-float-label">
-          <p-password
-            inputId="confirmPassword"
-            formControlName="confirmPassword"
-            placeholder="Confirm your password"
-            [toggleMask]="true"
-            [feedback]="false"
-            inputStyleClass="p-inputtext-lg"
-          ></p-password>
+          <p-password inputId="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password"
+            [toggleMask]="true" [feedback]="false" inputStyleClass="p-inputtext-lg"></p-password>
           <label class="labelClass" for="confirmPassword">Confirm Password</label>
         </span>
       </div>
 
       <div class="form-row">
-        <div *ngIf="signupForm.errors?.['mismatch'] && confirmPassword?.touched"
-             class="error-message">
+        <div *ngIf="signupForm.errors?.['mismatch'] && confirmPassword?.touched" class="error-message">
           Passwords do not match.
         </div>
       </div>
 
       <div class="form-row">
-        <button
-          pButton
-          type="submit"
-          [disabled]="signupForm.invalid"
-          class="signup-button p-button-lg"
-        >
+        <button pButton type="submit" [disabled]="signupForm.invalid" class="signup-button p-button-lg">
           Sign Up
         </button>
       </div>
-
+      @defer (on timer(1000)){
       <div class="form-row links">
         <a routerLink="/login-in" class="link">Already have an account? Log in</a>
       </div>
+      }
+      @placeholder{
+      <p>Loading Link....</p>
+      }
 
     </form>
   </div>

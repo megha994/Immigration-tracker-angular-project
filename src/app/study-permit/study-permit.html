@@ -8,7 +8,9 @@
       <div class="radio-group" role="radiogroup" aria-label="Application location options">
         @for (category of categories; track category.key) {
         <label class="radio-option" [for]="category.key">
-          <p-radiobutton formControlName="selectedCategory" name="selectedCategory" [inputId]="category.key"
+          <p-radiobutton formControlName="selectedCategory" 
+          (onClick)="onRadioChange(category)"
+          name="selectedCategory" [inputId]="category.key"
             [value]="category" />
           <span>{{ category.name }}</span>
         </label>
@@ -17,7 +19,7 @@
       @if (outside) {
       <div class="flex flex-col gap-1">
         <p-select formControlName="country" [options]="countries" optionLabel="name" placeholder="Select a country"
-          styleClass="styled-select" class="w-full md:w-56" (onChange)="onSelectCategory($event)" />
+          styleClass="styled-select" class="w-full md:w-56" (onChange)="onSelectCategory($event.value)" />
 
 
       </div>

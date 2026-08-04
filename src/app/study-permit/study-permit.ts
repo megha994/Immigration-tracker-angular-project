@@ -9,6 +9,7 @@ import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImmigrationJourney } from './../immigration-journey/immigration-journey';
+import { StudyPermitStateMgtService } from './study-permit-state-mgt-service.service';
 @Component({
   selector: 'app-study-permit',
   standalone: true,
@@ -40,22 +41,42 @@ export class StudyPermit implements OnInit {
   ];
 
   countries: any[] = [{ key: 1, name: 'India' }];
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private studyPermitStateMgtService: StudyPermitStateMgtService) {
+
+  }
+  ngOnInit() {
     this.studyPermitForm = this.fb.group({
       selectedCategory: ['', Validators.required],
       country: ['', Validators.required],
     });
-  }
-  ngOnInit() {
     this.type = this.route.snapshot.paramMap.get('type')!;
     this.studyPermitForm.get('selectedCategory')?.valueChanges.subscribe((value) => {
-      console.log('Selected:', value);
       this.outside = value.name === 'Outside Canada' ? true : false;
     });
+
+    const saved = this.studyPermitStateMgtService.studyPermitFormValue();
+    if (saved) {
+      this.outside = saved.selectedCategory.name === 'Outside Canada' ? true : false;
+      this.countrySelected = saved.country;
+      this.studyPermitForm.patchValue({
+        country: saved.country,
+        selectedCategory: saved.selectedCategory
+      });
+      // this.onRadioChange(saved.selectedCategory);
+    }
   }
 
 
-  onSelectCategory(event: any) {
-    this.countrySelected = event.value;
+  onSelectCategory(value: string) {
+    this.countrySelected = value;
+    this.studyPermitForm.get('country')?.setValue(value);
+    this.studyPermitStateMgtService.studyPermitForm.get('country')?.setValue(value);
   }
+
+  onRadioChange(value: string) {
+    this.studyPermitForm.get('selectedCategory')?.setValue(value);
+    this.studyPermitStateMgtService.studyPermitForm.get('selectedCategory')?.setValue(value);
+  }
+
+
 }

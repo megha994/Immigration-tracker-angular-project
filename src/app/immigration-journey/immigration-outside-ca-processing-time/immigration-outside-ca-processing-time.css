@@ -64,6 +64,18 @@
   box-shadow: 0 18px 40px rgba(185, 28, 28, 0.08);
 }
 
+:host ::ng-deep .p-radiobutton-checked,
+:host ::ng-deep .p-radiobutton-checked .p-radiobutton-box {
+  border-radius: 50% !important;
+  border: 1px solid #18cb24 !important;
+}
+
+.radio-option:has(.p-radiobutton .p-radiobutton-box.p-highlight),
+.radio-option:has(input[type="radio"]:checked) {
+  border-color: #e53935;
+  background: #fff3f2;
+  transform: translateY(-1px);
+}
 
 .radio-option {
   display: inline-flex;

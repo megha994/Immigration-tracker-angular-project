@@ -58,9 +58,12 @@ export class StudyPermit implements OnInit {
     if (saved) {
       this.outside = saved.selectedCategory.name === 'Outside Canada' ? true : false;
       this.countrySelected = saved.country;
+
+      const selected = this.categories.find(c => c.key === saved.selectedCategory.key);
+
       this.studyPermitForm.patchValue({
         country: saved.country,
-        selectedCategory: saved.selectedCategory
+        selectedCategory: selected
       });
       // this.onRadioChange(saved.selectedCategory);
     }

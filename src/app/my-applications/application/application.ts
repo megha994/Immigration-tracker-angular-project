@@ -53,8 +53,10 @@ export class Application implements OnInit {
     this.route.queryParams.subscribe(params => {
       const pagecompleted = params['pagecompleted'];
       const stepNo = params['stepNo'];
-      this.msg = params['msg'];
 
+      if (params['msg']) {
+        this.msg = params['msg'];
+      }
       if (pagecompleted) {
         this.showMessage = true;
 
@@ -63,6 +65,15 @@ export class Application implements OnInit {
 
         // Persist to backend
         this.progressService.updateStep(stepNo.toString(), true).subscribe();
+
+
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: {
+          },
+          replaceUrl: true
+        })
+
       }
     });
   }
@@ -76,32 +87,45 @@ export class Application implements OnInit {
       icon: 'pi pi-file',
       color: '#b580c4'
     },
+
     {
       id: '1',
-      title: 'Documents To be Submitted',
-      description: 'Gather these required documents',
-      completed: false,
-      icon: 'pi pi-folder-open',
-      color: '#7ae1d6'
-    },
-    {
-      id: '2',
-      title: 'Fill Application',
-      description: 'Fill out the IRCC Application and upload the documents',
-      completed: false,
-      icon: 'pi pi-pencil',
-      color: '#8996e5'
-    },
-    {
-      id: '3',
       title: 'Medical',
       description: 'Apply for Medicals',
       completed: false,
       icon: 'pi pi-heart-fill',
       color: '#E53935'
     },
+
+    {
+      id: '2',
+      title: 'Police Clearance',
+      description: 'Get a Police Clearance',
+      completed: false,
+      icon: 'pi pi-shield',
+      color: '#96780c'
+    },
+
+    {
+      id: '3',
+      title: 'Documents To be Submitted',
+      description: 'Gather these required documents',
+      completed: false,
+      icon: 'pi pi-folder-open',
+      color: '#44af16'
+    },
     {
       id: '4',
+      title: 'Fill and Submit Application',
+      description: 'Fill out the IRCC Application, upload the documents and Submit',
+      completed: false,
+      icon: 'pi pi-pencil',
+      color: '#555af0'
+    },
+
+
+    {
+      id: '5',
       title: 'Biometrics',
       description: 'Schedule for biometrics',
       completed: false,
@@ -109,12 +133,12 @@ export class Application implements OnInit {
       color: '#1E88E5'
     },
     {
-      id: '5',
-      title: 'Police Clearance',
-      description: 'Get a Police Clearance',
+      id: '6',
+      title: 'Decision',
+      description: 'Receive final decision',
       completed: false,
-      icon: 'pi pi-shield',
-      color: '#c26546'
+      icon: 'pi pi-question-circle',
+      color: '#f26a55',
     }
   ];
 

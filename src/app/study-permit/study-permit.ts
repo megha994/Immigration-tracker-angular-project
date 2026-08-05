@@ -8,6 +8,7 @@ import { MessageService } from 'primeng/api';
 import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RouteTrackerService } from './study-permit-route-tracker-service.service'
 import { ImmigrationJourney } from './../immigration-journey/immigration-journey';
 import { StudyPermitStateMgtService } from './study-permit-state-mgt-service.service';
 @Component({
@@ -41,10 +42,26 @@ export class StudyPermit implements OnInit {
   ];
 
   countries: any[] = [{ key: 1, name: 'India' }];
-  constructor(private route: ActivatedRoute, private studyPermitStateMgtService: StudyPermitStateMgtService) {
+  constructor(private routeTracker: RouteTrackerService, private route: ActivatedRoute, private studyPermitStateMgtService: StudyPermitStateMgtService) {
 
   }
   ngOnInit() {
+    const prev = this.routeTracker.previousUrl;
+
+    // If user came from another application step, DO NOT clear state
+    const cameFromApplicationFlow =
+      prev?.startsWith('/immigration-outside-ca-');
+
+    if (!cameFromApplicationFlow) {
+      this.studyPermitStateMgtService.reset();
+    }
+
+    // Now restore state into your reactive form or signals
+    this.studyPermitStateMgtService.restoreIntoForm();
+
+
+
+
     this.studyPermitForm = this.fb.group({
       selectedCategory: ['', Validators.required],
       country: ['', Validators.required],

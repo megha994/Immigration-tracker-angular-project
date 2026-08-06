@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 // import { Card } from 'primeng/card';
 import { Router, ActivatedRoute } from '@angular/router';
 interface Step {
@@ -12,6 +12,7 @@ interface Step {
 }
 @Component({
   selector: 'app-my-applications',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // imports: [Card],
   templateUrl: './my-applications.html',
   styleUrl: './my-applications.css',
@@ -24,7 +25,7 @@ export class MyApplications implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.type = this.route.snapshot.queryParams['type']!;
+    this.type = this.route.snapshot.queryParams['type']!;
   }
   steps: Step[] = [
     {
@@ -95,12 +96,12 @@ export class MyApplications implements OnInit {
 
   goToStep(step: Step) {
     const st = Number(step.id);
-    
-      this.router.navigate(['/application'], {
-        queryParams: { st: st, type: this.type },
-        queryParamsHandling: 'merge', // optional: merge with existing query params
-      });
-    } 
+
+    this.router.navigate(['/application'], {
+      queryParams: { st: st, type: this.type },
+      queryParamsHandling: 'merge', // optional: merge with existing query params
+    });
   }
-  
+}
+
 

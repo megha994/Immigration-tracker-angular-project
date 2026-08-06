@@ -1,6 +1,6 @@
 
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-immigration-outside-ca-decision',
   imports: [StepperModule, ButtonModule, CommonModule, TagModule],
+  changeDetection:ChangeDetectionStrategy.OnPush,
   templateUrl: './immigration-outside-ca-decision.html',
   styleUrl: './immigration-outside-ca-decision.css'
 })

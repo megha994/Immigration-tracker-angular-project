@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -7,12 +7,13 @@ import { StepperModule } from 'primeng/stepper';
 import { TagModule } from 'primeng/tag';
 import { STUDY_OUTSIDE_BIOMETRICS } from './../immigration-journey-mock-data/immigration-outside-ca-study.mock';
 import { DomSanitizer } from '@angular/platform-browser';
-import {bioSTUDY_OUTSIDE_BIO_FEES}from './../immigration-journey-mock-data/immigration-outside-ca-study.mock';
+import { bioSTUDY_OUTSIDE_BIO_FEES } from './../immigration-journey-mock-data/immigration-outside-ca-study.mock';
 import { STUDY_OUTSIDE_BIO } from './../immigration-journey-mock-data/immigration-outside-ca-study.mock';
 @Component({
   selector: 'app-immigration-outside-ca-biometrics',
   imports: [StepperModule, ButtonModule, CommonModule, TagModule],
   templateUrl: './immigration-outside-ca-biometrics.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './immigration-outside-ca-biometrics.css',
 })
 export class ImmigrationOutsideCaBiometrics implements OnInit, OnDestroy {
@@ -28,7 +29,7 @@ export class ImmigrationOutsideCaBiometrics implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.biometrics = STUDY_OUTSIDE_BIOMETRICS.map((bio) => ({
@@ -40,7 +41,7 @@ export class ImmigrationOutsideCaBiometrics implements OnInit, OnDestroy {
       ...bio,
       safeHtml: this.sanitizer.bypassSecurityTrustHtml(bio.contextHtml),
     }));
-this.bioFees = bioSTUDY_OUTSIDE_BIO_FEES.map((bio) => ({
+    this.bioFees = bioSTUDY_OUTSIDE_BIO_FEES.map((bio) => ({
       ...bio,
       safeHtml: this.sanitizer.bypassSecurityTrustHtml(bio.contextHtml),
     }));

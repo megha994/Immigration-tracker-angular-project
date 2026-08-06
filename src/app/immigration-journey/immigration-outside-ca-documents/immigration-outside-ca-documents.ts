@@ -1,5 +1,5 @@
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'app-immigration-outside-ca-documents',
   imports: [StepperModule, ButtonModule, CommonModule, TagModule],
   templateUrl: './immigration-outside-ca-documents.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './immigration-outside-ca-documents.css'
 })
 export class ImmigrationOutsideCaDocuments implements OnInit, OnDestroy {

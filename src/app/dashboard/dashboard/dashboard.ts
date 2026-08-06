@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 
 interface ProgressCard {
@@ -11,6 +11,7 @@ interface ProgressCard {
 @Component({
   selector: 'app-dashboard',
   standalone: false,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css'],
 })

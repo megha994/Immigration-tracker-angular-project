@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: false,
   templateUrl: './navigation-bar.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./navigation-bar.css'],
 })
 export class NavigationBarComponent {

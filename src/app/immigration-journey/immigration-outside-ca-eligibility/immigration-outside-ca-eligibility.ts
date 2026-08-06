@@ -52,7 +52,7 @@
 // }
 
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -63,6 +63,7 @@ import { STUDY_OUTSIDE_ELIGIBLE } from './../immigration-journey-mock-data/immig
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-immigration-outside-ca-eligibility',
   imports: [StepperModule, ButtonModule, CommonModule, TagModule],
   templateUrl: './immigration-outside-ca-eligibility.html',

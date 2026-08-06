@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 import { NgIf } from '@angular/common';
 import {
@@ -31,6 +32,7 @@ interface Step {
   standalone: true,
   templateUrl: './update-study-permit.html',
   styleUrl: './update-study-permit.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule, NgIf, Checkbox, ProgressBar, CheckboxModule, ButtonModule],
 })
 export class UpdateStudyPermit implements OnInit {
@@ -191,7 +193,7 @@ export class UpdateStudyPermit implements OnInit {
     this.progressService.updateStep(stepId, true).subscribe(() => {
       this.router.navigate(['/application'], {
         queryParams: { pagecompleted: this.pageCompleted, msg, stepNo }
-      }, );
+      },);
     });
   }
 
@@ -643,5 +645,5 @@ export class UpdateStudyPermit implements OnInit {
     { id: 8, label: 'Medical Certificate', completed: false },
   ];
 
-  
+
 }

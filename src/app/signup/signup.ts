@@ -18,12 +18,13 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
-
+import { ChangeDetectionStrategy } from '@angular/core';
 import { LoginService } from "./../authentication/authentication/login-service";
 
 @Component({
   selector: 'app-signup',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     RouterLink,

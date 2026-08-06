@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -25,6 +25,7 @@ import { StudyPermitStateMgtService } from './study-permit-state-mgt-service.ser
     ImmigrationJourney,
   ],
   providers: [MessageService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './study-permit.html',
   styleUrls: ['./study-permit.css'],
 })

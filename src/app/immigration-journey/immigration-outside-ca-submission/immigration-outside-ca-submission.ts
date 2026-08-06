@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ import { STUDY_OUTSIDE_APPLY_ONLINE, STUDY_OUTSIDE_APPLY_ON_PAPER, submissionBut
 
 @Component({
   selector: 'app-immigration-outside-ca-submission',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [StepperModule, ButtonModule, CommonModule, TagModule, SelectModule,
     MessageModule,
     RadioButtonModule,
@@ -34,7 +35,7 @@ export class ImmigrationOutsideCaSubmission implements OnInit, OnDestroy {
   type: string = "";
   formSubmitted = false;
   online = false;
-  paper=false;
+  paper = false;
   countrySelected: any = false;
   studyPermitForm!: FormGroup;
   categories: any[] = [
@@ -65,7 +66,7 @@ export class ImmigrationOutsideCaSubmission implements OnInit, OnDestroy {
     this.studyPermitForm.get('selectedCategory')?.valueChanges.subscribe((value) => {
       console.log('Selected:', value);
       this.online = value.name === 'Online' ? true : false;
-      this.paper= value.name === 'Paper' ? true : false;
+      this.paper = value.name === 'Paper' ? true : false;
     });
 
     this.submission = STUDY_OUTSIDE_SUBMISSION.map(doc => ({

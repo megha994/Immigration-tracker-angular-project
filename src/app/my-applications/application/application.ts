@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Dialog } from 'primeng/dialog';
 import { ApplicationProgressService } from './../services/application-progress.service';
@@ -24,6 +24,7 @@ interface Step {
 @Component({
   selector: 'app-application',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [Dialog],
   templateUrl: './application.html',
   styleUrl: './application.css',

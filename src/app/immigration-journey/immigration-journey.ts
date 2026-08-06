@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 // import { Card } from 'primeng/card';
 import { Router, ActivatedRoute } from '@angular/router';
 interface Step {
@@ -12,6 +12,7 @@ interface Step {
 @Component({
   selector: 'app-immigration-journey',
   // imports: [Card],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './immigration-journey.html',
   styleUrl: './immigration-journey.css',
 })
@@ -20,7 +21,7 @@ export class ImmigrationJourney implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.type = this.route.snapshot.paramMap.get('type')!;
@@ -89,7 +90,7 @@ export class ImmigrationJourney implements OnInit {
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 3) {
+    else if (st == 3) {
       this.router.navigate(['/immigration-outside-ca-submission'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge' // optional: merge with existing query params
@@ -101,13 +102,13 @@ export class ImmigrationJourney implements OnInit {
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 5) {
+    else if (st == 5) {
       this.router.navigate(['/immigration-outside-ca-processing-time'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params
       });
     }
-     else if (st == 6) {
+    else if (st == 6) {
       this.router.navigate(['/immigration-outside-ca-decision'], {
         queryParams: { st: st, type: this.type },
         queryParamsHandling: 'merge', // optional: merge with existing query params

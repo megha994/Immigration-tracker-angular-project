@@ -1,291 +1,38 @@
-<form [formGroup]="form" class="study-permit-form">
+<!-- ==========================
+     MAIN FORM (steps 0,1,2,4,5,6)
+========================== -->
+<form *ngIf="processStep !== 3" [formGroup]="form" class="study-permit-form">
 
   <!-- ==========================
-       STEP 0 — LOA STEPS
+       DYNAMIC STEP BLOCK (0,1,2,4,5,6)
   =========================== -->
-  <ng-container *ngIf="processStep === 0">
-    <div class="journey-container" formArrayName="steps">
+  <ng-container *ngIf="currentSteps">
+    <div class="journey-container" [formArrayName]="currentKey">
 
-      @for (step of steps; track step.id; let i = $index) {
+      @for (step of currentSteps; track step.id; let i = $index) {
 
       <div class="journey-item">
-
         <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
 
-          <!-- Header -->
           <div class="step-header">
-
             <div class="icon-title">
               <i [class]="step.icon" [style.color]="step.color"></i>
 
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
+              <span class="status-chip"
+                    [class.completed]="step.completed"
+                    [class.pending]="!step.completed">
                 {{ step.completed ? 'Completed' : 'Not Started' }}
               </span>
             </div>
 
-            <p-checkbox [binary]="true" [formControl]="stepsArray.at(i)">
+            <p-checkbox [binary]="true" [formControl]="currentFormArray.at(i)">
             </p-checkbox>
-
           </div>
 
-          <!-- Title -->
           <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
           <p [innerHTML]="step.description"></p>
 
         </div>
-
-      </div>
-
-      }
-
-    </div>
-  </ng-container>
-
-
-  <!-- ==========================
-       STEP 1 — Medical
-  =========================== -->
-  <ng-container *ngIf="processStep === 1">
-    <div class="journey-container" formArrayName="medicalSteps">
-
-      @for (step of medicalSteps; track step.id; let i = $index) {
-
-      <div class="journey-item">
-
-        <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
-
-          <!-- Header -->
-          <div class="step-header">
-
-            <div class="icon-title">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
-                {{ step.completed ? 'Completed' : 'Not Started' }}
-              </span>
-            </div>
-
-            <p-checkbox [binary]="true" [formControl]="medicalStepsArray.at(i)">
-            </p-checkbox>
-
-          </div>
-
-          <!-- Title -->
-          <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
-          <p [innerHTML]="step.description"></p>
-
-        </div>
-
-      </div>
-
-      }
-
-    </div>
-  </ng-container>
-
-  <!-- ==========================
-       STEP 2 — PCC
-  =========================== -->
-  <ng-container *ngIf="processStep === 2">
-    <div class="journey-container" formArrayName="pccSteps">
-
-      @for (step of pccSteps; track step.id; let i = $index) {
-
-      <div class="journey-item">
-
-        <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
-
-          <!-- Header -->
-          <div class="step-header">
-
-            <div class="icon-title">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
-                {{ step.completed ? 'Completed' : 'Not Started' }}
-              </span>
-            </div>
-
-            <p-checkbox [binary]="true" [formControl]="pccStepsArray.at(i)">
-            </p-checkbox>
-
-          </div>
-
-          <!-- Title -->
-          <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
-          <p [innerHTML]="step.description"></p>
-
-        </div>
-
-      </div>
-
-      }
-
-    </div>
-  </ng-container>
-
-
-  <!-- ==========================
-       STEP 3 — DOCUMENT CHECKLIST
-  =========================== -->
-  <ng-container *ngIf="processStep === 3">
-    <div class="journey-container">
-
-      <div class="step-card">
-
-        <h1>Make sure you have these Documents:</h1>
-        <h2>The following documents are necessary for Study Permit Application:</h2>
-
-        <div class="checkbox-grid" [formGroup]="form">
-
-          @for (option of documents; track option.id; let i = $index) {
-
-          <div class="checkbox-item">
-            <p-checkbox [binary]="true" [formControl]="getCheckboxControl(i)">
-            </p-checkbox>
-
-            <label>{{ option.label }}</label>
-          </div>
-
-          }
-
-        </div>
-
-      </div>
-
-    </div>
-  </ng-container>
-
-
-  <!-- ==========================
-       STEP 4 — Submission
-  =========================== -->
-  <ng-container *ngIf="processStep === 4">
-    <h1>Online Application:</h1>
-    <div class="journey-container" formArrayName="submissionSteps">
-
-      @for (step of submissionSteps; track step.id; let i = $index) {
-
-      <div class="journey-item">
-
-        <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
-
-
-          <!-- Header -->
-          <div class="step-header">
-
-            <div class="icon-title">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
-                {{ step.completed ? 'Completed' : 'Not Started' }}
-              </span>
-            </div>
-
-            <p-checkbox [binary]="true" [formControl]="submissionStepsArray.at(i)">
-            </p-checkbox>
-
-          </div>
-
-          <!-- Title -->
-          <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
-          <p [innerHTML]="step.description"></p>
-
-        </div>
-
-      </div>
-
-      }
-
-    </div>
-  </ng-container>
-
-  <!-- ==========================
-       STEP 5 — Biometrics
-  =========================== -->
-  <ng-container *ngIf="processStep === 5">
-    <div class="journey-container" formArrayName="biometricsSteps">
-
-      @for (step of biometricsSteps; track step.id; let i = $index) {
-
-      <div class="journey-item">
-
-        <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
-
-          <!-- Header -->
-          <div class="step-header">
-
-            <div class="icon-title">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
-                {{ step.completed ? 'Completed' : 'Not Started' }}
-              </span>
-            </div>
-
-            <p-checkbox [binary]="true" [formControl]="biometricsStepsArray.at(i)">
-            </p-checkbox>
-
-          </div>
-
-          <!-- Title -->
-          <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
-          <p [innerHTML]="step.description"></p>
-
-        </div>
-
-      </div>
-
-      }
-
-    </div>
-  </ng-container>
-  <!-- ==========================
-       STEP 6 — Decesion
-  =========================== -->
-  <ng-container *ngIf="processStep === 6">
-    <div class="journey-container" formArrayName="decesionSteps">
-
-      @for (step of decesionSteps; track step.id; let i = $index) {
-
-      <div class="journey-item">
-
-        <div class="step-card" [class.completed-card]="step.completed" [class.disabled-card]="step.disabled">
-
-          <!-- Header -->
-          <div class="step-header">
-
-            <div class="icon-title">
-              <i [class]="step.icon" [style.color]="step.color"></i>
-
-              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
-                {{ step.completed ? 'Completed' : 'Not Started' }}
-              </span>
-            </div>
-
-            <p-checkbox [binary]="true" [formControl]="decesionStepsArray.at(i)">
-            </p-checkbox>
-
-          </div>
-
-          <!-- Title -->
-          <h3>{{ step.title }}</h3>
-
-          <!-- Description -->
-          <p [innerHTML]="step.description"></p>
-
-        </div>
-
       </div>
 
       }
@@ -299,46 +46,79 @@
   <div class="progress-section">
 
     <div class="progress-header">
-
       <div>
-        <h3 *ngIf="processStep === 0">LOA Progress</h3>
-        <h3 *ngIf="processStep === 1">Medical Progress</h3>
-        <h3 *ngIf="processStep === 2">PCC Progress</h3>
-        <h3 *ngIf="processStep === 3">Document Progress</h3>
-        <h3 *ngIf="processStep === 4">Submission Progress</h3>
-        <h3 *ngIf="processStep === 5">Biometrics Progress</h3>
-        <h3 *ngIf="processStep === 6">Decesion Progress</h3>
+        <h3>
+          {{
+            processStep === 0 ? 'LOA Progress' :
+            processStep === 1 ? 'Medical Progress' :
+            processStep === 2 ? 'PCC Progress' :
+            processStep === 4 ? 'Submission Progress' :
+            processStep === 5 ? 'Biometrics Progress' :
+            'Decesion Progress'
+          }}
+        </h3>
 
-        <small *ngIf="processStep === 0">
-          {{ completedSteps }} of {{ steps.length }} completed
+        <small>
+          {{ completedSteps }} of {{ currentSteps?.length }} completed
         </small>
-        <small *ngIf="processStep === 1">
-          {{ completedSteps }} of {{ medicalSteps.length }} completed
-        </small>
-        <small *ngIf="processStep ===2">
-          {{ completedSteps }} of {{ pccSteps.length }} completed
-        </small>
-
-        <small *ngIf="processStep === 3">
-          {{ completedSteps }} of {{ documents.length }} completed
-        </small>
-
-        <small *ngIf="processStep === 4">
-          {{ completedSteps }} of {{ submissionSteps.length }} completed
-        </small>
-        <small *ngIf="processStep ===5">
-          {{ completedSteps }} of {{ biometricsSteps.length }} completed
-        </small>
-        <small *ngIf="processStep === 6">
-          {{ completedSteps }} of {{ decesionSteps.length }} completed
-        </small>
-
       </div>
 
       <div class="progress-percentage">
         {{ progressPercentage }}%
       </div>
+    </div>
 
+    <p-progressBar [value]="progressPercentage" [showValue]="true"></p-progressBar>
+
+  </div>
+
+</form>
+
+
+<!-- ==========================
+     DOCUMENT FORM (step 3)
+========================== -->
+<form *ngIf="processStep === 3" [formGroup]="formDocuments" class="study-permit-form">
+
+  <div class="journey-container">
+
+    <div class="step-card">
+      <h1>Make sure you have these Documents:</h1>
+      <h2>The following documents are necessary for Study Permit Application:</h2>
+
+      <div class="checkbox-grid" formArrayName="checkboxes">
+
+        @for (option of documents; track option.id; let i = $index) {
+        <div class="checkbox-item">
+          <p-checkbox [binary]="true" [formControl]="getCheckboxControl(i)">
+          </p-checkbox>
+
+          <label>{{ option.label }}</label>
+        </div>
+        }
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==========================
+       PROGRESS SECTION (documents)
+  =========================== -->
+  <div class="progress-section">
+
+    <div class="progress-header">
+      <div>
+        <h3>Document Progress</h3>
+
+        <small>
+          {{ completedSteps }} of {{ documents.length }} completed
+        </small>
+      </div>
+
+      <div class="progress-percentage">
+        {{ progressPercentage }}%
+      </div>
     </div>
 
     <p-progressBar [value]="progressPercentage" [showValue]="true"></p-progressBar>

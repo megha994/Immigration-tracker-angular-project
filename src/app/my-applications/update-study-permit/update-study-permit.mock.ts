@@ -17,14 +17,35 @@ export interface DocumentItem {
 /* ==========================
   Messages
 ========================== */
-export const messages: Record<number, string> = {
+export const completemessages: Record<number, string> = {
+  0: 'LOA Progress Completed Successfully!',
+  1: 'Medical Application Progress Completed Successfully!',
+  2: 'Police Clearence Completed Successfully!',
+  3: 'Document Progress Completed Successfully!',
+  4: 'IRCC Application Progress Completed Successfully!',
+  5: 'Biometric Application Progress Completed Successfully!',
+  6: 'Final Decesion Completed Successfully!',
+  7: 'Application Completed Successfully!'
+};
+export const progressemessages: Record<number, string> = {
   0: 'LOA Progress Updated Successfully!',
   1: 'Medical Application Progress Updated Successfully!',
   2: 'Police Clearence Updated Successfully!',
   3: 'Document Progress Updated Successfully!',
   4: 'IRCC Application Progress Updated Successfully!',
   5: 'Biometric Application Progress Updated Successfully!',
-  6: 'Final Decesion Updated Successfully!'
+  6: 'Final Decesion Updated Successfully!',
+  7: 'Application Updated Successfully!'
+};
+export const notstartedemessages: Record<number, string> = {
+  0: 'LOA Not Started!',
+  1: 'Medical Application Not Started!',
+  2: 'Police Clearence Not Started!',
+  3: 'Documents Not Started!',
+  4: 'IRCC Application Not Started!',
+  5: 'Biometric Application Not Started!',
+  6: 'Final Decesion Not Started!',
+  7: 'Application Not Completed!'
 };
 /* ==========================
    STEP 0 — LOA STEPS
@@ -175,6 +196,17 @@ export const BIOMETRICS_STEPS: Step[] = [
     color: '#44af16',
   }
 ];
+
+export const COMPLETION_STEPS: Step[] = [
+  {
+    disabled: false,
+    id: '1',
+    title: 'Application Completed',
+    description: `Is you application complete?`,
+    completed: false,
+    icon: 'pi pi-check',
+    color: '#29db8e',
+  }]
 
 /* ==========================
    STEP 6 — DECISION

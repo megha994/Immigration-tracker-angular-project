@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { STATUS } from '../my-application.interface';
 
 export interface StepProgress {
   stepId: string;
@@ -15,23 +16,35 @@ export interface CheckboxProgress {
 export class ApplicationProgressService {
 
   // In-memory mock database
-  private stepCompletion: Record<string, boolean> = {
-    '0': false,
-    '1': false,
-    '2': false
+  private stepCompletion: Record<string, string> = {
+    '0': STATUS.NOTSTARTED,
+    '1': STATUS.NOTSTARTED,
+    '2': STATUS.NOTSTARTED,
+    '3': STATUS.NOTSTARTED,
+    '4': STATUS.NOTSTARTED,
+    '5': STATUS.NOTSTARTED,
+    '6': STATUS.NOTSTARTED,
+    '7': STATUS.NOTSTARTED
   };
 
   private checkboxCompletion: Record<string, boolean[]> = {
     '1': [],
-    '2': []
+    '2': [],
+    '3': [],
+    '4': [],
+    '5': [],
+    '6': [],
+    '7': [],
+    '8': [],
+    '9': []
   };
 
-  constructor() {}
+  constructor() { }
 
   /**
    * Mock GET /steps
    */
-  getProgress(): Observable<Record<string, boolean>> {
+  getProgress(): Observable<Record<string, string>> {
     console.log('Mock GET /steps →', this.stepCompletion);
     return of(this.stepCompletion);
   }
@@ -39,7 +52,7 @@ export class ApplicationProgressService {
   /**
    * Mock POST /steps
    */
-  updateStep(stepId: string, completed: boolean): Observable<any> {
+  updateStep(stepId: string, completed: string): Observable<any> {
     this.stepCompletion[stepId] = completed;
 
     console.log('Mock POST /steps →', stepId, completed);

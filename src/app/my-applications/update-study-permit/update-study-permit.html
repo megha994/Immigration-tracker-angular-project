@@ -18,9 +18,7 @@
             <div class="icon-title">
               <i [class]="step.icon" [style.color]="step.color"></i>
 
-              <span class="status-chip"
-                    [class.completed]="step.completed"
-                    [class.pending]="!step.completed">
+              <span class="status-chip" [class.completed]="step.completed" [class.pending]="!step.completed">
                 {{ step.completed ? 'Completed' : 'Not Started' }}
               </span>
             </div>
@@ -49,12 +47,12 @@
       <div>
         <h3>
           {{
-            processStep === 0 ? 'LOA Progress' :
-            processStep === 1 ? 'Medical Progress' :
-            processStep === 2 ? 'PCC Progress' :
-            processStep === 4 ? 'Submission Progress' :
-            processStep === 5 ? 'Biometrics Progress' :
-            'Decesion Progress'
+          processStep === 0 ? 'LOA Progress' :
+          processStep === 1 ? 'Medical Progress' :
+          processStep === 2 ? 'PCC Progress' :
+          processStep === 4 ? 'Submission Progress' :
+          processStep === 5 ? 'Biometrics Progress' :
+          processStep === 6 ?'Decesion Progress' : 'Completion Progress'
           }}
         </h3>
 

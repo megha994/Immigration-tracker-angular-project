@@ -2,41 +2,27 @@ import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core
 import { Router, ActivatedRoute } from '@angular/router';
 import { Dialog } from 'primeng/dialog';
 import { ApplicationProgressService } from './../services/application-progress.service';
-
-interface ProcessStep {
-  id: string;
-  title: string;
-  description?: string;
-  completed: boolean;
-  icon?: string;
-  color?: string;
-}
-
-interface Step {
-  id?: string;
-  title: string;
-  description?: string;
-  completed: boolean;
-  icon?: string;
-  color?: string;
-}
-
+import { ProcessStep, STATUS, Step } from './../my-application.interface';
+import { processSteps, progressSteps } from './application.mock';
+import { Messagebox } from './../../messagebox/messagebox';
 @Component({
   selector: 'app-application',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Dialog],
+  imports: [Messagebox],
   templateUrl: './application.html',
   styleUrl: './application.css',
 })
 export class Application implements OnInit {
-
+  processSteps = processSteps;
+  progressSteps = progressSteps;
   showMessage = false;
   msg = '';
+  status = "";
   @Input() type!: string;
 
   // backend progress map: { "0": true, "1": false, ... }
-  completedSteps: Record<string, boolean> = {};
+  completedSteps: Record<string, string> = {};
 
   constructor(
     private progressService: ApplicationProgressService,
@@ -46,26 +32,27 @@ export class Application implements OnInit {
 
   ngOnInit() {
     // Load progress from backend
+    this.showMessage = false;
     this.progressService.getProgress().subscribe(progress => {
       this.completedSteps = progress;
     });
 
     // Handle completion message
     this.route.queryParams.subscribe(params => {
-      const pagecompleted = params['pagecompleted'];
+      const pageStatus = params['pageStatus'];
       const stepNo = params['stepNo'];
-
       if (params['msg']) {
         this.msg = params['msg'];
       }
-      if (pagecompleted) {
+      if (pageStatus) {
         this.showMessage = true;
-
         // Mark UI state
-        this.processSteps[stepNo].completed = true;
-
+        this.processSteps[stepNo].status =
+          pageStatus === 'COMPLETED' ?
+            STATUS.COMPLETED : pageStatus === 'INPROGRESS' ? STATUS.INPROGRESS : STATUS.NOTSTARTED;
+        this.status = this.processSteps[stepNo].status;
         // Persist to backend
-        this.progressService.updateStep(stepNo.toString(), true).subscribe();
+        this.progressService.updateStep(stepNo.toString(), this.processSteps[stepNo].status).subscribe();
 
 
         this.router.navigate([], {
@@ -79,121 +66,6 @@ export class Application implements OnInit {
     });
   }
 
-  processSteps: ProcessStep[] = [
-    {
-      id: '0',
-      title: 'Apply for LOA',
-      description: 'Apply for LOA at a DLI',
-      completed: false,
-      icon: 'pi pi-file',
-      color: '#b580c4'
-    },
-
-    {
-      id: '1',
-      title: 'Medical',
-      description: 'Apply for Medicals',
-      completed: false,
-      icon: 'pi pi-heart-fill',
-      color: '#E53935'
-    },
-
-    {
-      id: '2',
-      title: 'Police Clearance',
-      description: 'Get a Police Clearance',
-      completed: false,
-      icon: 'pi pi-shield',
-      color: '#96780c'
-    },
-
-    {
-      id: '3',
-      title: 'Documents To be Submitted',
-      description: 'Gather these required documents',
-      completed: false,
-      icon: 'pi pi-folder-open',
-      color: '#44af16'
-    },
-    {
-      id: '4',
-      title: 'Fill and Submit Application',
-      description: 'Fill out the IRCC Application, upload the documents and Submit',
-      completed: false,
-      icon: 'pi pi-pencil',
-      color: '#555af0'
-    },
-
-
-    {
-      id: '5',
-      title: 'Biometrics',
-      description: 'Schedule for biometrics',
-      completed: false,
-      icon: 'pi pi-user',
-      color: '#1E88E5'
-    },
-    {
-      id: '6',
-      title: 'Decision',
-      description: 'Receive final decision',
-      completed: false,
-      icon: 'pi pi-question-circle',
-      color: '#f26a55',
-    }
-  ];
-
-  progressSteps: ProcessStep[] = [
-    {
-      id: '1',
-      title: 'Eligibility Check',
-      description: 'Verify eligibility requirements',
-      completed: true,
-      icon: 'pi pi-check-circle',
-      color: '#95ead9',
-    },
-    {
-      id: '2',
-      title: 'Documents',
-      description: 'Gather required documents',
-      completed: true,
-      icon: 'pi pi-file',
-      color: '#a862cb',
-    },
-    {
-      id: '3',
-      title: 'Application Submission',
-      description: 'Submit your application',
-      completed: false,
-      icon: 'pi pi-send',
-      color: '#22c55e',
-    },
-    {
-      id: '4',
-      title: 'Biometrics',
-      description: 'Schedule biometrics',
-      completed: false,
-      icon: 'pi pi-user',
-      color: '#3b82f6',
-    },
-    {
-      id: '5',
-      title: 'Processing Time',
-      description: 'Find processing Time',
-      completed: false,
-      icon: 'pi pi-clock deadline-icon',
-      color: '#e7d128',
-    },
-    {
-      id: '6',
-      title: 'Decision',
-      description: 'Receive final decision',
-      completed: false,
-      icon: 'pi pi-question-circle',
-      color: '#eccae4',
-    }
-  ];
-
   goToProcessStep(step: ProcessStep) {
     const st = Number(step.id);
 
@@ -201,6 +73,10 @@ export class Application implements OnInit {
       queryParams: { st, type: this.type },
       queryParamsHandling: 'merge'
     });
+  }
+  
+  hideMessage() {
+    this.showMessage = false;
   }
 
   goToStep(step: Step) {

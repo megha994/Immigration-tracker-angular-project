@@ -62,12 +62,13 @@
 }
 
 .login-button {
-  min-width: 90px;
+  min-width: 100px;
   padding: 8px 14px;
   border: none;
   background: #f96969;
   color: white;
   cursor: pointer;
+    border-radius: 10px 10px 10px 10px;
   transition:
     transform 0.18s ease,
     filter 0.18s ease,

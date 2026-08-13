@@ -1,15 +1,7 @@
-<p-dialog [(visible)]="showMessage"
-          [modal]="true"
-          [closable]="true"
-          [dismissableMask]="true"
-          [showHeader]="false"
-          contentStyleClass="congrats-dialog"
-          [style]="{ 'width': '620px', 'text-align': 'center' }">
 
-  <div class="congrats-text">
-    🎉 {{ msg }}!
-  </div>
-</p-dialog>
+  @if(this.showMessage){
+  <app-messagebox (closed)="hideMessage()" [status]="status" [msg]="msg"></app-messagebox>
+  }
 
 <div class="page-wrapper">
 
@@ -27,18 +19,27 @@
 
         <div class="journey-item">
 
-          <div class="step-card"
-               (click)="goToProcessStep(step)"
-               [class.completed-card]="completedSteps[step.id]">
+          <div class="step-card" (click)="goToProcessStep(step)"
+            [class.completed-card]="completedSteps[step.id]==='COMPLETED'"
+            [class.pending-card]="completedSteps[step.id]==='INPROGRESS'"
+            [class.notstarted-card]="completedSteps[step.id]==='NOTSTARTED'">
 
             <!-- Icon -->
             <i [class]="step.icon" [style.color]="step.color"></i>
 
             <!-- Status -->
-            <span class="status-chip"
-                  [class.completed]="completedSteps[step.id]"
-                  [class.pending]="!completedSteps[step.id]">
-              {{ completedSteps[step.id] ? 'Completed' : 'Not Started' }}
+            <span class="status-chip" [class.completed]="completedSteps[step.id]=== 'COMPLETED'"
+              [class.pending]="completedSteps[step.id]==='INPROGRESS'"
+              [class.notstarted]="completedSteps[step.id]==='NOTSTARTED'">
+
+
+              @if(completedSteps[step.id]=== 'COMPLETED')
+              {
+              completed
+
+              }@else if (completedSteps[step.id] === 'NOTSTARTED'){
+              not started
+              }@else {in progress}
             </span>
 
             <!-- Title -->
@@ -71,8 +72,7 @@
 
         <div class="journey-item">
 
-          <div class="step-card vertical"
-               (click)="goToStep(step)">
+          <div class="step-card vertical" (click)="goToStep(step)">
 
             <i [class]="step.icon" [style.color]="step.color"></i>
 

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import {
@@ -9,8 +9,11 @@ import {
   SUBMISSION_STEPS,
   BIOMETRICS_STEPS,
   DECISION_STEPS,
+  COMPLETION_STEPS,
   DOCUMENTS,
-  messages
+  completemessages,
+  progressemessages,
+  notstartedemessages
 } from './update-study-permit.mock';
 
 import { CheckboxModule } from 'primeng/checkbox';
@@ -18,6 +21,7 @@ import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
 
 import { ApplicationProgressService } from './../services/application-progress.service';
+import { STATUS } from '../my-application.interface';
 
 interface Step {
   disabled: boolean;
@@ -44,18 +48,21 @@ interface Step {
   ]
 })
 export class UpdateStudyPermit implements OnInit {
-
+  private hasRedirected = false;
   @Input() type!: string;
   @Input() processStep!: number;
 
   form!: FormGroup;
   formDocuments!: FormGroup;
   documents = DOCUMENTS;
-  messages = messages;
-  pageCompleted = false;
+  messages = "";
+  msg = "";
+  pageStatus: string = STATUS.NOTSTARTED;
   completedSteps = 0;
   progressPercentage = 0;
-
+  completemessages: Record<number, string> = completemessages;
+  progressemessages: Record<number, string> = progressemessages;
+  notstartedemessages: Record<number, string> = notstartedemessages;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -72,10 +79,35 @@ export class UpdateStudyPermit implements OnInit {
     2: { key: 'pccSteps', array: PCC_STEPS },
     4: { key: 'submissionSteps', array: SUBMISSION_STEPS },
     5: { key: 'biometricsSteps', array: BIOMETRICS_STEPS },
-    6: { key: 'decesionSteps', array: DECISION_STEPS }
+    6: { key: 'decesionSteps', array: DECISION_STEPS },
+    7: { key: 'completionsteps', array: COMPLETION_STEPS }
   };
 
+  @HostListener('window:popstate', ['$event'])
+  onBrowserBack(event: Event) {
+    this.pageStatus = this.calculatePageStatus();
+    this.msg = this.updateMessage();
+    this.router.navigate(['/application'], {
+      queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
+    });
+  }
+
+
+
   ngOnInit(): void {
+    this.msg = "";
+    //if user navigtaes away from this apge
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart && !this.hasRedirected) {
+        debugger
+        this.hasRedirected = true;
+        this.msg = this.updateMessage();
+        this.pageStatus = this.calculatePageStatus();
+        this.router.navigate(['/application'], {
+          queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
+        });
+      }
+    });
     this.type = this.route.snapshot.queryParams['type']!;
     this.processStep = Number(this.route.snapshot.queryParams['st'])!;
 
@@ -88,6 +120,30 @@ export class UpdateStudyPermit implements OnInit {
     }
   }
 
+
+  updateMessage() {
+    let msg = "";
+    if (this.pageStatus == "NOTSTARTED") {
+      msg = this.notstartedemessages[this.processStep];
+    } else if (this.pageStatus == "INPROGRESS") {
+      msg = this.progressemessages[this.processStep];
+    } else {
+      msg = this.completemessages[this.processStep];
+    }
+    return msg;
+  }
+
+  calculatePageStatus() {
+    let status = "";
+    if (this.progressPercentage === 0) {
+      status = STATUS.NOTSTARTED;
+    } else if (this.progressPercentage > 0 && this.progressPercentage !== 100) {
+      status = STATUS.INPROGRESS;
+    } else {
+      status = STATUS.COMPLETED;
+    }
+    return status;
+  }
   // -----------------------------
   // FORM BUILDER (dynamic)
   // -----------------------------
@@ -185,19 +241,21 @@ export class UpdateStudyPermit implements OnInit {
     }
   }
 
+
+
   // -----------------------------
   // COMPLETION HANDLER
   // -----------------------------
   private triggerCompletion(): void {
 
-    const msg = messages[this.processStep];
+    this.msg = this.updateMessage();
     const stepId = this.processStep.toString();
 
-    this.pageCompleted = true;
+    this.pageStatus = this.calculatePageStatus();
 
-    this.progressService.updateStep(stepId, true).subscribe(() => {
+    this.progressService.updateStep(stepId, this.pageStatus).subscribe(() => {
       this.router.navigate(['/application'], {
-        queryParams: { pagecompleted: this.pageCompleted, msg, stepNo: this.processStep }
+        queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
       });
     });
   }
@@ -244,4 +302,5 @@ export class UpdateStudyPermit implements OnInit {
   submissionSteps: Step[] = [ /* unchanged */];
   biometricsSteps: Step[] = [ /* unchanged */];
   decesionSteps: Step[] = [ /* unchanged */];
+  completionsteps: Step[] = [ /* unchanged */];
 }

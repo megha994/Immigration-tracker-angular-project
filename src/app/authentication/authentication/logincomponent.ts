@@ -14,7 +14,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { LoginService } from "./../authentication/login-service"
+
+import { LoginService } from './../authentication/login-service';
+import { AuthService } from './../authentication/services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -39,14 +41,19 @@ export class LoginComponent {
 
   errorMessage = '';
 
-  constructor(private loginService: LoginService, private router: Router, private messageService: MessageService) { }
+  constructor(
+    private loginService: LoginService,
+    private authService: AuthService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Please enter valid login details.';
       return;
@@ -55,19 +62,30 @@ export class LoginComponent {
     const { email, password } = this.loginForm.value;
 
     this.loginService.login(email!, password!).subscribe({
-      next: () => {
+      next: (response) => {
+
+        // Save username in AuthService
+        this.authService.setUsername(response.username);
+
+        // Save token (already done inside LoginService, but safe)
+        if (response.token) {
+          this.authService.saveToken(response.token);
+        }
+
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Log In successful!'
+          detail: `Welcome ${response.username}!`
         });
 
         this.router.navigate(['/dashboard']);
       },
+
       error: (error) => {
-        const msg = error.code === 'invalid-credentials'
-          ? 'Invalid email or password.'
-          : 'Login failed. Please try again.';
+        const msg =
+          error.code === 'invalid-credentials'
+            ? 'Invalid email or password.'
+            : 'Login failed. Please try again.';
 
         this.errorMessage = msg;
 

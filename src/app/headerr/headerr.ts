@@ -15,20 +15,28 @@ export class Headerr {
     private authService: AuthService
   ) { }
 
-  // Dynamically checks if user is logged in
+  /** Check if user is logged in */
   get isLoggedIn(): boolean {
     return this.authService.isTokenValid();
   }
 
+  /** Get username from AuthService */
+  get username(): string | null {
+    return this.authService.getUsername();
+  }
+
+  /** Navigate to login page */
   onLogin(): void {
     this.router.navigate(['/login-in']);
   }
 
+  /** Logout + redirect */
   onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/login-in']);
   }
 
+  /** Navigate to dashboard */
   goToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }

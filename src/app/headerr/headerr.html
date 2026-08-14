@@ -1,24 +1,40 @@
 <header class="app-header">
+  <!-- LEFT: Logo -->
   <div class="header-left">
-    <img class="brand-logo" (click)="goToDashboard()" src="/images/ca-flag.jpg" alt="maple leaf" width="250"
-      height="50" />
+    <img class="brand-logo" (click)="goToDashboard()" src="/images/ca-flag.jpg" alt="maple leaf" />
   </div>
 
+  <!-- CENTER: Title + Divider + Welcome -->
   <div class="header-title">
     <h1>Immigration Tracker</h1>
+
+    <!-- Animated divider line -->
+    <div class="header-divider"></div>
+
+    <!-- Welcome label (only when logged in) -->
+    <div class="welcome-label" *ngIf="isLoggedIn">
+      Welcome {{ username }}
+    </div>
   </div>
 
+  <!-- RIGHT: Avatar + Login/Logout -->
   <div class="header-right">
-    <img class="user-avatar" src="/images/user.png" alt="user avatar" />
 
-    <!-- Show Login when NOT logged in -->
+    <!-- Avatar -->
+    <!-- <img class="user-avatar" src="/images/user.png" alt="user avatar" /> -->
+    <div class="icon-circle icon-user">
+      <i class="pi pi-user"></i>
+    </div>
+
+    <!-- Login button (when NOT logged in) -->
     <button class="login-button" type="button" *ngIf="!isLoggedIn" (click)="onLogin()">
       Login
     </button>
 
-    <!-- Show Logout when logged in -->
-    <button class="login-button" type="button" *ngIf="isLoggedIn" (click)="onLogout()">
+    <!-- Logout button BELOW avatar (when logged in) -->
+    <button class="login-button logout" type="button" *ngIf="isLoggedIn" (click)="onLogout()">
       Logout
     </button>
+
   </div>
 </header>

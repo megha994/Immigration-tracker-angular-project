@@ -17,10 +17,10 @@
 
       <!-- Dashboard -->
       <li class="navbar-item">
-        <button class="navbar-link dashboard-link"
-                routerLink="/dashboard"
-                data-tooltip="Dashboard">
-          <span class="navbar-icon"><i class="pi pi-chart-bar"></i></span>
+        <button class="navbar-link dashboard-link" routerLink="/dashboard" data-tooltip="Dashboard">
+          <div class="icon-circle icon-chart">
+            <i class="pi pi-chart-bar"></i>
+          </div>
           <span class="navbar-text">Dashboard</span>
         </button>
       </li>
@@ -30,7 +30,11 @@
         <button class="navbar-link category-toggle"
                 (click)="toggleCategory('applicationCategories')"
                 data-tooltip="IRCC Applications">
-          <span class="navbar-icon"><i class="pi pi-folder-open"></i></span>
+
+          <div class="icon-circle icon-folder">
+            <i class="pi pi-folder-open"></i>
+          </div>
+
           <span class="navbar-text">IRCC Applications</span>
           <span class="toggle-icon" [class.expanded]="expandedCategory === 'applicationCategories'">▼</span>
         </button>
@@ -38,59 +42,73 @@
         <ul class="navbar-submenu" *ngIf="expandedCategory === 'applicationCategories'">
 
           <li class="navbar-subitem">
-            <button class="navbar-sublink"
-                    [routerLink]="['/study-permit', 'study']"
-                    data-tooltip="Study Permit">
-              <i class="pi pi-book"></i>
+            <button class="navbar-sublink" [routerLink]="['/study-permit','study']" data-tooltip="Study Permit">
+              <div class="icon-circle icon-book">
+                <i class="pi pi-book"></i>
+              </div>
               <span>Study Permit</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Work Permit">
-              <i class="pi pi-briefcase"></i>
+              <div class="icon-circle icon-briefcase">
+                <i class="pi pi-briefcase"></i>
+              </div>
               <span>Work Permit</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Study Permit Extension">
-              <i class="pi pi-refresh"></i>
+              <div class="icon-circle icon-refresh">
+                <i class="pi pi-refresh"></i>
+              </div>
               <span>Study Permit Extension</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Work Permit Extension">
-              <i class="pi pi-refresh"></i>
+              <div class="icon-circle icon-refresh">
+                <i class="pi pi-refresh"></i>
+              </div>
               <span>Work Permit Extension</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Permanent Residence">
-              <i class="pi pi-home"></i>
+              <div class="icon-circle icon-home">
+                <i class="pi pi-home"></i>
+              </div>
               <span>Permanent Residence</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Spousal Work Permit">
-              <i class="pi pi-users"></i>
+              <div class="icon-circle icon-users">
+                <i class="pi pi-users"></i>
+              </div>
               <span>Spousal Work Permit</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Visitor Visa">
-              <i class="pi pi-id-card"></i>
+              <div class="icon-circle icon-id">
+                <i class="pi pi-id-card"></i>
+              </div>
               <span>Visitor Visa</span>
             </button>
           </li>
 
           <li class="navbar-subitem">
             <button class="navbar-sublink" data-tooltip="Super Visa">
-              <i class="pi pi-shield"></i>
+              <div class="icon-circle icon-shield">
+                <i class="pi pi-shield"></i>
+              </div>
               <span>Super Visa</span>
             </button>
           </li>
@@ -100,28 +118,30 @@
 
       <!-- New Application -->
       <li class="navbar-item">
-        <button class="navbar-link"
-                routerLink="/my-applications"
-                data-tooltip="New Application">
-          <span class="navbar-icon"><i class="pi pi-plus-circle"></i></span>
+        <button class="navbar-link" routerLink="/my-applications" data-tooltip="New Application">
+          <div class="icon-circle icon-plus">
+            <i class="pi pi-plus-circle"></i>
+          </div>
           <span class="navbar-text">New Application</span>
         </button>
       </li>
 
       <!-- My Account -->
       <li class="navbar-item">
-        <button class="navbar-link"
-                data-tooltip="My Account">
-          <span class="navbar-icon"><i class="pi pi-user"></i></span>
+        <button class="navbar-link" data-tooltip="My Account">
+          <div class="icon-circle icon-user">
+            <i class="pi pi-user"></i>
+          </div>
           <span class="navbar-text">My Account</span>
         </button>
       </li>
 
       <!-- About -->
       <li class="navbar-item">
-        <button class="navbar-link"
-                data-tooltip="About">
-          <span class="navbar-icon"><i class="pi pi-info-circle"></i></span>
+        <button class="navbar-link" data-tooltip="About">
+          <div class="icon-circle icon-info">
+            <i class="pi pi-info-circle"></i>
+          </div>
           <span class="navbar-text">About</span>
         </button>
       </li>

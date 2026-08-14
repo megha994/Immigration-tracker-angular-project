@@ -4,7 +4,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   private TOKEN_KEY = 'auth_token';
+  private USERNAME_KEY = 'auth_username';
 
+  constructor() {}
+
+  /** ---------------------------
+   *  TOKEN GENERATION + STORAGE
+   *  --------------------------- */
   generateToken(email: string): string {
     const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
     const payload = btoa(JSON.stringify({
@@ -16,7 +22,7 @@ export class AuthService {
     return `${header}.${payload}.${signature}`;
   }
 
-  saveToken(token: string) {
+  saveToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
   }
 
@@ -24,6 +30,9 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  /** ---------------------------
+   *  TOKEN VALIDATION
+   *  --------------------------- */
   isTokenValid(): boolean {
     const token = this.getToken();
     if (!token) return false;
@@ -36,7 +45,22 @@ export class AuthService {
     }
   }
 
-  logout() {
+  /** ---------------------------
+   *  USERNAME MANAGEMENT
+   *  --------------------------- */
+  setUsername(username: string): void {
+    localStorage.setItem(this.USERNAME_KEY, username);
+  }
+
+  getUsername(): string | null {
+    return localStorage.getItem(this.USERNAME_KEY);
+  }
+
+  /** ---------------------------
+   *  LOGOUT
+   *  --------------------------- */
+  logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USERNAME_KEY);
   }
 }

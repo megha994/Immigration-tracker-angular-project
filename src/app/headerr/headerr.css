@@ -1,3 +1,4 @@
+/* HEADER BASE */
 .app-header {
   display: flex;
   position: sticky;
@@ -7,34 +8,35 @@
   justify-content: space-between;
   padding: 14px 24px;
   background: white;
-
-  color: #5e1515;
+  color: #e53935;
   border-bottom: 2px solid #ffb3b3;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
+/* LEFT + RIGHT SECTIONS */
 .header-left,
 .header-right {
   display: flex;
-  cursor: pointer;
+  flex-direction: column;
+  /* stack vertically */
   align-items: center;
+  gap: 12px;
 }
 
 .brand-logo {
   width: 250px;
-  height: 350x;
+  height: 50px;
   object-fit: contain;
   border-radius: 14px;
   padding: 2px;
+  cursor: pointer;
 }
 
+/* TITLE SECTION */
 .header-title {
   flex: 1;
   text-align: center;
-  margin: 0;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
-  font-weight: -10s0;
   letter-spacing: 2.5px;
 }
 
@@ -45,12 +47,49 @@
   text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.55);
 }
 
-.header-right {
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
+/* ANIMATED DIVIDER */
+.header-divider {
+  width: 60%;
+  height: 2px;
+  background: #ffb3b3;
+  margin: 8px auto;
+  animation: dividerSlide 1.4s ease forwards;
+  opacity: 0;
 }
 
+@keyframes dividerSlide {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  100% {
+    width: 60%;
+    opacity: 1;
+  }
+}
+
+/* WELCOME LABEL */
+.welcome-label {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #d33a3a;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.55);
+
+  animation: fadeSlideIn 0.9s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* USER AVATAR */
 .user-avatar {
   width: 52px;
   height: 52px;
@@ -61,6 +100,7 @@
   background: white;
 }
 
+/* LOGIN / LOGOUT BUTTON */
 .login-button {
   min-width: 100px;
   padding: 8px 14px;
@@ -68,7 +108,7 @@
   background: #f96969;
   color: white;
   cursor: pointer;
-    border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
   transition:
     transform 0.18s ease,
     filter 0.18s ease,
@@ -93,6 +133,12 @@
   transform: translateY(1px);
 }
 
+/* Logout button variant */
+.logout {
+  background: linear-gradient(135deg, #b83232, #e53935);
+}
+
+/* MOBILE */
 @media (max-width: 720px) {
   .app-header {
     flex-direction: column;
@@ -100,11 +146,52 @@
     text-align: center;
   }
 
-  .header-title {
-    order: -1;
-  }
-
   .header-right {
     flex-direction: row;
+    gap: 14px;
   }
+}
+
+.icon-user {
+  background: #b91c1c;
+  animation: starTwinkle 1s infinite !important;
+}
+
+.icon-user i {
+  color: #ffe8e8;
+}
+
+:host ::ng-deep .icon-user:hover .pi {
+  animation: pulse 1s infinite !important;
+}
+
+.icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.icon-circle i {
+  border-radius: 50%;
+  font-size: 1.3rem;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.icon-circle:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+:host ::ng-deep .icon-folder:hover .pi {
+  animation: pulse 1s infinite !important;
+}
+
+.icon-user {
+  background: #b91c1c;
+  animation: starTwinkle 1s infinite !important;
 }

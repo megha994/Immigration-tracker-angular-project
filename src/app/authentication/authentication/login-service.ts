@@ -5,8 +5,11 @@ import { AuthService } from './../authentication/services/auth-service';
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
+  /** ---------------------------
+   *  SIGNUP
+   *  --------------------------- */
   signup(email: string, password: string): Observable<any> {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
@@ -14,12 +17,18 @@ export class LoginService {
       return throwError(() => ({ code: 'email-exists' }));
     }
 
-    users.push({ email, password });
+    // Store username as the part before @
+    const username = email.split('@')[0];
+
+    users.push({ email, password, username });
     localStorage.setItem('users', JSON.stringify(users));
 
     return of({ message: 'Signup successful' });
   }
 
+  /** ---------------------------
+   *  LOGIN
+   *  --------------------------- */
   login(email: string, password: string): Observable<any> {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
@@ -29,11 +38,17 @@ export class LoginService {
       return throwError(() => ({ code: 'invalid-credentials' }));
     }
 
+    // Generate + store token
     const token = this.authService.generateToken(email);
     this.authService.saveToken(token);
 
-    return of({ message: 'Login successful', token });
+    // Store username in AuthService
+    this.authService.setUsername(user.username);
+
+    return of({
+      message: 'Login successful',
+      token,
+      username: user.username
+    });
   }
-
 }
-

@@ -42,7 +42,7 @@
 
 .header-title h1 {
   margin: 0;
-  color: #d33a3a;
+  color: #180606;
   text-transform: uppercase;
   text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.55);
 }
@@ -102,9 +102,9 @@
 
 /* LOGIN / LOGOUT BUTTON */
 .login-button {
-  min-width: 100px;
+  min-width: 120px;
   padding: 8px 14px;
-  border: none;
+  border: 2px solid rgb(212, 23, 23);
   background: #f96969;
   color: white;
   cursor: pointer;

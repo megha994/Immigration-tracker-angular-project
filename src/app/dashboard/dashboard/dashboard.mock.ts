@@ -1,6 +1,5 @@
-
-import { ProcessStep, STATUS } from "../my-application.interface";
-export const processSteps: ProcessStep[] = [
+import { STATUS, dashboardSteps } from "./dashboard.intrface";
+export const dashboardStep: dashboardSteps[] = [
     {
         id: '0',
         title: 'Apply for LOA',
@@ -10,7 +9,6 @@ export const processSteps: ProcessStep[] = [
         color: '#b580c4',
         disabled: false
     },
-
     {
         id: '1',
         title: 'Medical',
@@ -77,70 +75,5 @@ export const processSteps: ProcessStep[] = [
         icon: 'pi pi-check-circle',
         color: '#8ee1a1',
         disabled: true
-    }
-];
-
-export const progressSteps: ProcessStep[] = [
-    {
-        id: '1',
-        title: 'Eligibility Check',
-        description: 'Verify eligibility requirements',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-check-circle',
-        color: '#95ead9',
-        disabled: false
-    },
-    {
-        id: '2',
-        title: 'Documents',
-        description: 'Gather required documents',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-file',
-        color: '#a862cb',
-        disabled: false
-    },
-    {
-        id: '3',
-        title: 'Application Submission',
-        description: 'Submit your application',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-send',
-        color: '#22c55e',
-        disabled: false
-    },
-    {
-        id: '4',
-        title: 'Biometrics',
-        description: 'Schedule biometrics',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-user',
-        color: '#3b82f6',
-        disabled: false
-    },
-    {
-        id: '5',
-        title: 'Processing Time',
-        description: 'Find processing Time',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-clock deadline-icon',
-        color: '#e7d128',
-        disabled: false
-    },
-    {
-        id: '6',
-        title: 'Decision',
-        description: 'Receive final decision',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-question-circle',
-        color: '#eccae4',
-        disabled: false
-    }, {
-        id: '7',
-        title: 'Application Complete',
-        description: 'Verify that the Application is Complete',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-check-circle',
-        color: '#8ee1a1',
-        disabled: false
     }
 ];

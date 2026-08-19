@@ -195,6 +195,12 @@
   color: #b91c1c;
 }
 
+.disabled-card {
+  opacity: 0.35;
+  transform: scale(0.98);
+  border: 2px dashed #ccc;
+}
+
 /* ===========================
    TABLET VIEW
    =========================== */
@@ -296,3 +302,4 @@
     opacity: 1;
   }
 }
+

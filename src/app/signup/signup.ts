@@ -56,6 +56,7 @@ export class SignupComponent {
 
   signupForm = new FormGroup(
     {
+      username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', [Validators.required])
@@ -73,9 +74,9 @@ export class SignupComponent {
       return;
     }
 
-    const { email, password } = this.signupForm.value;
+    const { username, email, password } = this.signupForm.value;
 
-    this.loginService.signup(email!, password!).subscribe({
+    this.loginService.signup(username!, email!, password!).subscribe({
       next: () => {
         this.messageService.add({
           severity: 'success',

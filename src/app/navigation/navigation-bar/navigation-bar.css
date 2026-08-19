@@ -179,6 +179,7 @@
 .navbar-link:hover,
 .category-toggle:hover {
   background-color: #fad2d2;
+  animation: bounce 1s infinite !important;
   color: #efe9e9;
   padding-left: 20px;
 }
@@ -350,17 +351,22 @@
 .icon-circle {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 30%;
   display: flex;
+  margin: 2px 2px 1px 5px;
   align-items: center;
   justify-content: center;
+  color: white;
   cursor: pointer;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .icon-circle i {
-  border-radius: 50%;
+  border: 2px solid white;
+  border-radius: 30%;
   font-size: 1.3rem;
+  margin: 8px;
+  color: rgb(239, 91, 91);
   transition: transform 0.35s ease, filter 0.35s ease;
 }
 
@@ -377,13 +383,13 @@
 /* Dashboard */
 .icon-chart {
   color: #ffe8e8;
-  background: #7f2c9d;
-  animation: bounce 0.8s infinite !important;
+  background: #a24bb0;
+  padding: 8px;
 }
 
 .icon-chart i {
-  background: #7f2c9d;
-
+  background: #a24bb0;
+  padding: 8px;
 }
 
 :host ::ng-deep .icon-chart:hover .pi {
@@ -392,12 +398,13 @@
 
 /* Folder */
 .icon-folder {
+  padding: 8px;
   color: #ffe8e8;
   background: #46d460;
-  animation: fly 0.8s infinite !important;
 }
 
 .icon-folder i {
+  padding: 8px;
   background: #46d460;
 }
 
@@ -407,12 +414,12 @@
 
 /* Book */
 .icon-book {
-  background: #fff3d6;
+  background: #e66829;
   animation: bookFlip 0.8s infinite !important;
 }
 
 .icon-book i {
-  color: #e53935;
+  color: white;
 }
 
 :host ::ng-deep .icon-book:hover .pi {
@@ -421,12 +428,12 @@
 
 /* Briefcase */
 .icon-briefcase {
-  background: #ffe8e8;
+  background: #dcb139;
   animation: heartbeat 1s infinite !important;
 }
 
 .icon-briefcase i {
-  color: #e53935;
+  color: #ffe8e8;
 }
 
 :host ::ng-deep .icon-briefcase:hover .pi {
@@ -435,12 +442,13 @@
 
 /* Refresh */
 .icon-refresh {
-  background: #e8f7ff;
+  background: #3ac160;
   animation: refreshWobble 1.2s ease-in-out infinite !important;
 }
 
 .icon-refresh i {
-  color: #0284c7;
+  font-size: 1rem;
+  color: white;
 }
 
 :host ::ng-deep .icon-refresh:hover .pi {
@@ -449,12 +457,12 @@
 
 /* Home */
 .icon-home {
-  background: #ffe8e8;
+  background: #4c85ed;
   animation: heartbeat 1s infinite !important;
 }
 
 .icon-home i {
-  color: #e53935;
+  color: white;
 }
 
 :host ::ng-deep .icon-home:hover .pi {
@@ -463,12 +471,13 @@
 
 /* Users */
 .icon-users {
-  background: #fff3d6;
+  background: rgb(222, 52, 134);
   animation: starTwinkle 1s infinite !important;
 }
 
 .icon-users i {
-  color: #e53935;
+  color: white;
+  border-color: rgb(222, 52, 134);
 }
 
 :host ::ng-deep .icon-users:hover .pi {
@@ -477,12 +486,12 @@
 
 /* ID Card */
 .icon-id {
-  background: #e8f7ff;
+  background: rgb(148, 32, 220);
   animation: ring 1s infinite !important;
 }
 
 .icon-id i {
-  color: #0284c7;
+  color: white;
 }
 
 :host ::ng-deep .icon-id:hover .pi {
@@ -491,12 +500,12 @@
 
 /* Shield */
 .icon-shield {
-  background: #ffe8e8;
+  background: #e7ad37;
   animation: fly 1s infinite !important;
 }
 
 .icon-shield i {
-  color: #e53935;
+  color: white;
 }
 
 :host ::ng-deep .icon-shield:hover .pi {
@@ -505,14 +514,14 @@
 
 /* Plus Circle */
 .icon-plus {
-  background: #e39815;
+  background: #f9b847;
+  padding: 8px;
   color: #fff3d6;
-  animation: heartbeat 1s infinite !important;
 }
 
 .icon-plus i {
-
-  background: #e39815;
+  padding: 8px;
+  background: #faba4c;
 }
 
 :host ::ng-deep .icon-plus:hover .pi {
@@ -521,12 +530,13 @@
 
 /* User */
 .icon-user {
-  background: #b91c1c;
-  animation: starTwinkle 1s infinite !important;
+  background: #d82961;
+  padding: 8px;
 }
 
 .icon-user i {
   color: #ffe8e8;
+  padding: 8px;
 }
 
 :host ::ng-deep .icon-user:hover .pi {
@@ -535,11 +545,12 @@
 
 /* Info */
 .icon-info {
-  background: #0c7dba;
-  animation: fly 1s infinite !important;
+  background: #2291cc;
+  padding: 8px;
 }
 
 .icon-info i {
+  padding: 8px;
   color: #ebf0f3;
 }
 

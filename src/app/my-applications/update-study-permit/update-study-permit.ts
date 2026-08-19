@@ -11,7 +11,7 @@ import {
   DECISION_STEPS,
   COMPLETION_STEPS,
   DOCUMENTS,
-  completemessages,
+  completemessages, 
   progressemessages,
   notstartedemessages
 } from './update-study-permit.mock';
@@ -99,7 +99,6 @@ export class UpdateStudyPermit implements OnInit {
     //if user navigtaes away from this apge
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart && !this.hasRedirected) {
-        debugger
         this.hasRedirected = true;
         this.msg = this.updateMessage();
         this.pageStatus = this.calculatePageStatus();

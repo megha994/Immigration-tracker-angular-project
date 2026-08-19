@@ -1,24 +1,13 @@
-<p-dialog
-  [(visible)]="visible"
-  [modal]="true"
-  [closable]="false"          
-  [dismissableMask]="true"
-  [showHeader]="false"       
-  contentStyleClass="dialog-content"
-  [style]="{ width: '620px', textAlign: 'center' }"
-  [class.completed-dialog]="status() === 'COMPLETED'"
-  [class.pending-dialog]="status() === 'INPROGRESS'"
-  [class.notstarted-dialog]="status() === 'NOTSTARTED'"
-  [focusOnShow]="false"
-  [maskStyle]="{ animation: 'none' }"
-  [autoZIndex]="false"
-  (onHide)="onHide()"
->
+<p-dialog [(visible)]="visible" [modal]="true" [closable]="false" [dismissableMask]="true" [showHeader]="false"
+  contentStyleClass="dialog-content" [style]="{ width: '620px', textAlign: 'center' }"
+  [class.completed-dialog]="status() === 'COMPLETED'" [class.pending-dialog]="status() === 'INPROGRESS'"
+  [class.notstarted-dialog]="status() === 'NOTSTARTED'" [class.loggedin-dialog]="status() === 'LOGGEDIN'"
+  [focusOnShow]="false" [maskStyle]="{ animation: 'none' }" [autoZIndex]="false" (onHide)="onHide()">
 
   <!-- ⭐ Custom Header -->
   <div class="dialog-header">
     <span class="dialog-title">
-     &#9888; {{ headerMessage }}
+      &#9888; {{ headerMessage }}
     </span>
 
     <button class="dialog-close-btn" (click)="visible = false">

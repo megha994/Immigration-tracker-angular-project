@@ -10,7 +10,6 @@ import { routes } from './app.routes';
 
 // Components (non-standalone)
 import { NavigationBarComponent } from './navigation/navigation-bar/navigation-bar';
-import { DashboardComponent } from './dashboard/dashboard/dashboard';
 import { LayoutComponent } from './layoutcomponent/layoutcomponent';
 import { Headerr } from './headerr/headerr';
 
@@ -35,6 +34,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 // NgRx Store
 import { StoreModule } from '@ngrx/store';
+import { MessageService } from 'primeng/api';
 // Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAWixxBydXaF4NOnlSKpEYAXp302e-38zM",
@@ -51,8 +51,7 @@ const firebaseConfig = {
     App,
     Headerr,
     LayoutComponent,
-    NavigationBarComponent,
-    DashboardComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +83,7 @@ const firebaseConfig = {
     }),
   ],
   providers: [
+    MessageService,
     providePrimeNG({
       theme: {
         preset: Aura,

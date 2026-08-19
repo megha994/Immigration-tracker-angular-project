@@ -5,6 +5,7 @@ export interface ProcessStep {
   status: STATUS;
   icon?: string;
   color?: string;
+  disabled: boolean;
 }
 
 export interface Step {

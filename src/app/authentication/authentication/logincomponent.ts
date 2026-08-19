@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -34,10 +34,9 @@ import { AuthService } from './../authentication/services/auth-service';
     FloatLabelModule
   ],
   templateUrl: './logincomponent.html',
-  styleUrl: './logincomponent.css',
-  providers: [MessageService]
+  styleUrl: './logincomponent.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   errorMessage = '';
 
@@ -46,7 +45,19 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router,
     private messageService: MessageService
-  ) {}
+  ) { }
+
+
+  ngOnInit(): void {
+   
+    if (this.authService.consumeLogoutToast()) {
+      this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: "You have been logged out successfully!"
+        });
+    }
+  }
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -78,6 +89,7 @@ export class LoginComponent {
           detail: `Welcome ${response.username}!`
         });
 
+        this.authService.triggerLoginToast();
         this.router.navigate(['/dashboard']);
       },
 
@@ -86,9 +98,7 @@ export class LoginComponent {
           error.code === 'invalid-credentials'
             ? 'Invalid email or password.'
             : 'Login failed. Please try again.';
-
         this.errorMessage = msg;
-
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

@@ -46,6 +46,13 @@
   text-align: left;
 }
 
+.success-message {
+  color: #73e3a7;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+
 /* Button */
 .login-button {
   width: 100%;

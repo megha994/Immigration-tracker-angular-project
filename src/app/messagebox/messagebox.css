@@ -120,3 +120,15 @@
   background: rgb(80, 190, 120);
   color: rgb(233, 240, 231);
 }
+
+
+host ::ng-deep .loggedin-dialog .dialog-content {
+  border: 2px solid rgb(40, 113, 170);
+  background: rgb(145, 199, 240);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+}
+
+:host ::ng-deep .loggedin-dialog .dialog-header {
+  background:rgb(33, 91, 135);
+  color: rgb(233, 240, 231);
+}

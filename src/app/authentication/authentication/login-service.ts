@@ -10,7 +10,7 @@ export class LoginService {
   /** ---------------------------
    *  SIGNUP
    *  --------------------------- */
-  signup(email: string, password: string): Observable<any> {
+  signup(name:string, email: string, password: string): Observable<any> {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     if (users.some((u: any) => u.email === email)) {
@@ -18,9 +18,9 @@ export class LoginService {
     }
 
     // Store username as the part before @
-    const username = email.split('@')[0];
+    const username = name;
 
-    users.push({ email, password, username });
+    users.push({name, email, password, username });
     localStorage.setItem('users', JSON.stringify(users));
 
     return of({ message: 'Signup successful' });

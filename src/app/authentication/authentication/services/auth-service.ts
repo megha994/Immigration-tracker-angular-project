@@ -6,8 +6,28 @@ export class AuthService {
   private TOKEN_KEY = 'auth_token';
   private USERNAME_KEY = 'auth_username';
 
-  constructor() {}
+  constructor() { }
+  private loginToastFlag = false;
+  private logoutToastFlag = false;
+  triggerLoginToast() {
+    this.loginToastFlag = true;
+  }
 
+  triggerLogoutToast() {
+    this.logoutToastFlag = true;
+  }
+
+  consumeLogoutToast(): boolean {
+    const flag = this.logoutToastFlag;
+    this.logoutToastFlag = false;
+    return flag;
+  }
+
+  consumeLoginToast(): boolean {
+    const flag = this.loginToastFlag;
+    this.loginToastFlag = false;   // important: clear after reading
+    return flag;
+  }
   /** ---------------------------
    *  TOKEN GENERATION + STORAGE
    *  --------------------------- */

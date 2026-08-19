@@ -229,15 +229,6 @@ export const DECISION_STEPS: Step[] = [
     completed: false,
     icon: 'pi pi-times',
     color: '#e45b29',
-  },
-  {
-    disabled: false,
-    id: '3',
-    title: 'Application Pending',
-    description: 'Is your application Pending?',
-    completed: false,
-    icon: 'pi pi-question-circle',
-    color: '#d6d31d',
   }
 ];
 

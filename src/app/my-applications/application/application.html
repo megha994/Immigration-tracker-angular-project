@@ -1,13 +1,12 @@
+<p-toast></p-toast>
 
-  @if(this.showMessage){
+@if(this.showMessage){
   <app-messagebox (closed)="hideMessage()" [status]="status" [msg]="msg"></app-messagebox>
-  }
+}
 
 <div class="page-wrapper">
 
-  <!-- ===========================
-       MAIN SECTION (LEFT)
-  ============================ -->
+  <!-- MAIN SECTION -->
   <section class="study-permit-shell main-section">
     <h1>Update your Application's Progress</h1>
     <h2>You can update the progress of any of the following:</h2>
@@ -19,33 +18,30 @@
 
         <div class="journey-item">
 
-          <div class="step-card" (click)="goToProcessStep(step)"
+          <div class="step-card"
+            (click)="!step.disabled && goToProcessStep(step)"
             [class.completed-card]="completedSteps[step.id]==='COMPLETED'"
             [class.pending-card]="completedSteps[step.id]==='INPROGRESS'"
-            [class.notstarted-card]="completedSteps[step.id]==='NOTSTARTED'">
+            [class.notstarted-card]="completedSteps[step.id]==='NOTSTARTED'"
+            [class.disabled-card]="step.disabled">
 
-            <!-- Icon -->
             <i [class]="step.icon" [style.color]="step.color"></i>
 
-            <!-- Status -->
-            <span class="status-chip" [class.completed]="completedSteps[step.id]=== 'COMPLETED'"
+            <span class="status-chip"
+              [class.completed]="completedSteps[step.id]=== 'COMPLETED'"
               [class.pending]="completedSteps[step.id]==='INPROGRESS'"
               [class.notstarted]="completedSteps[step.id]==='NOTSTARTED'">
 
-
-              @if(completedSteps[step.id]=== 'COMPLETED')
-              {
-              completed
-
-              }@else if (completedSteps[step.id] === 'NOTSTARTED'){
-              not started
-              }@else {in progress}
+              @if(completedSteps[step.id]=== 'COMPLETED') {
+                completed
+              } @else if (completedSteps[step.id] === 'NOTSTARTED') {
+                not started
+              } @else {
+                in progress
+              }
             </span>
 
-            <!-- Title -->
             <h3>{{ step.title }}</h3>
-
-            <!-- Description -->
             <p>{{ step.description }}</p>
 
           </div>
@@ -58,10 +54,7 @@
     </div>
   </section>
 
-
-  <!-- ===========================
-       SIDEBAR SECTION (RIGHT)
-  ============================ -->
+  <!-- SIDEBAR -->
   <section class="study-permit-shell sidebar-section">
     <h1>Quick Guide</h1>
 
@@ -72,13 +65,11 @@
 
         <div class="journey-item">
 
-          <div class="step-card vertical" (click)="goToStep(step)">
-
+          <div class="step-card vertical"
+            (click)="goToStep(step)">
             <i [class]="step.icon" [style.color]="step.color"></i>
-
             <h3>{{ step.title }}</h3>
             <p>{{ step.description }}</p>
-
           </div>
 
           <div class="connector">

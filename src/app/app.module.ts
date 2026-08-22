@@ -23,7 +23,12 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ToastModule } from 'primeng/toast';
 import { providePrimeNG } from 'primeng/config';
+import { MessageService } from 'primeng/api';
 import Aura from '@primeuix/themes/aura';
+
+// Http Client + Interceptor
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { mockBackendInterceptor } from './my-applications/mock-backend.interceptor';
 
 // Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -34,7 +39,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 // NgRx Store
 import { StoreModule } from '@ngrx/store';
-import { MessageService } from 'primeng/api';
+
 // Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAWixxBydXaF4NOnlSKpEYAXp302e-38zM",
@@ -73,8 +78,7 @@ const firebaseConfig = {
     ToastModule,
 
     // NgRx Store
-    StoreModule.forRoot({
-    }),
+    StoreModule.forRoot({}),
 
     // Service Worker
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -84,13 +88,19 @@ const firebaseConfig = {
   ],
   providers: [
     MessageService,
+
     providePrimeNG({
       theme: {
         preset: Aura,
       },
     }),
 
-    // Firebase
+    provideHttpClient(
+      withInterceptors([
+        mockBackendInterceptor
+      ])
+    ),
+
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
   ],

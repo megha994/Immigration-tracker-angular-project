@@ -39,6 +39,7 @@
     "@angular/service-worker": "^21.1.0",
     "@ngrx/store": "^21.1.1",
     "@primeuix/themes": "^2.0.3",
+    "echarts": "^6.1.0",
     "firebase": "^12.13.0",
     "ngx-toastr": "^20.0.5",
     "primeicons": "^7.0.0",

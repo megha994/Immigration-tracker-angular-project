@@ -4,24 +4,31 @@
   <div class="progress-grid">
     <p-card class="progress-card">
       <div class="progress-card-main">
-    <form [formGroup]="studyPermitForm" class="study-permit-form">
-      <div class="radio-group" role="radiogroup" aria-label="Application location options">
-        @for (category of categories; track category.key) {
-        <label class="radio-option" [for]="category.key">
-          <p-radiobutton formControlName="selectedCategory" 
-          (onClick)="onRadioChange(category)"
-          name="selectedCategory" [inputId]="category.key"
-            [value]="category" />
-          <span>{{ category.name }}</span>
-        </label>
-        }
+        <form [formGroup]="studyPermitForm" class="study-permit-form">
+          <div class="radio-group" role="radiogroup" aria-label="Application location options">
+            @for (category of categories; track category.key) {
+            <label class="radio-option" [for]="category.key">
+              <p-radiobutton formControlName="selectedCategory" (onClick)="onRadioChange(category)"
+                name="selectedCategory" [inputId]="category.key" [value]="category" />
+              <span>{{ category.name }}</span>
+            </label>
+            }
+          </div>
+        </form>
       </div>
-    </form>
-    </div>
     </p-card>
+    <p-card class="deadline-card" [ngClass]="deadlineColor">
+      <div class="deadline-main">
+        <h3>Deadline</h3>
+        <p>{{ deadlineText }}</p>
+      </div>
+      <i class="pi pi-clock deadline-icon"></i>
+    </p-card>
+  </div>
+  <div class="progress-grid-chart">
     <p-card class="progress-card">
       <div class="progress-card-main">
-//chart
+        <app-pie-chart [chartData]="chartData()"></app-pie-chart>
       </div>
     </p-card>
   </div>
@@ -50,11 +57,4 @@
     }
   </div>
 
-  <p-card class="deadline-card" [ngClass]="deadlineColor">
-    <div class="deadline-main">
-      <h3>Deadline</h3>
-      <p>{{ deadlineText }}</p>
-    </div>
-    <i class="pi pi-clock deadline-icon"></i>
-  </p-card>
 </section>

@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { applicationProgress } from './application/application.mock';
 
-// In-memory mock database
 const stepCompletion: Record<string, boolean> = {
   '0': false,
   '1': false,
@@ -15,10 +15,10 @@ const checkboxCompletion: Record<string, boolean[]> = {
 
 export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
 
-  // ============================
-  // GET /steps
-  // ============================
-  if (req.url.endsWith('/steps') && req.method === 'GET') {
+  console.log('Interceptor hit:', req.method, req.url);
+
+  // GET steps
+  if (req.url.includes('/steps') && req.method === 'GET') {
     return of(
       new HttpResponse({
         status: 200,
@@ -27,11 +27,12 @@ export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
-  // ============================
-  // POST /steps
-  // ============================
-  if (req.url.endsWith('/steps') && req.method === 'POST') {
-    const body = req.body as { stepId: string; completed: boolean };
+  // POST steps
+  if (req.url.includes('/steps') && req.method === 'POST') {
+    const body = req.body as {
+      stepId: string;
+      completed: boolean;
+    };
 
     stepCompletion[body.stepId] = body.completed;
 
@@ -43,42 +44,54 @@ export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
-  // ============================
-  // GET /checkboxes/:stepId
-  // ============================
+  // GET checkboxes
   if (req.url.includes('/checkboxes/') && req.method === 'GET') {
     const stepId = req.url.split('/').pop()!;
-    const saved = checkboxCompletion[stepId] || [];
 
     return of(
       new HttpResponse({
         status: 200,
         body: {
           stepId,
-          checkboxes: saved
+          checkboxes: checkboxCompletion[stepId] || []
         }
       })
     );
   }
 
-  // ============================
-  // POST /checkboxes
-  // ============================
-  if (req.url.endsWith('/checkboxes') && req.method === 'POST') {
-    const body = req.body as { stepId: string; checkboxes: boolean[] };
+  // POST checkboxes
+  if (req.url.includes('/checkboxes') && req.method === 'POST') {
+    const body = req.body as {
+      stepId: string;
+      checkboxes: boolean[];
+    };
 
     checkboxCompletion[body.stepId] = [...body.checkboxes];
 
     return of(
       new HttpResponse({
         status: 200,
-        body: { success: true }
+        body: {
+          success: true
+        }
       })
     );
   }
 
-  // ============================
-  // Pass through all other requests
-  // ============================
+  // DASHBOARD DATA
+  if (
+    req.method === 'GET' &&
+    req.url.includes('/api/dashboardData')
+  ) {
+    console.log('Returning mock dashboard data');
+
+    return of(
+      new HttpResponse({
+        status: 200,
+        body: applicationProgress
+      })
+    );
+  }
+
   return next(req);
 };

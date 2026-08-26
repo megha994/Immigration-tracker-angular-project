@@ -1,174 +1,115 @@
 .chart-wrapper {
-
     width: 100%;
-
     display: flex;
-
     flex-direction: column;
-
-    padding: 1rem;
-
+    padding: 0.5rem 0;
     box-sizing: border-box;
 }
 
 .status-legend {
-
     display: flex;
-
     justify-content: center;
-
-    gap: 2rem;
-
+    gap: 1rem;
     flex-wrap: wrap;
-
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .legend-item {
-
     display: flex;
-
     align-items: center;
-
-    gap: .5rem;
-
+    gap: 0.4rem;
     font-weight: 600;
-}
-
-.progress-chart {
-
-    width: 100% !important;
-
-    min-width: 100% !important;
-
-    height: 750px;
-
-    min-height: 750px;
-}
-
-.status-legend {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 2rem;
-
-    margin-bottom: 1rem;
-
-    flex-wrap: wrap;
-}
-
-.legend-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.5rem;
-
-    font-weight: 600;
-
     color: #374151;
-
+    font-size: 13px;
     animation: slideDown 0.7s ease;
 }
 
+.progress-chart {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 450px;
+    min-height: 450px;
+}
+
 .legend-color {
-
-    width: 16px;
-
-    height: 16px;
-
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
 }
 
 .completed {
-
-    background: linear-gradient(90deg,
-            #14c187,
-            #34D399);
+    background: linear-gradient(
+        90deg,
+        #14c187,
+        #34D399
+    );
 }
 
 .inprogress {
-
-    background: linear-gradient(90deg,
-            #ebe03d,
-            #eed922);
+    background: linear-gradient(
+        90deg,
+        #ebe03d,
+        #eed922
+    );
 }
 
 .notstarted {
-
-    background: linear-gradient(90deg,
-            #e35589,
-            #ec4c30);
+    background: linear-gradient(
+        90deg,
+        #e35589,
+        #ec4c30
+    );
 }
 
 @keyframes fadeIn {
-
     from {
-
         opacity: 0;
-
         transform: translateY(20px);
     }
 
     to {
-
         opacity: 1;
-
         transform: translateY(0);
     }
 }
 
 @keyframes slideDown {
-
     from {
-
         opacity: 0;
-
         transform: translateY(-10px);
     }
 
     to {
-
         opacity: 1;
-
         transform: translateY(0);
     }
 }
 
 /* Desktop Large */
-
 @media (min-width: 1600px) {
-
     .progress-chart {
-        height: 900px;
-        min-height: 900px;
+        height: 550px;
+        min-height: 550px;
     }
 
     .progress-grid-chart .progress-card {
-        min-height: 900px;
+        min-height: 600px;
     }
 }
 
 /* Laptop */
-
 @media (max-width: 1400px) {
-
     .progress-chart {
-        height: 700px;
-        min-height: 700px;
+        height: 450px;
+        min-height: 450px;
     }
 }
 
 /* Tablet */
-
 @media (max-width: 1024px) {
-
     .progress-chart {
-        height: 650px;
-        min-height: 650px;
+        height: 400px;
+        min-height: 400px;
     }
 
     .progress-grid {
@@ -181,34 +122,30 @@
 }
 
 /* Mobile */
-
 @media (max-width: 768px) {
-
     .dashboard-shell {
         padding: 20px;
     }
 
     .progress-chart {
-        height: 550px;
-        min-height: 550px;
+        height: 350px;
+        min-height: 350px;
     }
 
     .chart-card {
-        padding: 1rem;
+        padding: 0.75rem;
     }
 }
 
 /* Small Phones */
-
 @media (max-width: 480px) {
-
     .dashboard-shell {
         padding: 12px;
     }
 
     .progress-chart {
-        height: 450px;
-        min-height: 450px;
+        height: 300px;
+        min-height: 300px;
     }
 
     .chart-card {

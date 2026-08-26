@@ -90,10 +90,10 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
           return 100;
 
         case 1:
-          return 50;
+          return 60;
 
         default:
-          return 8;
+          return 20;
       }
     });
 
@@ -117,18 +117,16 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
       switch (item.value) {
 
         case 2:
-          return '#14c187';
+          return '#57d487';
 
         case 1:
-          return '#eed922';
+          return '#e3cc59';
 
         default:
-          return '#ec4c30';
+          return '#df4b4b';
       }
     });
-
     this.chartInstance?.setOption({
-
       animation: !this.hasRendered,
       animationDuration: 1800,
       animationEasing: 'cubicOut',
@@ -136,9 +134,9 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
       title: {
         text: `Your Application's Progress`,
         left: 'center',
-        top: 10,
+        top: 5,
         textStyle: {
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: 'bold',
           color: '#374151'
         }
@@ -151,33 +149,31 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
         },
 
         formatter: (params: any) => {
-
           const index = params[0].dataIndex;
 
           return `
-          <b>${labels[index]}</b><br/>
-          Status: ${statusLabels[index]}
-        `;
+        <b>${labels[index]}</b><br/>
+        Status: ${statusLabels[index]}
+      `;
         }
       },
 
       grid: {
-        left: '22%',
-        right: '5%',
+        left: '280',
+        right: '120',
         top: '15%',
         bottom: '8%',
-        containLabel: true
+        containLabel: false
       },
 
       xAxis: {
         type: 'value',
-
         min: 0,
         max: 100,
 
         name: 'Progress (%)',
         nameLocation: 'middle',
-        nameGap: 30,
+        nameGap: 25,
 
         position: 'top',
 
@@ -195,14 +191,13 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
 
       yAxis: {
         type: 'category',
-
         inverse: true,
 
         data: labels,
 
         name: 'Application Steps',
         nameLocation: 'middle',
-        nameGap: 120,
+        nameGap: 170,
 
         axisTick: {
           show: false
@@ -214,52 +209,45 @@ export class PieChartComponent implements OnInit, DoCheck, OnDestroy {
 
         axisLabel: {
           color: '#374151',
-          fontSize: 14,
+          fontSize: 12,
           fontWeight: 'bold',
-          width: 180,
-          overflow: 'break'
+          width: 300,
+          overflow: 'break',
         }
       },
 
       series: [
         {
           name: 'Progress',
-
           type: 'bar',
 
           data: values,
 
-          barWidth: 40,
+          barWidth: 24,
 
           showBackground: true,
 
           backgroundStyle: {
             color: '#f3f4f6',
-            borderRadius: 14
+            borderRadius: 10
           },
 
           itemStyle: {
-
-            borderRadius: 14,
+            borderRadius: 10,
 
             color: (params: any) => {
-
               return colors[params.dataIndex];
             }
           },
 
           label: {
-
             show: true,
-
-            position: 'right',
-
+            color: '#fdfafa',
             fontWeight: 'bold',
-
-            color: '#374151',
+            fontSize:12,
+            overflow: 'truncate',
 
             formatter: (params: any) => {
-
               return statusLabels[params.dataIndex];
             }
           }

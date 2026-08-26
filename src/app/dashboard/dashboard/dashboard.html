@@ -1,60 +1,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <section class="dashboard-shell">
 
   <div class="progress-grid">
     <p-card class="progress-card">
       <div class="progress-card-main">
+
         <form [formGroup]="studyPermitForm" class="study-permit-form">
-          <div class="radio-group" role="radiogroup" aria-label="Application location options">
+          <div class="radio-label-div">
+            <label class="radio-label">Select your application:</label>
+          </div>
+
+          <div
+            class="radio-group"
+            role="radiogroup"
+            aria-label="Application location options"
+          >
+
             @for (category of categories; track category.key) {
-            <label class="radio-option" [for]="category.key">
-              <p-radiobutton formControlName="selectedCategory" (onClick)="onRadioChange(category)"
-                name="selectedCategory" [inputId]="category.key" [value]="category" />
-              <span>{{ category.name }}</span>
-            </label>
+              <label class="radio-option" [for]="category.key">
+
+                <p-radiobutton
+                  formControlName="selectedCategory"
+                  (onClick)="onRadioChange(category)"
+                  name="selectedCategory"
+                  [inputId]="category.key"
+                  [value]="category"
+                />
+
+                <span>{{ category.name }}</span>
+              </label>
             }
+
           </div>
         </form>
+
       </div>
     </p-card>
+
     <p-card class="deadline-card" [ngClass]="deadlineColor">
       <div class="deadline-main">
         <h3>Deadline</h3>
         <p>{{ deadlineText }}</p>
       </div>
+
       <i class="pi pi-clock deadline-icon"></i>
     </p-card>
   </div>
+
   <div class="progress-grid-chart">
     <p-card class="progress-card">
-      <div class="progress-card-main">
-        <app-pie-chart [chartData]="chartData()"></app-pie-chart>
-      </div>
+      <app-pie-chart [chartData]="chartData()"></app-pie-chart>
     </p-card>
   </div>
 
   <header class="dashboard-header">
     <h2>Your Progress</h2>
-    <p-progressBar [value]="progressValue" [showValue]="false"></p-progressBar>
+    <p-progressBar
+      [value]="progressValue"
+      [showValue]="false">
+    </p-progressBar>
   </header>
 
-
   <div class="progress-grid">
+
     @for (card of cards; track card.id) {
 
-    <p-card class="progress-card" [class.disabled-card]="card.disabled" (click)="onCardClick(card)">
-      <div class="progress-card-main">
-        <i [class]="card.icon" class="card-icon"></i>
-        <div>
-          <h3>{{ card.title }}</h3>
-          <p class="card-subtitle">
-            <i class="pi pi-check status-icon"></i>
-            Completed
-          </p>
+      <p-card
+        class="progress-card"
+        [class.disabled-card]="card.disabled"
+        (click)="onCardClick(card)"
+      >
+
+        <div class="progress-card-main">
+
+          <i
+            [class]="card.icon"
+            class="card-icon">
+          </i>
+
+          <div>
+            <h3>{{ card.title }}</h3>
+
+            <p class="card-subtitle">
+              <i class="pi pi-check status-icon"></i>
+              Completed
+            </p>
+          </div>
+
         </div>
-      </div>
-    </p-card>
+
+      </p-card>
+
     }
+
   </div>
 
 </section>

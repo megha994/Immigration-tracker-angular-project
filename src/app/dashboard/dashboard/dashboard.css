@@ -3,7 +3,7 @@
   color: #1f2937;
   background-color: #ffffff;
   min-height: 100vh;
-  padding: 100px 100px 100px 120px;
+  padding: 50px 100px 100px 120px;
   font-family: Oswald, sans-serif;
   font-weight: 500;
 }
@@ -17,6 +17,15 @@
   font-size: 24px;
 }
 
+.radio-label {
+  font-family: Oswald, sans-serif;
+  font-weight: bold;
+}
+
+.radio-label-div {
+  padding: 5px 5px 10px 5px;
+}
+
 .mat-progress-bar {
   border-radius: 8px;
   height: 16px;
@@ -28,18 +37,21 @@
   gap: 16px;
 }
 
+/* NEW: make only the first row cards smaller */
+.progress-grid:first-of-type {
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+}
+
 .progress-grid-chart {
   width: 100%;
   padding-top: 10px;
 }
 
 .progress-grid-chart .progress-card {
-
   width: 100%;
-
   max-width: 100%;
-
-  min-height: 850px;
+  min-height: 400px;
 }
 
 .progress-card {
@@ -47,7 +59,7 @@
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 110px;
+  min-height: 80px;
 }
 
 .progress-card.clickable:hover {
@@ -60,6 +72,37 @@
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+/* NEW: only first card */
+:host ::ng-deep .progress-grid:first-of-type .progress-card .p-card-body {
+  padding: 12px 16px !important;
+  min-height: 100px !important;
+}
+
+/* NEW: reduce size of application options */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #e5bcbc;
+  border-radius: 12px;
+  background: #fffaf9;
+  color: #1f2937;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
 }
 
 .card-icon {
@@ -88,21 +131,36 @@
 }
 
 .deadline-card {
-    display: flex;
+  display: flex;
   align-items: center;
   gap: 14px;
-
-  margin-top: 20px;
-  padding: 14px;
- 
-  align-items: center;
+  margin-top: 0;
   justify-content: space-between;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e1af57;
   border-radius: 10px;
   background-color: #fef3c7;
   color: #92400e;
-  min-height: 100px;
   cursor: default;
+}
+
+/* NEW: only deadline card */
+:host ::ng-deep .deadline-card .p-card-body {
+  min-height: 100px !important;
+  padding: 12px 16px !important;
+  animation: pulse 2s infinite;
+}
+
+:host ::ng-deep .deadline-card .p-card {
+
+  animation: pul*e 2s infinite;
+  
+
+}
+
+.deadline-icon {
+
+  animation: tick 1s*infinite ease-in-out;
+
 }
 
 .deadline-card.success {
@@ -125,12 +183,9 @@
 
 .deadline-main h3 {
   margin: 0;
-  font-size: 18px;
-  font-weight: 400px;
-  flex: 1;
-  margin: 0;
+  font-size: 16px;
   font-family: Oswald, sans-serif;
-  letter-spacing: 10px;
+  letter-spacing: 6px;
 }
 
 .deadline-main p {
@@ -140,8 +195,9 @@
 }
 
 .deadline-icon {
-  font-size: 40px;
+  font-size: 28px;
   color: inherit;
+  animation: clockTick 1s infinite;
 }
 
 @media (max-width: 900px) {
@@ -151,6 +207,7 @@
 }
 
 @media (max-width: 600px) {
+
   .dashboard-shell {
     padding: 12px;
   }
@@ -163,6 +220,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    position: relative;
+    overflow: hidden;
   }
 
   .deadline-icon {
@@ -174,32 +233,6 @@
     transform: scale(0.98);
     border: 2px dashed #ccc;
   }
-
-}
-
-
-.radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.radio-option {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border: 1px solid #e5bcbc;
-  border-radius: 12px;
-  background: #fffaf9;
-  color: #1f2937;
-  font-family: 'Oswald', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 180px;
 }
 
 .radio-option:hover {
@@ -219,8 +252,7 @@
   height: 1.15rem;
 }
 
-
-:host ::ng-deep .p-radiobutton-checked,
+:host ::ng-deep .p-radiobutton-checked,p
 :host ::ng-deep .p-radiobutton-checked .p-radiobutton-box {
   border-radius: 50% !important;
   border: 1px solid #18cb24 !important;
@@ -231,4 +263,66 @@
   border-color: #e53935;
   background: #fff3f2;
   transform: translateY(-1px);
+}
+
+@keyframes shine {
+  from {
+    left: -150%;
+  }
+
+  to {
+    left: 250%;
+  }
+}
+
+.deadline-icon {
+  font-size: 2rem;
+  color: #f59e0b;
+  transform-origin: center top;
+  animation: tick 1s infinite ease-in-out;
+}
+
+@keyframes tick {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-10deg);
+  }
+
+  40% {
+    transform: rotate(0deg);
+  }
+
+  60% {
+    transform: rotate(10deg);
+  }
+
+  80% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+:host ::ng-deep .deadline-card {
+  border: #991b1b;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

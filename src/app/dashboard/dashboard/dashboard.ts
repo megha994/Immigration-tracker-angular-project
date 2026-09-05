@@ -15,6 +15,7 @@ import { DashboardStateMgtService } from '../dashboard-state-mgt.service';
 import { PieChartComponent } from '../../charts/pie-chart/pie-chart';
 import { DashboardService } from './dashboard-service.service';
 import { signal } from '@angular/core';
+import { Application } from "../../my-applications/application/application";
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ import { signal } from '@angular/core';
     ProgressBarModule,
     RadioButtonModule,
     CardModule,
-  ],
+    Application
+],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
@@ -40,14 +42,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   cards = dashboardStep;
   type = "study";
   deadlineColor = 'warning';
-  deadlineText = '5 days left to submit!';
+  deadlineText = "";
   studyPermitForm!: FormGroup;
-
+  username: any = "";
   chartData = signal<any[]>([]);
-  categories: any[] = [
-    { key: 1, name: 'Study Permit' },
-    { key: 2, name: 'Study Permit Extension' }
-  ];
+  categories = signal<any[]>([]);
 
   constructor(
     private messageService: MessageService,
@@ -61,13 +60,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.DashboardStateMgtService.restoreIntoForm();
+    //Getting username from logged in 
+    this.username = this.authService.getUsername();
+    //getting categories from service using username
+    this.dashboardService.getCategoryData(this.username).subscribe(data => {
+      this.categories.set(data.categories);
 
+    });
     this.studyPermitForm = this.fb.group({
-      selectedCategory: ['', Validators.required]
+      selectedCategory: [this.categories()[0], Validators.required]
     });
 
     this.studyPermitForm.get('selectedCategory')?.valueChanges.subscribe((value) => {
-      this.application = value.name;
+      this.application = value.category;
     });
 
     if (this.authService.consumeLoginToast()) {
@@ -82,21 +87,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     const saved = this.DashboardStateMgtService.dashboardFormValue();
     if (saved) {
-      this.application = saved.selectedCategory.name;
-      const selected = this.categories.find(c => c.key === saved.selectedCategory.key);
+      this.application = saved.selectedCategory.category;
+      const selected = this.categories().find(c => c.id === saved.selectedCategory.id);
 
       this.studyPermitForm.patchValue({
-        country: saved.country,
         selectedCategory: selected
+      });
+    }
+    if (this.studyPermitForm.controls['selectedCategory'].value) {
+      const category = this.studyPermitForm.controls['selectedCategory'].value;
+      // 5 days left to submit!
+      this.dashboardService.getCategoryDetails(category, this.username).subscribe((value) => {
+        this.deadlineText = value.deadlineTest;
+        this.deadlineColor=value.deadlineColor;
       });
     }
   }
 
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
-
-    this.dashboardService.getPieChartData().subscribe(chart => {
-      console.log('Chart received:', chart);
+    const category = this.studyPermitForm.controls['selectedCategory'].value;
+    this.dashboardService.getPieChartData(category, this.username).subscribe(chart => {
       this.chartData.set(chart);
     });
   }

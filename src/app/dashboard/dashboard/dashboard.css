@@ -130,18 +130,7 @@
   font-size: 18px;
 }
 
-.deadline-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 0;
-  justify-content: space-between;
-  border: 1px solid #e1af57;
-  border-radius: 10px;
-  background-color: #fef3c7;
-  color: #92400e;
-  cursor: default;
-}
+
 
 /* NEW: only deadline card */
 :host ::ng-deep .deadline-card .p-card-body {
@@ -157,29 +146,14 @@
 
 }
 
+
+
 .deadline-icon {
 
   animation: tick 1s*infinite ease-in-out;
 
 }
 
-.deadline-card.success {
-  background-color: #dcfce7;
-  border-color: #d1fae5;
-  color: #166534;
-}
-
-.deadline-card.warning {
-  background-color: #fef3c7;
-  border-color: #fde68a;
-  color: #92400e;
-}
-
-.deadline-card.danger {
-  background-color: #fee2e2;
-  border-color: #fecaca;
-  color: #991b1b;
-}
 
 .deadline-main h3 {
   margin: 0;
@@ -196,7 +170,7 @@
 
 .deadline-icon {
   font-size: 28px;
-  color: inherit;
+  color: white;
   animation: clockTick 1s infinite;
 }
 
@@ -251,12 +225,12 @@
   width: 1.15rem;
   height: 1.15rem;
 }
-
-:host ::ng-deep .p-radiobutton-checked,p
+:host ::ng-deep .p-radiobutton-checked,
 :host ::ng-deep .p-radiobutton-checked .p-radiobutton-box {
   border-radius: 50% !important;
   border: 1px solid #18cb24 !important;
 }
+
 
 .radio-option:has(.p-radiobutton .p-radiobutton-box.p-highlight),
 .radio-option:has(input[type="radio"]:checked) {
@@ -277,11 +251,18 @@
 
 .deadline-icon {
   font-size: 2rem;
-  color: #f59e0b;
+  color: #fffffe;
   transform-origin: center top;
   animation: tick 1s infinite ease-in-out;
 }
-
+.study-permit-card {
+  background: #ffffff;
+  border: 1px solid #f3d6d6;
+  border-radius: 18px;
+  margin-top: 20px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(185, 28, 28, 0.08);
+}
 @keyframes tick {
   0% {
     transform: rotate(0deg);
@@ -309,7 +290,7 @@
 }
 
 :host ::ng-deep .deadline-card {
-  border: #991b1b;
+  color:#feffff;
   animation: pulse 2s infinite ease-in-out;
 }
 

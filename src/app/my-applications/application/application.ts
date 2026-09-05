@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApplicationProgressService } from './../services/application-progress.service';
 import { ProcessStep, STATUS, Step } from './../my-application.interface';
@@ -6,6 +6,7 @@ import { processSteps, progressSteps } from './application.mock';
 import { Messagebox } from './../../messagebox/messagebox';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
   selector: 'app-application',
@@ -13,7 +14,8 @@ import { ToastModule } from 'primeng/toast';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     Messagebox,
-    ToastModule
+    ToastModule,
+    ProgressBarModule
   ],
   templateUrl: './application.html',
   styleUrl: './application.css'
@@ -22,12 +24,12 @@ export class Application implements OnInit {
 
   processSteps = processSteps;
   progressSteps = progressSteps;
-
+  progressPercentage = 0;
   showMessage = false;
   msg = '';
   status = "";
   @Input() type!: string;
-
+  newApplication = input(true);
   completedSteps: Record<string, string> = {};
 
   constructor(
@@ -40,7 +42,6 @@ export class Application implements OnInit {
   ngOnInit() {
 
     this.showMessage = false;
-
     this.progressService.getProgress().subscribe(progress => {
       this.completedSteps = progress;
 
@@ -119,12 +120,13 @@ export class Application implements OnInit {
         });
       }
     });
+    this.calculateProgress();
   }
 
   // ---------------------------------------------------------
   // 🔥 NEW — Step enabling logic (added without touching your code)
   // ---------------------------------------------------------
-   applyStepEnableLogic(): void {
+  applyStepEnableLogic(): void {
 
     // Disable all steps initially
     this.processSteps.forEach(step => step.disabled = true);
@@ -167,7 +169,7 @@ export class Application implements OnInit {
   // ---------------------------------------------------------
   // 🔥 NEW — Disable ALL cards when step 7 is complete
   // ---------------------------------------------------------
-   disableAllCards(): void {
+  disableAllCards(): void {
     this.processSteps.forEach(step => step.disabled = true);
   }
 
@@ -175,11 +177,11 @@ export class Application implements OnInit {
 
   goToProcessStep(step: ProcessStep) {
     const st = Number(step.id);
-
-    this.router.navigate(['/update-study-permit'], {
-      queryParams: { st, type: this.type },
-      queryParamsHandling: 'merge'
-    });
+      this.router.navigate(['/update-study-permit'], {
+        queryParams: { st, type: this.type, newApplication:this.newApplication() },
+        queryParamsHandling: 'merge',
+        
+      });
   }
 
   hideMessage() {
@@ -210,4 +212,11 @@ export class Application implements OnInit {
       });
     }
   }
+
+  private calculateProgress(): void {
+    const completedSteps = this.processSteps.filter(d => d.status === STATUS.COMPLETED).length;
+    this.progressPercentage = Math.round((completedSteps / this.processSteps.length) * 100);
+
+  }
+
 }

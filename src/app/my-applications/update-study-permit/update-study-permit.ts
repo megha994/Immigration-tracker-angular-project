@@ -11,7 +11,7 @@ import {
   DECISION_STEPS,
   COMPLETION_STEPS,
   DOCUMENTS,
-  completemessages, 
+  completemessages,
   progressemessages,
   notstartedemessages
 } from './update-study-permit.mock';
@@ -63,6 +63,7 @@ export class UpdateStudyPermit implements OnInit {
   completemessages: Record<number, string> = completemessages;
   progressemessages: Record<number, string> = progressemessages;
   notstartedemessages: Record<number, string> = notstartedemessages;
+  newApplication = 'true';
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -87,24 +88,36 @@ export class UpdateStudyPermit implements OnInit {
   onBrowserBack(event: Event) {
     this.pageStatus = this.calculatePageStatus();
     this.msg = this.updateMessage();
-    this.router.navigate(['/application'], {
-      queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
-    });
+    if (this.newApplication == 'true') {
+      this.router.navigate(['/application'], {
+        queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
+      });
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
 
 
   ngOnInit(): void {
     this.msg = "";
+    this.newApplication = this.route.snapshot.queryParams['newApplication']!;
+
     //if user navigtaes away from this apge
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart && !this.hasRedirected) {
+
         this.hasRedirected = true;
         this.msg = this.updateMessage();
         this.pageStatus = this.calculatePageStatus();
-        this.router.navigate(['/application'], {
-          queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
-        });
+        if (this.newApplication == 'true') {
+          this.router.navigate(['/application'], {
+            queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
+          });
+        } else {
+
+          this.router.navigate(['/dashboard']);
+        }
       }
     });
     this.type = this.route.snapshot.queryParams['type']!;
@@ -253,9 +266,13 @@ export class UpdateStudyPermit implements OnInit {
     this.pageStatus = this.calculatePageStatus();
 
     this.progressService.updateStep(stepId, this.pageStatus).subscribe(() => {
-      this.router.navigate(['/application'], {
-        queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
-      });
+      if (this.newApplication == 'true') {
+        this.router.navigate(['/application'], {
+          queryParams: { pageStatus: this.pageStatus, msg: this.msg, stepNo: this.processStep }
+        });
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
     });
   }
 

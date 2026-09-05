@@ -8,7 +8,9 @@
 
   <!-- MAIN SECTION -->
   <section class="study-permit-shell main-section">
-    <h1>Update your Application's Progress</h1>
+     <h1>Your Progress:</h1>
+    <p-progressBar [value]="progressPercentage" [showValue]="true"></p-progressBar>
+    <h1>Update your Application</h1>
     <h2>You can update the progress of any of the following:</h2>
 
     <div class="study-permit-card">
@@ -55,6 +57,7 @@
   </section>
 
   <!-- SIDEBAR -->
+   @if (newApplication()) {
   <section class="study-permit-shell sidebar-section">
     <h1>Quick Guide</h1>
 
@@ -83,5 +86,5 @@
       </div>
     </div>
   </section>
-
+}
 </div>

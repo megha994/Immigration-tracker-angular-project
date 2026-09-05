@@ -134,14 +134,6 @@ export const progressSteps: ProcessStep[] = [
         icon: 'pi pi-question-circle',
         color: '#eccae4',
         disabled: false
-    }, {
-        id: '7',
-        title: 'Application Complete',
-        description: 'Verify that the Application is Complete',
-        status: STATUS.NOTSTARTED,
-        icon: 'pi pi-check-circle',
-        color: '#8ee1a1',
-        disabled: false
     }
 ];
 

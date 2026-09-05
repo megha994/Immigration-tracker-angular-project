@@ -11,25 +11,16 @@
             <label class="radio-label">Select your application:</label>
           </div>
 
-          <div
-            class="radio-group"
-            role="radiogroup"
-            aria-label="Application location options"
-          >
+          <div class="radio-group" role="radiogroup" aria-label="Application location options">
 
-            @for (category of categories; track category.key) {
-              <label class="radio-option" [for]="category.key">
+            @for (category of categories(); track category.id) {
+            <label class="radio-option" [for]="category.id">
 
-                <p-radiobutton
-                  formControlName="selectedCategory"
-                  (onClick)="onRadioChange(category)"
-                  name="selectedCategory"
-                  [inputId]="category.key"
-                  [value]="category"
-                />
+              <p-radiobutton formControlName="selectedCategory" (onClick)="onRadioChange(category)"
+                name="selectedCategory" [inputId]="category.id" [value]="category" />
 
-                <span>{{ category.name }}</span>
-              </label>
+              <span>{{ category.category }}</span>
+            </label>
             }
 
           </div>
@@ -38,7 +29,7 @@
       </div>
     </p-card>
 
-    <p-card class="deadline-card" [ngClass]="deadlineColor">
+    <p-card class="deadline-card" [style.backgroundColor]="deadlineColor">
       <div class="deadline-main">
         <h3>Deadline</h3>
         <p>{{ deadlineText }}</p>
@@ -54,11 +45,12 @@
     </p-card>
   </div>
 
-  <header class="dashboard-header">
+     <div class="study-permit-card">
+    <app-application [newApplication]="false"></app-application>
+  </div>
+  <!-- <header class="dashboard-header">
     <h2>Your Progress</h2>
-    <p-progressBar
-      [value]="progressValue"
-      [showValue]="false">
+    <p-progressBar [value]="progressValue" [showValue]="false">
     </p-progressBar>
   </header>
 
@@ -66,34 +58,28 @@
 
     @for (card of cards; track card.id) {
 
-      <p-card
-        class="progress-card"
-        [class.disabled-card]="card.disabled"
-        (click)="onCardClick(card)"
-      >
+    <p-card class="progress-card" [class.disabled-card]="card.disabled" (click)="onCardClick(card)">
 
-        <div class="progress-card-main">
+      <div class="progress-card-main">
 
-          <i
-            [class]="card.icon"
-            class="card-icon">
-          </i>
+        <i [class]="card.icon" class="card-icon">
+        </i>
 
-          <div>
-            <h3>{{ card.title }}</h3>
+        <div>
+          <h3>{{ card.title }}</h3>
 
-            <p class="card-subtitle">
-              <i class="pi pi-check status-icon"></i>
-              Completed
-            </p>
-          </div>
-
+          <p class="card-subtitle">
+            <i class="pi pi-check status-icon"></i>
+            Completed
+          </p>
         </div>
 
-      </p-card>
+      </div>
+
+    </p-card>
 
     }
 
   </div>
 
-</section>
+</section> -->

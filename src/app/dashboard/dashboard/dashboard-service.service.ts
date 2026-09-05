@@ -9,8 +9,12 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  getApplicationData(): Observable<any> {
-    return this.http.get<any>('/api/dashboardData').pipe(
+  getCategoryData(username: string): Observable<any> {
+    return this.http.get<any>('/api/dashboard-categories', {
+      params: {
+        username: username
+      }
+    }).pipe(
       map((res) => {
         console.log('API Response:', res);
         return res;
@@ -18,8 +22,36 @@ export class DashboardService {
     );
   }
 
-  getPieChartData(): Observable<any[]> {
-    return this.getApplicationData().pipe(
+  getApplicationData(category: any, username: string): Observable<any> {
+    return this.http.get<any>('/api/dashboardData', {
+      params: {
+        category: category,
+        username: username
+      }
+    }).pipe(
+      map((res) => {
+        console.log('API Response:', res);
+        return res;
+      })
+    );
+  }
+
+  getCategoryDetails(category: any, username: string): Observable<any> {
+    return this.http.get<any>('/api/categoryData', {
+      params: {
+        category: category,
+        username: username
+      }
+    }).pipe(
+      map((res) => {
+        console.log('API Response:', res);
+        return res;
+      })
+    );
+  }
+
+  getPieChartData(category: any, username: string): Observable<any[]> {
+    return this.getApplicationData(category, username).pipe(
       map((response: any) => {
 
         const steps = response.applicationProgress || [];

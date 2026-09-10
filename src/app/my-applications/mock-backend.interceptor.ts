@@ -94,19 +94,19 @@ export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   //Dashboard radio-button-data
-  if (
-    req.method === 'GET' &&
-    req.url.includes('/api/dashboard-categories')
-  ) {
-    console.log('Returning mock radiobutton in dashboard data');
+  // if (
+  //   req.method === 'GET' &&
+  //   req.url.includes('/api/dashboard-categories')
+  // ) {
+  //   console.log('Returning mock radiobutton in dashboard data');
 
-    return of(
-      new HttpResponse({
-        status: 200,
-        body: { categories: [{ id: 1, category: 'Study Permit' }, { id: 2, category: 'Study Permit Extension' }] }
-      })
-    );
-  }
+  //   return of(
+  //     new HttpResponse({
+  //       status: 200,
+  //       body: { categories: [{ id: 1, category: 'Study Permit' }, { id: 2, category: 'Study Permit Extension' }] }
+  //     })
+  //   );
+  // }
   // /api/categoryData
 
   if (

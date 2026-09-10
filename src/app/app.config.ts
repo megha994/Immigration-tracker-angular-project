@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { mockBackendInterceptor  } from './my-applications/mock-backend.interceptor';
 import { routes } from './app.routes';
 import Aura from '@primeuix/themes/aura';
+
 // import { provideAnimations} from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
@@ -15,9 +16,10 @@ theme:{
   preset:Aura
 }
     }),
-    provideHttpClient(
-      withInterceptors([mockBackendInterceptor ])
-    ),
+    // provideHttpClient(
+    //   withInterceptors([mockBackendInterceptor ])
+    // ),
+    provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes)

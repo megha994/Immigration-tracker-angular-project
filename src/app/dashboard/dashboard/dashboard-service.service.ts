@@ -9,12 +9,27 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
+  // getCategoryData(username: string): Observable<any> {
+  //   return this.http.get<any>('/api/dashboard-categories', {
+  //     params: {
+  //       username: username
+  //     }
+  //   }).pipe(
+  //     map((res) => {
+  //       console.log('API Response:', res);
+  //       return res;
+  //     })
+  //   );
+  // }
   getCategoryData(username: string): Observable<any> {
-    return this.http.get<any>('/api/dashboard-categories', {
-      params: {
-        username: username
+    return this.http.get<any>(
+      'http://localhost:3000/api/dashboard-categories',
+      {
+        params: {
+          username: username
+        }
       }
-    }).pipe(
+    ).pipe(
       map((res) => {
         console.log('API Response:', res);
         return res;

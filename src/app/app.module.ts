@@ -27,7 +27,7 @@ import { MessageService } from 'primeng/api';
 import Aura from '@primeuix/themes/aura';
 
 // Http Client + Interceptor
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import { mockBackendInterceptor } from './my-applications/mock-backend.interceptor';
 
 // Firebase
@@ -95,7 +95,7 @@ const firebaseConfig = {
       },
     }),
 
-    provideHttpClient(
+    provideHttpClient(withXhr(), 
       withInterceptors([
         mockBackendInterceptor
       ])

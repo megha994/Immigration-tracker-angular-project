@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../authentication/authentication/services/auth-service';
 import { MessageService } from 'primeng/api';
@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
   templateUrl: './headerr.html',
   standalone: false,
   styleUrls: ['./headerr.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [MessageService]
 })
 export class Headerr {

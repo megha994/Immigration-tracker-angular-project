@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { Component, input, OnInit, output, ChangeDetectionStrategy } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 
 @Component({
@@ -6,6 +6,7 @@ import { Dialog } from 'primeng/dialog';
   standalone: true,
   imports: [Dialog],
   templateUrl: './messagebox.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./messagebox.css'],
 })
 export class Messagebox implements OnInit {

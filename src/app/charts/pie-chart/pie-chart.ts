@@ -7,7 +7,8 @@ import {
   OnDestroy,
   DoCheck,
   Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
@@ -16,6 +17,7 @@ import * as echarts from 'echarts';
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./pie-chart.css']
 })
 export class PieChartComponent implements OnInit, DoCheck, OnDestroy {

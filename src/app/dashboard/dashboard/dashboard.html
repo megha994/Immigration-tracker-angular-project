@@ -16,7 +16,7 @@
             @for (category of categories(); track category.id) {
             <label class="radio-option" [for]="category.id">
 
-              <p-radiobutton formControlName="selectedCategory" (onClick)="onRadioChange(category)"
+              <p-radiobutton formControlName="selectedCategory"
                 name="selectedCategory" [inputId]="category.id" [value]="category" />
 
               <span>{{ category.category }}</span>
@@ -44,42 +44,3 @@
       <app-pie-chart [chartData]="chartData()"></app-pie-chart>
     </p-card>
   </div>
-
-     <div class="study-permit-card">
-    <app-application [newApplication]="false"></app-application>
-  </div>
-  <!-- <header class="dashboard-header">
-    <h2>Your Progress</h2>
-    <p-progressBar [value]="progressValue" [showValue]="false">
-    </p-progressBar>
-  </header>
-
-  <div class="progress-grid">
-
-    @for (card of cards; track card.id) {
-
-    <p-card class="progress-card" [class.disabled-card]="card.disabled" (click)="onCardClick(card)">
-
-      <div class="progress-card-main">
-
-        <i [class]="card.icon" class="card-icon">
-        </i>
-
-        <div>
-          <h3>{{ card.title }}</h3>
-
-          <p class="card-subtitle">
-            <i class="pi pi-check status-icon"></i>
-            Completed
-          </p>
-        </div>
-
-      </div>
-
-    </p-card>
-
-    }
-
-  </div>
-
-</section> -->

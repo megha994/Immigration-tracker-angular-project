@@ -28,7 +28,7 @@ import Aura from '@primeuix/themes/aura';
 
 // Http Client + Interceptor
 import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
-import { mockBackendInterceptor } from './my-applications/mock-backend.interceptor';
+// import { mockBackendInterceptor } from './my-applications/mock-backend.interceptor';
 
 // Firebase
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -95,11 +95,11 @@ const firebaseConfig = {
       },
     }),
 
-    provideHttpClient(withXhr(), 
-      withInterceptors([
-        mockBackendInterceptor
-      ])
-    ),
+    // provideHttpClient(withXhr(), 
+    //   withInterceptors([
+    //     // mockBackendInterceptor
+    //   ])
+    // ),
 
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),

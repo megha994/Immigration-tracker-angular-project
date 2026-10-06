@@ -1,8 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import {providePrimeNG} from 'primeng/config';
-import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
-import { mockBackendInterceptor  } from './my-applications/mock-backend.interceptor';
+import { providePrimeNG } from 'primeng/config';
+import { provideHttpClient, withFetch,withRequestsMadeViaParent, withInterceptors, withXhr } from '@angular/common/http';
+// import { mockBackendInterceptor  } from './my-applications/mock-backend.interceptor';
 import { routes } from './app.routes';
 import Aura from '@primeuix/themes/aura';
 
@@ -12,14 +12,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     // provideAnimations,
     providePrimeNG({
-theme:{
-  preset:Aura
-}
+      theme: {
+        preset: Aura
+      }
     }),
     // provideHttpClient(
     //   withInterceptors([mockBackendInterceptor ])
     // ),
-    provideHttpClient(withXhr()),
+    provideHttpClient(withFetch()),
+    
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes)

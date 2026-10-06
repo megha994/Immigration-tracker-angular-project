@@ -9,18 +9,6 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  // getCategoryData(username: string): Observable<any> {
-  //   return this.http.get<any>('/api/dashboard-categories', {
-  //     params: {
-  //       username: username
-  //     }
-  //   }).pipe(
-  //     map((res) => {
-  //       console.log('API Response:', res);
-  //       return res;
-  //     })
-  //   );
-  // }
   getCategoryData(username: string): Observable<any> {
     return this.http.get<any>(
       'http://localhost:3000/api/dashboard-categories',
@@ -31,35 +19,32 @@ export class DashboardService {
       }
     ).pipe(
       map((res) => {
-        console.log('API Response:', res);
         return res;
       })
     );
   }
 
   getApplicationData(category: any, username: string): Observable<any> {
-    return this.http.get<any>('/api/dashboardData', {
+    return this.http.get<any>('http://localhost:3000/api/dashboardData', {
       params: {
         category: category,
         username: username
       }
     }).pipe(
       map((res) => {
-        console.log('API Response:', res);
         return res;
       })
     );
   }
 
   getCategoryDetails(category: any, username: string): Observable<any> {
-    return this.http.get<any>('/api/categoryData', {
+    return this.http.get<any>('http://localhost:3000/api/categoryData', {
       params: {
         category: category,
         username: username
       }
     }).pipe(
       map((res) => {
-        console.log('API Response:', res);
         return res;
       })
     );
@@ -69,7 +54,8 @@ export class DashboardService {
     return this.getApplicationData(category, username).pipe(
       map((response: any) => {
 
-        const steps = response.applicationProgress || [];
+        const steps =
+          response?.applicationProgress?.applicationProgress || [];
 
         return steps.map((step: any) => {
           let numericValue = 0;
